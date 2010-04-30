@@ -1,0 +1,24 @@
+#setenv LC_CTYPE en_US.UTF-8
+#defutf8 on
+
+sorendition gK
+
+startup_message off
+
+# a nice status line
+hardstatus on
+hardstatus alwayslastline 
+hardstatus string '%{= kG}[ %{c}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{c} %l %{g}]'
+
+# starting windows
+
+chdir /home/rhoward/templates
+screen -t rdtp
+# repeat ad nauseum...
+
+chdir $HOME
+
+# pick the window you want to start in; if you do this twice the first one
+# will be your "last" window (for quick switching)
+select 0
+
