@@ -54,6 +54,9 @@ au BufWritePost *.php !php -l '%'
 " when using screen. :^(
 "au BufWritePost *.js !node ~/bin/nodelint.js/nodelint.js '%' >> ~/loglint
 "au BufWritePost *.css !node ~/bin/nodelint.js/nodelint.js '%' >> ~/loglint
+" windows/cygwin
+"au BufWritePost *.js !cscript "C:\cygwin\home\rhoward\bin\jslint.js" < '%'
+"au BufWritePost *.css !cscript "C:\cygwin\home\rhoward\bin\jslint.js" < '%'
 
 
 " RedDot
