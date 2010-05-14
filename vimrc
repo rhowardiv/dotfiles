@@ -54,6 +54,8 @@ au BufWritePost *.php !php -l '%'
 " when using screen. :^(
 "au BufWritePost *.js !node ~/bin/nodelint.js/nodelint.js '%' >> ~/loglint
 "au BufWritePost *.css !node ~/bin/nodelint.js/nodelint.js '%' >> ~/loglint
+" add jslinting to any buffer
+nmap \aj :au BufWritePost <buffer> !node ~/bin/nodelint.js/nodelint.js '%' >> ~/loglint<cr>
 " windows/cygwin
 "au BufWritePost *.js !cscript "C:\cygwin\home\rhoward\bin\jslint.js" < '%'
 "au BufWritePost *.css !cscript "C:\cygwin\home\rhoward\bin\jslint.js" < '%'
