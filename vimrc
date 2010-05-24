@@ -32,6 +32,13 @@ nmap gB :bp<cr>
 " Handy shortcut for a scratch buffer named "^_^"
 nmap gs :e ^_^<cr>:setlocal buftype=nofile<cr>:setlocal bufhidden=hide<cr>:setlocal noswapfile<cr>:set filetype=diff<cr>
 
+" Start with the scratch buffer open
+e ^_^
+setlocal buftype=nofile
+setlocal bufhidden=hide
+setlocal noswapfile
+set filetype=diff
+
 " helper shortcut--prep filenames w/spaces for filtering to xargs, etc.; 'quote space'
 vmap \qs :s/^\s*//<cr>gv:s/ /\\ /g<cr>:nohls<cr>
 
