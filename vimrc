@@ -19,7 +19,9 @@ set noexpandtab
 au FileType python setlocal expandtab
 set shiftwidth=4
 set tabstop=4
+set shiftround
 set autoindent
+set scrolloff=3
 set formatoptions=tcroq
 
 filetype plugin on
