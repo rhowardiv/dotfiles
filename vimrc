@@ -27,6 +27,9 @@ set formatoptions=tcroq
 filetype plugin on
 filetype indent on
 
+" command mode: ctrl-d for pathname of current buffer
+cmap <C-D> <C-R>=expand("%:p:h") . "/" <CR>
+
 " I like to use these shortcuts for moving among buffers
 nmap gb :bn<cr>
 nmap gB :bp<cr>
