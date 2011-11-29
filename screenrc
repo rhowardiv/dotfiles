@@ -12,8 +12,11 @@ hardstatus string '%{= kG}[ %{c}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u
 
 # starting windows
 
-chdir /home/rhoward/templates
-screen -t rdtp
+chdir $HOME
+screen -t home
+
+chdir /var/www
+screen -t webroot
 # repeat ad nauseum...
 
 chdir $HOME
