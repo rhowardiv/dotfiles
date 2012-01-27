@@ -38,8 +38,11 @@ nmap gB :bp<cr>
 " Handy shortcut for a scratch buffer named "^_^"
 nmap gs :e ^_^<cr>:setlocal buftype=nofile<cr>:setlocal bufhidden=hide<cr>:setlocal noswapfile<cr>:set filetype=diff<cr>
 
-" helper shortcut--prep filenames w/spaces for filtering to xargs, etc.; 'quote space'
-vmap \qs :s/^\s*//<cr>gv:s/ /\\ /g<cr>:nohls<cr>
+" ack in scratch buffer for term in " register
+nmap <Leader>at gsG:r!ack "<cr>
+
+" ghetto find file
+nmap <Leader>lf gsGo<cr>filesearch::r!find . -not -wholename '*/.svn/*' -name '**'<left><left>
 
 
 " folding
