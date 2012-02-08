@@ -38,12 +38,25 @@ nmap gB :bp<cr>
 " Handy shortcut for a scratch buffer named "^_^"
 nmap gs :e ^_^<cr>:setlocal buftype=nofile<cr>:setlocal bufhidden=hide<cr>:setlocal noswapfile<cr>:set filetype=diff<cr>
 
-" ack in scratch buffer for term in " register
-nmap <Leader>at gsG:r!ack "<cr>
+" ack in scratch buffer...
+" for term in " register
+nmap <Leader>a" gsGo<cr>term search: """:r!ack "<cr>
+" for term under cursor
+nmap <Leader>at yiwgsGo<cr>term search: """:r!ack "<cr>
+" for something you'll type out
+nmap <Leader>as gsGo<cr>arbitrary term search::r!ack ''<left>
 
-" ghetto find file
-nmap <Leader>lf gsGo<cr>filesearch::r!find . -not -wholename '*/.svn/*' -name '**'<left><left>
 
+" find file; use "fack" if it exists
+if executable("fack")
+	nmap <Leader>ff gsGo<cr>filesearch::r!fack ''<left>
+else
+	nmap <Leader>ff gsGo<cr>filesearch::r!find . -not -wholename '*/.svn/*' -not -wholename '*.swp' -name '**' \|cut -c3-<left><left><left><left><left><left><left><left><left><left><left><left>
+endif
+
+
+" "resolve conflicts"
+nmap <Leader>rc /<<<<<<<\\|=======\\|>>>>>>><cr>
 
 " folding
 
