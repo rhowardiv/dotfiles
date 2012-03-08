@@ -58,6 +58,11 @@ endif
 " "resolve conflicts"
 nmap <Leader>rc /<<<<<<<\\|=======\\|>>>>>>><cr>
 
+" blame someone for code I'm looking at
+" Only works if you're at least 10 lines into the file (otherwise just use
+" :!git blame '%' | head). Could fix with sed but, meh.
+nmap <Leader>bs :call setreg('l', line('.'))<cr>:!git blame '%' \| tail -n +$(echo $((<C-R>l-10))) \| head -n 20<cr>
+
 " folding
 
 let php_folding=1
