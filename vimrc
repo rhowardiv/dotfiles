@@ -70,7 +70,7 @@ au FileType php setlocal foldmethod=syntax
 let g:xml_syntax_folding=1
 au FileType xml setlocal foldmethod=syntax
 au FileType javascript setlocal foldmethod=marker
-
+set foldlevelstart=1
 
 " linting
 
