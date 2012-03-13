@@ -4,6 +4,7 @@
 sorendition gK
 
 startup_message off
+defscrollback 10000
 
 # a nice status line
 hardstatus on
