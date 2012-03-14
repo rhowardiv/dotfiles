@@ -44,9 +44,11 @@ nmap gs :e ^_^<cr>:setlocal buftype=nofile<cr>:setlocal bufhidden=hide<cr>:setlo
 
 " ack in scratch buffer...
 " for term in " register
-nmap <Leader>a" gsGo<cr>term search: """:r!ack "<cr>
-" for term under cursor
-nmap <Leader>at yiwgsGo<cr>term search: """:r!ack "<cr>
+nmap <Leader>a" gsGo<cr>term search: """:r!ack "<cr>{
+" for "this" (under cursor)
+nmap <Leader>at yiwgsGo<cr>term search: """:r!ack "<cr>{
+" for word under cursor (enforce word boundaries)
+nmap <Leader>aw yiwgsGo<cr>word search: """:r!ack '\b"\b'<cr>{
 " for something you'll type out
 nmap <Leader>as gsGo<cr>arbitrary term search::r!ack ''<left>
 
