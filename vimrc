@@ -1,5 +1,7 @@
 syntax on
 color desert
+color solarized
+let g:solarized_hitrail=1
 
 set wrap
 set hidden
