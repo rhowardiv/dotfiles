@@ -71,6 +71,41 @@ nmap <Leader>rc /<<<<<<<\\|=======\\|>>>>>>><cr>
 " :!git blame '%' | head). Could fix with sed but, meh.
 nmap <Leader>bs :call setreg('l', line('.'))<cr>:!git blame '%' \| tail -n +$(echo $((<C-R>l-10))) \| head -n 20<cr>
 
+" Open diffs in tabs for each file that differs between the branch you're on
+" and the supplied branch (default: master)
+function Gbdiff(...)
+	if a:1
+		let l:target_branch = a:1
+	else
+		let l:target_branch = "master"
+	endif
+
+	e _branch_diff_
+	setlocal buftype=nofile
+	setlocal bufhidden=hide
+	setlocal noswapfile
+	set filetype=diff
+	silent exec 'r!git diff --name-only master'
+	while line(".") > 1
+		if !filereadable(getline("."))
+			" File does not exist in this branch
+			execute "normal I--\<esc>k"
+		else
+			call system("git show " . shellescape(l:target_branch . ":" . getline(".")))
+			if v:shell_error
+				" File does not exist in target branch
+				execute "normal I++\<esc>k"
+			else
+				execute "normal \<C-w>gf"
+				execute "CMiniBufExplorer"
+				execute "Gdiff " . l:target_branch
+				execute "normal \<CR>gTk"
+			endif
+		endif
+	endwhile
+endfunction
+nmap <Leader>bd :call Gbdiff("master")<cr>
+
 " folding
 
 let php_folding=1
