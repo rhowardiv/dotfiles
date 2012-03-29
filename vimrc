@@ -41,6 +41,9 @@ cmap <C-D> <C-R>=expand("%:p:h") . "/" <CR>
 nmap gb :bn<cr>
 nmap gB :bp<cr>
 
+" quicker shortcut for toggling MiniBufExplorer
+nmap <Leader>bb <Plug>TMiniBufExplorer
+
 " Handy shortcut for a scratch buffer named "^_^"
 nmap gs :e ^_^<cr>:setlocal buftype=nofile<cr>:setlocal bufhidden=hide<cr>:setlocal noswapfile<cr>:set filetype=diff<cr>
 
