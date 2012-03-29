@@ -49,20 +49,20 @@ nmap gs :e ^_^<cr>:setlocal buftype=nofile<cr>:setlocal bufhidden=hide<cr>:setlo
 
 " ack in scratch buffer...
 " for term in " register
-nmap <Leader>a" gsGo<cr>term search: """:r!ack "<cr>{
+nmap <Leader>a" gsGo<cr>++ term search: """:r!ack "<cr>{
 " for "this" (under cursor)
-nmap <Leader>at yiwgsGo<cr>term search: """:r!ack "<cr>{
+nmap <Leader>at yiwgsGo<cr>++ term search: """:r!ack "<cr>{
 " for word under cursor (enforce word boundaries)
-nmap <Leader>aw yiwgsGo<cr>word search: """:r!ack '\b"\b'<cr>{
+nmap <Leader>aw yiwgsGo<cr>++ word search: """:r!ack '\b"\b'<cr>{
 " for something you'll type out
-nmap <Leader>as gsGo<cr>arbitrary term search::r!ack ''<left>
+nmap <Leader>as gsGo<cr>++ arbitrary term search::r!ack ''<left>
 
 
 " find file; use "fack" if it exists
 if executable("fack")
-	nmap <Leader>ff gsGo<cr>filesearch::r!fack ''<left>
+	nmap <Leader>ff gsGo<cr>++ filesearch::r!fack ''<left>
 else
-	nmap <Leader>ff gsGo<cr>filesearch::r!find . -not -wholename '*/.svn/*' -not -wholename '*.swp' -name '**' \|cut -c3-<left><left><left><left><left><left><left><left><left><left><left><left>
+	nmap <Leader>ff gsGo<cr>++ filesearch::r!find . -not -wholename '*/.svn/*' -not -wholename '*.swp' -name '**' \|cut -c3-<left><left><left><left><left><left><left><left><left><left><left><left>
 endif
 
 
