@@ -77,7 +77,7 @@ nmap <Leader>bs :call setreg('l', line('.'))<cr>:!git blame '%' \| tail -n +$(ec
 " Open diffs in tabs for each file that differs between the branch you're on
 " and the supplied branch (default: master)
 function Gbdiff(...)
-	if a:1
+	if a:0 > 0
 		let l:target_branch = a:1
 	else
 		let l:target_branch = "master"
@@ -88,6 +88,7 @@ function Gbdiff(...)
 	setlocal bufhidden=hide
 	setlocal noswapfile
 	set filetype=diff
+	execute "normal i files that differ from branch " . l:target_branch . ":\<esc>"
 	silent exec 'r!git diff --name-only master'
 	while line(".") > 1
 		if !filereadable(getline("."))
