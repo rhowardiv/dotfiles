@@ -88,7 +88,7 @@ function Gbdiff(...)
 	setlocal bufhidden=hide
 	setlocal noswapfile
 	set filetype=diff
-	execute "normal i files that differ from branch " . l:target_branch . ":\<esc>"
+	execute "normal i files that differ from base " . l:target_branch . ":\<esc>"
 	silent exec 'r!git diff --name-only master'
 	while line(".") > 1
 		if !filereadable(getline("."))
