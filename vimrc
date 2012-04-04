@@ -44,8 +44,24 @@ nmap gB :bp<cr>
 " quicker shortcut for toggling MiniBufExplorer
 nmap <Leader>bb <Plug>TMiniBufExplorer
 
-" Handy shortcut for a scratch buffer named "^_^"
-nmap gs :e ^_^<cr>:setlocal buftype=nofile<cr>:setlocal bufhidden=hide<cr>:setlocal noswapfile<cr>:set filetype=diff<cr>
+" Handy shortcut for a happy scratch buffer
+function HappyBuffer()
+	let l:happy = "^_^"
+
+	if bufexists(l:happy)
+		let l:n = bufnr(l:happy)
+		execute ":buffer " . l:n
+		return
+	endif
+
+	execute ":e " . l:happy
+	execute ":setlocal buftype=nofile"
+	execute ":setlocal bufhidden=hide"
+	execute ":setlocal noswapfile"
+	execute ":setlocal nobuflisted"
+	execute ":set filetype=diff"
+endfunction
+nmap gs :call HappyBuffer()<cr>
 
 " ack in scratch buffer...
 " for term in " register
