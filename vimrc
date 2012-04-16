@@ -140,37 +140,6 @@ au FileType xml setlocal foldmethod=syntax
 au FileType javascript setlocal foldmethod=marker
 set foldlevelstart=1
 
-" linting
-
-au BufWritePost *.php !php -l '%'
-" pylint can be very slow... background it
-"au BufWritePost *.py !pylint '%' >> ~/loglint &
-" allowing stdout to console for nodelint seems to cause persistent drawing problems
-" when using screen. :^(
-"au BufWritePost *.js !node ~/bin/nodelint.js/nodelint.js '%' >> ~/loglint
-"au BufWritePost *.css !node ~/bin/nodelint.js/nodelint.js '%' >> ~/loglint
-" add jslinting to any buffer
-nmap \aj :au BufWritePost <buffer> !node ~/bin/nodelint.js/nodelint.js '%' >> ~/loglint<cr>
-" windows/cygwin
-"au BufWritePost *.js !cscript "C:\cygwin\home\rhoward\bin\jslint.js" < '%'
-"au BufWritePost *.css !cscript "C:\cygwin\home\rhoward\bin\jslint.js" < '%'
-
-" PHPCS
-function! RunPhpcs()
-	let l:filename=@%
-	let l:phpcs_output=system('phpcs --report=csv '.l:filename)
-"	echo l:phpcs_output
-	let l:phpcs_list=split(l:phpcs_output, "\n")
-	unlet l:phpcs_list[0]
-	cexpr l:phpcs_list
-	cwindow
-endfunction
-set errorformat+=\"%f\"\\,%l\\,%c\\,%t%*[a-zA-Z]\\,\"%m\"\\,%*[a-zA-Z0-9_.-]\\,%*[0-9]
-command! Phpcs execute RunPhpcs()
-nmap <Leader>sn :call RunPhpcs()<cr>
-
-
-
 " RedDot
 
 " sensible default filetype
