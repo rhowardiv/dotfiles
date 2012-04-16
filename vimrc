@@ -76,15 +76,6 @@ nmap <Leader>aw yiwgsGo<cr>++ word search: """:r!ack '\b"\b'<cr>{
 " for something you'll type out
 nmap <Leader>as gsGo<cr>++ arbitrary term search::r!ack ''<left>
 
-
-" find file; use "fack" if it exists
-if executable("fack")
-	nmap <Leader>ff gsGo<cr>++ filesearch::r!fack ''<left>
-else
-	nmap <Leader>ff gsGo<cr>++ filesearch::r!find . -not -wholename '*/.svn/*' -not -wholename '*.swp' -name '**' \|cut -c3-<left><left><left><left><left><left><left><left><left><left><left><left>
-endif
-
-
 " "resolve conflicts"
 nmap <Leader>rc /<<<<<<<\\|=======\\|>>>>>>><cr>
 
