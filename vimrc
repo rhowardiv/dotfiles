@@ -34,6 +34,9 @@ set formatoptions=tcroq
 filetype plugin on
 filetype indent on
 
+" syntastic settings -- only check manually (:SyntasticCheck)
+let g:syntastic_mode_map = {'mode': 'passive', 'active_filetypes': [], 'passive_filetypes': []}
+
 " don't syntax highlight large files
 au FileType php if getfsize(expand("%")) > 92000 | syntax clear | endif
 
