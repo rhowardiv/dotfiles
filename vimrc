@@ -35,7 +35,7 @@ filetype plugin on
 filetype indent on
 
 " don't syntax highlight large files
-autocmd BufReadPre * if getfsize(expand("%")) > 92000 | syntax clear | endif
+au FileType php if getfsize(expand("%")) > 92000 | syntax clear | endif
 
 " command mode: ctrl-d for pathname of current buffer
 cmap <C-D> <C-R>=expand("%:p:h") . "/" <CR>
