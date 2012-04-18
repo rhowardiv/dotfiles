@@ -126,19 +126,10 @@ endfunction
 nmap <Leader>bd :call Gbdiff()<cr>
 
 " folding
-
 let php_folding=1
 au FileType php setlocal foldmethod=syntax
 let g:xml_syntax_folding=1
 au FileType xml setlocal foldmethod=syntax
 au FileType javascript setlocal foldmethod=marker
 set foldlevelstart=1
-
-" RedDot
-
-" sensible default filetype
-au BufRead,BufNewFile *.rdtp setfiletype php
-" decode and re-encode freshly exported Red Dot templates
-nmap \rd :e ++enc=ucs-2le<cr>:set fenc=latin1<cr>
-
 
