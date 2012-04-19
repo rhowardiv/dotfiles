@@ -133,3 +133,5 @@ au FileType xml setlocal foldmethod=syntax
 au FileType javascript setlocal foldmethod=marker
 set foldlevelstart=1
 
+" linting
+au BufWritePost *.php !php -l '%'
