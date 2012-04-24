@@ -107,12 +107,12 @@ function Gbdiff(...)
 	while line(".") > 1
 		if !filereadable(getline("."))
 			" File does not exist in this branch
-			execute "normal I--\<esc>k"
+			execute "normal I-- \<esc>k"
 		else
 			call system("git show " . shellescape(l:base . ":" . getline(".")))
 			if v:shell_error
 				" File does not exist in target branch
-				execute "normal I++\<esc>k"
+				execute "normal I++ \<esc>k"
 			else
 				execute "normal \<C-w>gf"
 				execute "CMiniBufExplorer"
