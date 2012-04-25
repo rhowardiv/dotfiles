@@ -138,4 +138,13 @@ au FileType javascript setlocal foldmethod=marker
 set foldlevelstart=1
 
 " linting
-au BufWritePost *.php !php -l '%'
+function PHPlint(file)
+	silent exe "!php -l " . a:file
+	execute "normal \<C-l>"
+	if v:shell_error != 0
+		" Stopping to echo here also echoes out results of php -l. Twice. <shrug>
+		echo "Exit code:" . v:shell_error
+	else
+	endif
+endfunction
+au BufWritePost *.php call PHPlint(expand("%"))
