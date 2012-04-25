@@ -1,6 +1,10 @@
 syntax on
 color desert
 color solarized
+" why do I have to explictly source this?
+so ~/.vim/autoload/togglebg.vim
+" use the light bg with the new monitor
+ToggleBG
 let g:solarized_hitrail=1
 
 set wrap
