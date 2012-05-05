@@ -1,10 +1,11 @@
 syntax on
+nmap <Leader>ss :syntax sync fromstart<cr>
 color desert
 color solarized
 " why do I have to explictly source this?
 so ~/.vim/autoload/togglebg.vim
 " use the light bg with the new monitor
-ToggleBG
+" ToggleBG
 let g:solarized_hitrail=1
 
 set wrap
