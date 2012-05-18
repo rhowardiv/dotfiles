@@ -12,6 +12,7 @@ set hidden
 set nonu
 set incsearch
 set showcmd
+set cursorline
 
 set laststatus=2
 " default status line with current git branch name added via fugitive
