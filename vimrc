@@ -88,6 +88,10 @@ nmap <Leader>aw yiwgsGo<cr>++ word search: """:r!ack '\b"\b'<cr>{
 " for something you'll type out
 nmap <Leader>as gsGo<cr>++ arbitrary term search::r!ack ''<left>
 
+" send the current word to ctrl-p
+" ctrl-p already uses <insert> after <C-P> for this, but meh
+nmap <Leader>ff <C-P><insert>
+
 " "resolve conflicts"
 nmap <Leader>rc /<<<<<<<\\|=======\\|>>>>>>><cr>
 
