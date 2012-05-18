@@ -1,4 +1,5 @@
 syntax on
+nmap <Leader>ss :syntax sync fromstart<cr>
 color desert
 color solarized
 " why do I have to explictly source this?
