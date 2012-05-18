@@ -54,6 +54,8 @@ nmap gB :bp<cr>
 
 " quicker shortcut for toggling MiniBufExplorer
 nmap <Leader>bb <Plug>TMiniBufExplorer
+let g:miniBufExplorerMoreThanOne=0
+
 
 " Handy shortcut for a happy scratch buffer
 function HappyBuffer()
