@@ -52,6 +52,7 @@ cmap <C-D> <C-R>=expand("%:p:h") . "/" <CR>
 " I like to use these shortcuts for moving among buffers
 nmap gb :bn<cr>
 nmap gB :bp<cr>
+nmap <Leader>ab :ls<cr>:buffer 
 
 " quicker shortcut for toggling MiniBufExplorer
 nmap <Leader>bb <Plug>TMiniBufExplorer
