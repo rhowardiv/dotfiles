@@ -39,6 +39,9 @@ set formatoptions=tcroq
 filetype plugin on
 filetype indent on
 
+" write selection to X clipboard
+vmap <Leader>cc :w !xclip -selection c<cr><cr>
+
 " syntastic settings -- only check manually (:SyntasticCheck)
 let g:syntastic_mode_map = {'mode': 'passive', 'active_filetypes': [], 'passive_filetypes': []}
 nmap <Leader>s :SyntasticCheck<cr>
