@@ -119,6 +119,7 @@ function Gbdiff(...)
 	setlocal buftype=nofile
 	setlocal bufhidden=hide
 	setlocal noswapfile
+	setlocal textwidth=0
 	set filetype=diff
 	execute "normal iFiles that differ from base " . l:base_pretty . ":\<esc>"
 	execute "r!git diff --name-only " . l:base
