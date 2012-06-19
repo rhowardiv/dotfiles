@@ -1,6 +1,7 @@
 syntax on
 nmap <Leader>ss :syntax sync fromstart<cr>
-color desert
+" color desert
+set t_Co=16
 color solarized
 " why do I have to explictly source this?
 so ~/.vim/autoload/togglebg.vim
