@@ -104,6 +104,9 @@ nmap <Leader>aw yiwgsGo<cr>++ word search: """:r!ack '\b"\b'<cr>{
 " for something you'll type out
 nmap <Leader>as gsGo<cr>++ arbitrary term search::r!ack ''<left>
 
+" traditional grepping with ack
+set grepprg=ack
+
 " Don't let ctrl-p use a different pwd
 let g:ctrlp_working_path_mode = 0
 
