@@ -6,7 +6,7 @@ color solarized
 " why do I have to explictly source this?
 so ~/.vim/autoload/togglebg.vim
 " use the light bg for dumb glossy monitors
-" ToggleBG
+ToggleBG
 let g:solarized_hitrail=1
 
 set wrap
@@ -59,6 +59,16 @@ cmap <C-D> <C-R>=expand("%:p:h") . "/" <CR>
 nmap gb :bn<cr>
 nmap gB :bp<cr>
 nmap <Leader>ab :ls<cr>:buffer 
+
+" moving among windows
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+" (this overwrites <C-l> for redraw, but I use :redraw[!] anyhow)
+nmap <C-l> <C-w>l
+
+" easier than <C-w>s
+nmap <C-w><C-s> <C-w>s
 
 " quicker shortcut for toggling MiniBufExplorer
 nmap <Leader>bb <Plug>TMiniBufExplorer
