@@ -71,9 +71,15 @@ nmap <C-l> <C-w>l
 " easier than <C-w>s
 nmap <C-w><C-s> <C-w>s
 
-" quicker shortcut for toggling MiniBufExplorer
-nmap <Leader>bb <Plug>TMiniBufExplorer
+" Lazily load and toggle the MiniBufExplr plugin
+nmap <Leader>bb :call LazyMiniBufExpl()<cr>
 let g:miniBufExplorerMoreThanOne=0
+function LazyMiniBufExpl()
+	if !exists(":TMiniBufExplorer")
+		execute ":source ~/.vim/minibufexpl/minibufexpl.vim"
+	endif
+	execute ":TMiniBufExplorer"
+endfunction
 
 
 " Handy shortcut for a happy scratch buffer
