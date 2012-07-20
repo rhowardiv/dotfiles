@@ -158,7 +158,9 @@ function Gbdiff(...)
 				execute "normal I++ \<esc>k"
 			else
 				execute "normal \<C-w>gf"
-				execute "CMiniBufExplorer"
+				if (exists(":CMiniBufExplorer"))
+					execute "CMiniBufExplorer"
+				endif
 				execute "Gdiff " . l:base
 				execute "normal \<cr>gTk"
 			endif
