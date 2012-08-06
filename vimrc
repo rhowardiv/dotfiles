@@ -1,26 +1,35 @@
-syntax on
-nmap <Leader>ss :syntax sync fromstart<cr>
-" color desert
-set t_Co=16
-color solarized
-" why do I have to explictly source this?
-so ~/.vim/autoload/togglebg.vim
-" use the light bg for dumb glossy monitors
-ToggleBG
-let g:solarized_hitrail=1
+if has("syntax")
+	syntax on
+	nmap <Leader>ss :syntax sync fromstart<cr>
+	" color desert
+	set t_Co=16
+	color solarized
+	" why do I have to explictly source this?
+	so ~/.vim/autoload/togglebg.vim
+	" use the correct solarized scheme
+	if exists(":ToggleBG") " not vi
+		ToggleBG
+	endif
+	let g:solarized_hitrail=1
+
+	set incsearch
+	set hls
+	set cursorline
+
+	" don't syntax highlight large files
+	au FileType php if getfsize(expand("%")) > 92000 | syntax clear | endif
+
+endif
 
 set wrap
 set hidden
 set nonu
-set incsearch
 set showcmd
-set cursorline
 
 set laststatus=2
 " default status line with current git branch name added via fugitive
 set statusline=%<%f\ %{fugitive#statusline()}\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
-set hls
 set ruler
 set backspace=start,indent,eol
 set updatecount=50
@@ -49,9 +58,6 @@ vmap <Leader>cc :w !xclip -selection c<cr><cr>
 let g:syntastic_mode_map = {'mode': 'passive', 'active_filetypes': [], 'passive_filetypes': []}
 nmap <Leader>sc :SyntasticCheck<cr>
 nmap <Leader>su :sign unplace *<cr>
-
-" don't syntax highlight large files
-au FileType php if getfsize(expand("%")) > 92000 | syntax clear | endif
 
 " command mode: ctrl-d for pathname of current buffer
 cmap <C-D> <C-R>=expand("%:p:h") . "/" <CR>
@@ -171,12 +177,14 @@ endfunction
 nmap <Leader>bd :call Gbdiff()<cr>
 
 " folding
-let php_folding=1
-au FileType php setlocal foldmethod=syntax
-let g:xml_syntax_folding=1
-au FileType xml setlocal foldmethod=syntax
-au FileType javascript setlocal foldmethod=marker
-set foldlevelstart=2
+if has("folding") " not vi
+	let php_folding=1
+	au FileType php setlocal foldmethod=syntax
+	let g:xml_syntax_folding=1
+	au FileType xml setlocal foldmethod=syntax
+	au FileType javascript setlocal foldmethod=marker
+	set foldlevelstart=2
+endif
 
 " linting
 function PHPlint(file)
