@@ -137,44 +137,46 @@ nmap <Leader>bs :call setreg('l', line('.'))<cr>:!git blame '%' \| tail -n +$(ec
 
 " Open diffs in tabs for each file that differs between the branch you're on
 " and the supplied target (default: current merge base with master)
-function Gbdiff(...)
-	if a:0 > 0
-		let l:base = a:1
-	else
-		let l:base = substitute(system("git merge-base HEAD master"), '[^0-9a-f]\+$', '', '')
-	endif
-	let l:base_pretty = "(" . substitute(system("git show --oneline " . l:base . " | head -n1"), '[^0-9a-f]\+$', '', '') . ")"
-
-	e _branch_diff_
-	setlocal buftype=nofile
-	setlocal bufhidden=hide
-	setlocal noswapfile
-	setlocal textwidth=0
-	set filetype=diff
-	execute "normal iFiles that differ from base " . l:base_pretty . ":\<esc>"
-	execute "r!git diff --name-only " . l:base
-	while line(".") > 1
-		if !filereadable(getline("."))
-			" File does not exist in this branch
-			execute "normal I-- \<esc>k"
+if exists(":Gcommit")
+	function Gbdiff(...)
+		if a:0 > 0
+			let l:base = a:1
 		else
-			call system("git show " . shellescape(l:base . ":" . getline(".")))
-			if v:shell_error
-				" File does not exist in target branch
-				execute "normal I++ \<esc>k"
-			else
-				execute "normal \<C-w>gf"
-				if (exists(":CMiniBufExplorer"))
-					execute "CMiniBufExplorer"
-				endif
-				execute "Gdiff " . l:base
-				execute "normal \<cr>gTk"
-			endif
+			let l:base = substitute(system("git merge-base HEAD master"), '[^0-9a-f]\+$', '', '')
 		endif
-	endwhile
-	execute "normal ICommits since base " . l:base_pretty . ":\<cr>" . system("git log --oneline " . l:base . "..HEAD | tac") . "\<cr>\<esc>0j"
-endfunction
-nmap <Leader>bd :call Gbdiff()<cr>
+		let l:base_pretty = "(" . substitute(system("git show --oneline " . l:base . " | head -n1"), '[^0-9a-f]\+$', '', '') . ")"
+
+		e _branch_diff_
+		setlocal buftype=nofile
+		setlocal bufhidden=hide
+		setlocal noswapfile
+		setlocal textwidth=0
+		set filetype=diff
+		execute "normal iFiles that differ from base " . l:base_pretty . ":\<esc>"
+		execute "r!git diff --name-only " . l:base
+		while line(".") > 1
+			if !filereadable(getline("."))
+				" File does not exist in this branch
+				execute "normal I-- \<esc>k"
+			else
+				call system("git show " . shellescape(l:base . ":" . getline(".")))
+				if v:shell_error
+					" File does not exist in target branch
+					execute "normal I++ \<esc>k"
+				else
+					execute "normal \<C-w>gf"
+					if (exists(":CMiniBufExplorer"))
+						execute "CMiniBufExplorer"
+					endif
+					execute "Gdiff " . l:base
+					execute "normal \<cr>gTk"
+				endif
+			endif
+		endwhile
+		execute "normal ICommits since base " . l:base_pretty . ":\<cr>" . system("git log --oneline " . l:base . "..HEAD | tac") . "\<cr>\<esc>0j"
+	endfunction
+	nmap <Leader>bd :call Gbdiff()<cr>
+endif
 
 " folding
 if has("folding") " not vi
