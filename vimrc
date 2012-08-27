@@ -190,12 +190,9 @@ endif
 
 " linting
 function PHPlint(file)
-	silent exe "!php -l " . a:file
-	redraw!
+	let l:lint = system("php -l " . a:file)
 	if v:shell_error != 0
-		" Stopping to echo here also echoes out results of php -l. Twice. <shrug>
-		echo "Exit code:" . v:shell_error
-	else
+		echohl WarningMsg | echo l:lint | echohl None
 	endif
 endfunction
 au BufWritePost *.php call PHPlint(expand("%"))
