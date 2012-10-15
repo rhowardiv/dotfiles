@@ -1,6 +1,6 @@
 if has("syntax")
 	syntax on
-	nmap <Leader>ss :syntax sync fromstart<cr>
+	nnoremap <Leader>ss :syntax sync fromstart<cr>
 	" color desert
 	set t_Co=16
 	color solarized
@@ -52,33 +52,33 @@ filetype plugin on
 filetype indent on
 
 " write selection to X clipboard
-vmap <Leader>cc :w !xclip -selection c<cr><cr>
+vnoremap <Leader>cc :w !xclip -selection c<cr><cr>
 
 " syntastic settings -- only check manually (:SyntasticCheck)
 let g:syntastic_mode_map = {'mode': 'passive', 'active_filetypes': [], 'passive_filetypes': []}
-nmap <Leader>sc :SyntasticCheck<cr>
-nmap <Leader>su :sign unplace *<cr>
+nnoremap <Leader>sc :SyntasticCheck<cr>
+nnoremap <Leader>su :sign unplace *<cr>
 
 " command mode: ctrl-d for pathname of current buffer
-cmap <C-D> <C-R>=expand("%:p:h") . "/" <CR>
+cnoremap <C-D> <C-R>=expand("%:p:h") . "/" <CR>
 
 " I like to use these shortcuts for moving among buffers
-nmap gb :bn<cr>
-nmap gB :bp<cr>
-nmap <Leader>ab :ls<cr>:buffer 
+nnoremap gb :bn<cr>
+nnoremap gB :bp<cr>
+nnoremap <Leader>ab :ls<cr>:buffer 
 
 " moving among windows
-nmap <C-h> <C-w>h
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
 " (this overwrites <C-l> for redraw, but I use :redraw[!] anyhow)
-nmap <C-l> <C-w>l
+nnoremap <C-l> <C-w>l
 
 " easier than <C-w>s
-nmap <C-w><C-s> <C-w>s
+nnoremap <C-w><C-s> <C-w>s
 
 " Lazily load and toggle the MiniBufExplr plugin
-nmap <Leader>bb :call LazyMiniBufExpl()<cr>
+nnoremap <Leader>bb :call LazyMiniBufExpl()<cr>
 let g:miniBufExplorerMoreThanOne=0
 function LazyMiniBufExpl()
 	if !exists(":TMiniBufExplorer")
@@ -105,17 +105,17 @@ function HappyBuffer()
 	execute ":setlocal nobuflisted"
 	execute ":set filetype=diff"
 endfunction
-nmap gs :call HappyBuffer()<cr>
+nnoremap gs :call HappyBuffer()<cr>
 
 " ack in scratch buffer...
 " for term in " register
-nmap <Leader>a" gsGo<cr>++ term search: """:r!ack "<cr>{
+nnoremap <Leader>a" gsGo<cr>++ term search: """:r!ack "<cr>{
 " for "this" (under cursor)
-nmap <Leader>at yiwgsGo<cr>++ term search: """:r!ack "<cr>{
+nnoremap <Leader>at yiwgsGo<cr>++ term search: """:r!ack "<cr>{
 " for word under cursor (enforce word boundaries)
-nmap <Leader>aw yiwgsGo<cr>++ word search: """:r!ack '\b"\b'<cr>{
+nnoremap <Leader>aw yiwgsGo<cr>++ word search: """:r!ack '\b"\b'<cr>{
 " for something you'll type out
-nmap <Leader>as gsGo<cr>++ arbitrary term search::r!ack ''<left>
+nnoremap <Leader>as gsGo<cr>++ arbitrary term search::r!ack ''<left>
 
 " traditional grepping with ack
 set grepprg=ack
@@ -125,19 +125,19 @@ let g:ctrlp_working_path_mode = 0
 
 " send the current word to ctrl-p
 " ctrl-p already uses <insert> after <C-P> for this, but meh
-nmap <Leader>ff <C-P><insert>
+nnoremap <Leader>ff <C-P><insert>
 
 " "resolve conflicts"
-nmap <Leader>rc /<<<<<<<\\|=======\\|>>>>>>><cr>
+nnoremap <Leader>rc /<<<<<<<\\|=======\\|>>>>>>><cr>
 
 " blame someone for code I'm looking at
 " Only works if you're at least 10 lines into the file (otherwise just use
 " :!git blame '%' | head). Could fix with sed but, meh.
-nmap <Leader>bs :call setreg('l', line('.'))<cr>:!git blame '%' \| tail -n +$(echo $((<C-R>l-10))) \| head -n 20<cr>
+nnoremap <Leader>bs :call setreg('l', line('.'))<cr>:!git blame '%' \| tail -n +$(echo $((<C-R>l-10))) \| head -n 20<cr>
 
 " Open diffs in tabs for each file that differs between the branch you're on
 " and the supplied target (default: current merge base with master)
-if exists(":Gcommit")
+" if exists(":Gcommit")
 	function Gbdiff(...)
 		if a:0 > 0
 			let l:base = a:1
@@ -175,8 +175,8 @@ if exists(":Gcommit")
 		endwhile
 		execute "normal ICommits since base " . l:base_pretty . ":\<cr>" . system("git log --oneline " . l:base . "..HEAD | tac") . "\<cr>\<esc>0j"
 	endfunction
-	nmap <Leader>bd :call Gbdiff()<cr>
-endif
+	nnoremap <Leader>bd :call Gbdiff()<cr>
+" endif
 
 " folding
 if has("folding") " not vi
