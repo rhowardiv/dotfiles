@@ -44,7 +44,6 @@ set shiftwidth=4
 set tabstop=4
 set shiftround
 set autoindent
-set textwidth=72
 set scrolloff=3
 set formatoptions=tcroq
 
