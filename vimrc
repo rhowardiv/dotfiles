@@ -197,3 +197,5 @@ function PHPlint(file)
 	endif
 endfunction
 au BufWritePost *.php call PHPlint(expand("%"))
+let g:php_cs_fixer_path = "~/bin/php-cs-fixer"
+let g:php_cs_fixer_fixers_list = "indentation,linefeed,trailing_spaces,unused_use,visibility,short_tag,braces,include,php_closing_tag,extra_empty_lines,psr0,controls_spaces,elseif,eof_ending,default,magento,sf20,sf21"
