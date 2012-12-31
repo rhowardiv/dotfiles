@@ -126,6 +126,10 @@ nnoremap <Leader>ff <C-P><insert>
 
 " "resolve conflicts"
 nnoremap <Leader>rc /<<<<<<<\\|=======\\|>>>>>>><cr>
+" "resolve right"
+nnoremap <Leader>rr dnddkndd
+" "resolve left"
+nnoremap <Leader>rl ddkndndd
 
 " blame someone for code I'm looking at
 " Only works if you're at least 10 lines into the file (otherwise just use
