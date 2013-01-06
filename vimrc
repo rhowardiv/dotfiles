@@ -39,8 +39,6 @@ set history=500
 set diffopt=filler,vertical
 set wildmenu
 
-set expandtab
-set shiftwidth=4
 set tabstop=4
 set shiftround
 set autoindent
