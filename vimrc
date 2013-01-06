@@ -1,3 +1,5 @@
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect()
 if has("syntax")
 	syntax on
 	nnoremap <Leader>ss :syntax sync fromstart<cr>
