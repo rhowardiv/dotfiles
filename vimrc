@@ -48,6 +48,8 @@ set formatoptions=tcroq
 filetype plugin on
 filetype indent on
 
+runtime macros/matchit.vim
+
 " write selection to X clipboard
 vnoremap <Leader>cc :w !xclip -selection c<cr><cr>
 
