@@ -191,13 +191,56 @@ if has("folding") " not vi
 	set foldlevelstart=2
 endif
 
+" Keep track of the namespace for each PHP buffer.
+function PhpSetBufferNamespace()
+	if !exists("b:php_namespace")
+		let l:save_cursor = getpos('.')
+		let l:found_namespace = search('\v^namespace .+;', 'cw')
+		if !l:found_namespace
+			let b:php_namespace = ''
+		else
+			normal 0w
+			let b:php_namespace = substitute(expand('<cWORD>'), ';', '', '')
+		endif
+		call setpos('.', save_cursor)
+	endif
+endfunction
+autocmd FileType php call PhpSetBufferNamespace()
+
+" Better includes for php.
+" Should be psr-0 and underscore-as-directory-separator compliant.
+" Special cased for Ayi code in /classes/.
+let g:in_ayi = (getcwd() =~ '\v[Aa][Yy][Ii]$')
+function PhpFindInclude(fname)
+	if a:fname =~ '^\'
+		let l:fname = substitute(a:fname, '^\', '', '')
+	else
+		let l:fname = b:php_namespace . '\' . a:fname
+	endif
+	if g:in_ayi == 1
+		let l:fname = 'classes/' . substitute(l:fname, '\\\|_', '/', "g") . '.php'
+		let l:fname = substitute(l:fname, '/Ayi/', '', '')
+	else
+		let l:fname = substitute(l:fname, '\', '/', "g") . '.php'
+	endif
+	" echom l:fname
+	return l:fname
+endfunction
+autocmd FileType php setlocal include=\\v(^use\ \\zs\\\\?[A-Za-z0-9\\\\]\\ze;)\|new\ \\zs\\\\?[A-Z][a-zA-Z0-9\\\\]*\\ze\|\\zs\\\\?[A-Z][a-zA-Z0-9\\\\]*\\ze::
+autocmd FileType php setlocal includeexpr=PhpFindInclude(v:fname)
+
+" Now that I've done all that let's NOT use it for autocomplete!
+autocmd FileType php set complete-=i
+" But for fun let's try it with class names and gf
+autocmd FileType php set isfname+=\\
+
 " linting
-function PHPlint(file)
+function PhpLint(file)
 	let l:lint = system("php -l " . a:file)
 	if v:shell_error != 0
 		echohl WarningMsg | echo l:lint | echohl None
 	endif
 endfunction
-au BufWritePost *.php call PHPlint(expand("%"))
+au BufWritePost *.php call PhpLint(expand("%"))
 let g:php_cs_fixer_path = "~/bin/php-cs-fixer"
 let g:php_cs_fixer_fixers_list = "indentation,linefeed,trailing_spaces,unused_use,visibility,short_tag,braces,include,php_closing_tag,extra_empty_lines,psr0,controls_spaces,elseif,eof_ending,default,magento,sf20,sf21"
