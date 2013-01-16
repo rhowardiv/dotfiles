@@ -1,5 +1,9 @@
 export HISTSIZE=10000
 export PS1=$'\[\e[32m\][\[\e[31m\]\u@\H\[\e[34m\] \[\e[35m\]\A \[\e[33m\]\w\[\e[32m\]]\$ \[\e[0m\]'
+if [ -n "$(which vcprompt)" ]; then
+	export VCPROMPT_FORMAT=" %b%m%u"
+	export PS1=$'\[\e[32m\][\[\e[31m\]\u@\H\[\e[34m\] \[\e[35m\]\A \[\e[33m\]\w\[\e[36m\]$(vcprompt)\[\e[32m\]]\$ \[\e[0m\]'
+fi
 export EDITOR=vim
 # flush every command to history file immediately
 export PROMPT_COMMAND='history -a'
