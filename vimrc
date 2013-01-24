@@ -55,6 +55,9 @@ runtime macros/matchit.vim
 " write selection to X clipboard
 vnoremap <Leader>cc :w !xclip -selection c<cr><cr>
 
+" show line length guides
+nnoremap <Leader>co :set colorcolumn=72,80<cr>
+
 " syntastic settings -- only check manually (:SyntasticCheck)
 let g:syntastic_mode_map = {'mode': 'passive', 'active_filetypes': [], 'passive_filetypes': []}
 nnoremap <Leader>sc :SyntasticCheck<cr>
