@@ -18,8 +18,10 @@ if has("syntax")
 	set hls
 	set cursorline
 
+	" No longer needed now that I've stopped the performance-hogging PHP
+	" syntax folding!
 	" don't syntax highlight large files
-	au FileType php if getfsize(expand("%")) > 92000 | syntax clear | endif
+	" au FileType php if getfsize(expand("%")) > 92000 | syntax clear | endif
 
 endif
 
