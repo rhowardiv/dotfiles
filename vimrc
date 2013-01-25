@@ -188,14 +188,14 @@ nnoremap <Leader>bs :call setreg('l', line('.'))<cr>:!git blame '%' \| tail -n +
 
 " folding
 if has("folding") " not vi
+	set foldlevelstart=2
 	" let php_folding=1 CAUSED PERFORMANCE PROBLEMS
 	" I think I like this simple folding better anyway!
 	au FileType php setlocal foldmethod=indent
 	au FileType php setlocal foldnestmax=2
-	au FileType php setlocal foldlevelstart=2
 	let g:xml_syntax_folding=1
 	au FileType xml setlocal foldmethod=syntax
-	au FileType xml setlocal foldlevelstart=10
+	au FileType xml set foldlevel=10
 	au FileType javascript setlocal foldmethod=marker
 endif
 
