@@ -43,6 +43,8 @@ set shiftround
 set autoindent
 set scrolloff=3
 set formatoptions=tcroq
+set listchars=eol:¬,tab:▷\ ,trail:♢,extends:▶,precedes:◀,nbsp:♢
+set nolist
 
 filetype plugin on
 filetype indent on
