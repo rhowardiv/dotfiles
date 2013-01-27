@@ -16,12 +16,6 @@ hardstatus string '%{= kG}[ %{c}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u
 chdir $HOME
 screen -t home
 
-chdir /var/www
-screen -t webroot
-# repeat ad nauseum...
-
-chdir $HOME
-
 # pick the window you want to start in; if you do this twice the first one
 # will be your "last" window (for quick switching)
 select 0
