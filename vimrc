@@ -3,15 +3,12 @@ call pathogen#infect()
 if has("syntax")
 	syntax on
 	nnoremap <Leader>ss :syntax sync fromstart<cr>
-	" color desert
-	set t_Co=16
-	color solarized
-	" why do I have to explictly source this?
-	so ~/.vim/autoload/togglebg.vim
-	" use the correct solarized scheme
-	if exists(":ToggleBG") " not vi
-		ToggleBG
+	if &t_Co == 8
+		" sorry, I don't believe you
+		set t_Co=16
 	endif
+	set background=dark
+	color solarized
 	let g:solarized_hitrail=1
 
 	set incsearch
