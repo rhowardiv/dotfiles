@@ -193,12 +193,14 @@ if has("folding") " not vi
 	set foldlevelstart=2
 	" let php_folding=1 CAUSED PERFORMANCE PROBLEMS
 	" I think I like this simple folding better anyway!
-	au FileType php setlocal foldmethod=indent
-	au FileType php setlocal foldnestmax=2
+	au FileType php set foldmethod=indent
+	au FileType php set foldnestmax=2
+	au FileType php set foldlevel=2
 	let g:xml_syntax_folding=1
-	au FileType xml setlocal foldmethod=syntax
-	au FileType xml set foldlevel=10
-	au FileType javascript setlocal foldmethod=marker
+	au FileType xml set foldmethod=syntax
+	au FileType xml execute "normal zR"
+	au FileType javascript set foldmethod=marker
+	au FileType javascript execute "normal zR"
 endif
 
 " Keep track of the namespace for each PHP buffer.
