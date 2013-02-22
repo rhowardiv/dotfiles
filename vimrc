@@ -30,7 +30,6 @@ set showcmd
 set laststatus=2
 " default status line with current git branch name added via fugitive
 set statusline=%<%f\ %{fugitive#statusline()}\ %h%m%r%=%-14.(%l,%c%V%)\ %P
-set relativenumber
 set ruler
 set backspace=start,indent,eol
 set updatecount=50
@@ -45,6 +44,10 @@ set scrolloff=3
 set formatoptions=tcroq
 set listchars=eol:¬,tab:▷\ ,trail:♢,extends:▶,precedes:◀,nbsp:♢
 set nolist
+
+if exists("+relativenumber")
+	set relativenumber
+endif
 
 filetype plugin on
 filetype indent on
