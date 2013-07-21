@@ -15,6 +15,9 @@ if has("syntax")
 	set hls
 	set cursorline
 
+	" indent "case" statements
+	let g:PHP_vintage_case_default_indent = 1
+
 	" No longer needed now that I've stopped the performance-hogging PHP
 	" syntax folding!
 	" don't syntax highlight large files
