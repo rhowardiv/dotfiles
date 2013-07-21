@@ -206,6 +206,9 @@ if has("folding") " not vi
 	au FileType javascript execute "normal zR"
 endif
 
+" Add phpunit tags for php files
+au FileType php setlocal tags+=~/Dropbox/phpunit/tags
+
 " Keep track of the namespace for each PHP buffer.
 function PhpSetBufferNamespace()
 	if !exists("b:php_namespace")
