@@ -8,8 +8,8 @@ if has("syntax")
 		set t_Co=16
 	endif
 	set background=dark
-	color solarized
 	let g:solarized_hitrail=1
+	color solarized
 
 	set incsearch
 	set hls
