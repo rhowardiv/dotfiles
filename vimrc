@@ -86,16 +86,7 @@ nnoremap <C-l> <C-w>l
 " easier than <C-w>s
 nnoremap <C-w><C-s> <C-w>s
 
-" Lazily load and toggle the MiniBufExplr plugin
-nnoremap <Leader>bb :call LazyMiniBufExpl()<cr>
-let g:miniBufExplorerMoreThanOne=0
-function LazyMiniBufExpl()
-	if !exists(":TMiniBufExplorer")
-		execute ":source ~/.vim/minibufexpl/minibufexpl.vim"
-	endif
-	execute ":TMiniBufExplorer"
-endfunction
-
+" Used to use MiniBufExplr but haven't in ages; its stuff was here
 
 " Handy shortcut for a happy scratch buffer
 function HappyBuffer()
@@ -178,9 +169,6 @@ nnoremap <Leader>bs :call setreg('l', line('.'))<cr>:!git blame '%' \| tail -n +
 					execute "normal I++ \<esc>k"
 				else
 					execute "normal \<C-w>gf"
-					if (exists(":CMiniBufExplorer"))
-						execute "CMiniBufExplorer"
-					endif
 					execute "Gdiff " . l:base
 					execute "normal \<cr>gTk"
 				endif
