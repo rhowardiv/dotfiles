@@ -35,7 +35,7 @@ set laststatus=2
 set statusline=%<%f\ %{fugitive#statusline()}\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set ruler
 set backspace=start,indent,eol
-set updatecount=50
+set updatecount=25
 set history=500
 set diffopt=filler,vertical
 set wildmenu
