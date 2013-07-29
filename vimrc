@@ -99,11 +99,11 @@ function HappyBuffer()
 	endif
 
 	execute ":e " . l:happy
-	execute ":setlocal buftype=nofile"
-	execute ":setlocal bufhidden=hide"
-	execute ":setlocal noswapfile"
-	execute ":setlocal nobuflisted"
-	execute ":set filetype=diff"
+	setlocal buftype=nofile
+	setlocal bufhidden=hide
+	setlocal noswapfile
+	setlocal nobuflisted
+	set filetype=diff
 endfunction
 nnoremap gs :call HappyBuffer()<cr>
 
