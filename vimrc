@@ -124,11 +124,6 @@ nnoremap <Leader>rr dnddkndd
 " "resolve left"
 nnoremap <Leader>rl ddkndndd
 
-" blame someone for code I'm looking at
-" Only works if you're at least 10 lines into the file (otherwise just use
-" :!git blame '%' | head). Could fix with sed but, meh.
-nnoremap <Leader>bs :call setreg('l', line('.'))<cr>:!git blame '%' \| tail -n +$(echo $((<C-R>l-10))) \| head -n 20<cr>
-
 " Open diffs in tabs for each file that differs between the branch you're on
 " and the supplied target (default: current merge base with master)
 " if exists(":Gcommit")
