@@ -107,17 +107,7 @@ function HappyBuffer()
 endfunction
 nnoremap gs :call HappyBuffer()<cr>
 
-" ack in scratch buffer...
-" for term in " register
-nnoremap <Leader>a" gsGo<cr>++ term search: """:r!ack "<cr>{
-" for "this" (under cursor)
-nnoremap <Leader>at yiwgsGo<cr>++ term search: """:r!ack "<cr>{
-" for word under cursor (enforce word boundaries)
-nnoremap <Leader>aw yiwgsGo<cr>++ word search: """:r!ack '\b"\b'<cr>{
-" for something you'll type out
-nnoremap <Leader>as gsGo<cr>++ arbitrary term search::r!ack ''<left>
-
-" traditional grepping with ack
+" grep with ack
 set grepprg=ack
 
 " Don't let ctrl-p use a different pwd
