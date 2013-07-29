@@ -143,20 +143,32 @@ function Gbdiff(...)
 	execute "r!git diff --name-only " . l:base
 	while line(".") > 1
 		if !filereadable(getline("."))
-			" File does not exist in this branch
+			" File does not exist here: show file from base
+			let l:f = getline(".")
+			" Need to pretend I'm editing something to get fugitive commands.
+			" Hrm. Probably a better way.
+			tabedit foo_098q2h3f98basd908hawef
+			execute "Gedit " . l:base . ":" . l:f
+			bdelete foo_098q2h3f98basd908hawef
+			normal gT
+			normal I-- k
 		else
 			call system("git show " . shellescape(l:base . ":" . getline(".")))
 			if v:shell_error
-				" File does not exist in target branch
-				execute "normal I++ \<esc>k"
+				" File does not exist in target branch: just show file
+				normal gf
+				normal gT
+				normal I++ k
 			else
-				execute "normal \<C-w>gf"
+				normal gf
 				execute "Gdiff " . l:base
-				execute "normal \<cr>gTk"
+				normal gTk
 			endif
 		endif
 	endwhile
 	execute "normal ICommits since base " . l:base_pretty . ":\<cr>" . system("git log --oneline " . l:base . "..HEAD | tac") . "\<cr>\<esc>0j"
+	normal Go
+	execute "read !git diff --shortstat " . l:base . "..HEAD"
 endfunction
 nnoremap <Leader>bd :call Gbdiff()<cr>
 
