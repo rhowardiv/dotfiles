@@ -143,15 +143,20 @@ function Gbdiff(...)
 	execute "r!git diff --name-only " . l:base
 	while line(".") > 1
 		if !filereadable(getline("."))
-			" File does not exist here: show file from base
-			let l:f = getline(".")
-			" Need to pretend I'm editing something to get fugitive commands.
-			" Hrm. Probably a better way.
-			tabedit foo_098q2h3f98basd908hawef
-			execute "Gedit " . l:base . ":" . l:f
-			bdelete foo_098q2h3f98basd908hawef
-			normal gT
-			normal I-- k
+			if isdirectory(getline("."))
+				" directory differs (must be a submodule?)
+				normal Idiff k
+			else
+				" File does not exist here: show file from base
+				let l:f = getline(".")
+				" Need to pretend I'm editing something to get fugitive commands.
+				" Hrm. Probably a better way.
+				tabedit foo_098q2h3f98basd908hawef
+				execute "Gedit " . l:base . ":" . l:f
+				bdelete foo_098q2h3f98basd908hawef
+				normal gT
+				normal I-- k
+			endif
 		else
 			call system("git show " . shellescape(l:base . ":" . getline(".")))
 			if v:shell_error
