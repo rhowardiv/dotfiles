@@ -65,6 +65,7 @@ nnoremap <Leader>co :set colorcolumn=72,80<cr>
 
 " syntastic settings -- only check manually (:SyntasticCheck)
 let g:syntastic_mode_map = {'mode': 'passive', 'active_filetypes': [], 'passive_filetypes': []}
+let g:syntastic_always_populate_loc_list=1
 nnoremap <Leader>sc :SyntasticCheck<cr>
 nnoremap <Leader>su :sign unplace *<cr>
 
