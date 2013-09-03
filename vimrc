@@ -174,6 +174,9 @@ function Gbdiff(...)
 	execute "normal ICommits since base " . l:base_pretty . ":\<cr>" . system("git log --oneline " . l:base . "..HEAD | tac") . "\<cr>\<esc>0j"
 	normal Go
 	execute "read !git diff --shortstat " . l:base . "..HEAD"
+	normal Go
+	execute "silent read !git log -p " . l:base . "..HEAD"
+	normal gg
 endfunction
 nnoremap <Leader>bd :call Gbdiff()<cr>
 
