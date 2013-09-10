@@ -155,6 +155,9 @@ function Gbdiff(...)
 				tabedit foo_098q2h3f98basd908hawef
 				execute "Gedit " . l:base . ":" . l:f
 				bdelete foo_098q2h3f98basd908hawef
+				" Should look different so I don't miss the fact that it's
+				" deleted!
+				syntax clear
 				normal gT
 				normal I-- k
 			endif
