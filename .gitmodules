@@ -31,3 +31,6 @@
 [submodule "vim/bundle/vim-javascript-syntax"]
 	path = vim/bundle/vim-javascript-syntax
 	url = git://github.com/jelera/vim-javascript-syntax.git
+[submodule "vim/bundle/pig.vim"]
+	path = vim/bundle/pig.vim
+	url = git://github.com/motus/pig.vim.git
