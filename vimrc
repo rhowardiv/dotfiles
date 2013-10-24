@@ -275,15 +275,15 @@ endfunction
 
 " Find all files in all non-dot directories starting in the working directory.
 " Fuzzy select one of those. Open the selected file with :e.
-nnoremap <leader>f :call SelectaCommand("find * -type f", "", ":e")<cr>
+nnoremap <leader>f :call SelectaCommand("find * -type f \| lsort", "", ":e")<cr>
 
 function! SelectaIdentifier()
   " Yank the word under the cursor into the z register
   normal "zyiw
   " Fuzzy match files in the current directory, starting with the word under
   " the cursor
-  call SelectaCommand("find * -type f", "-s " . @z, ":e")
+  call SelectaCommand("find * -type f \| lsort", "-s " . @z, ":e")
 endfunction
 nnoremap <leader>g :call SelectaIdentifier()<cr>
 
-nnoremap <leader>t :call SelectaCommand("cut -f1 tags \| uniq", "", ":tj ")<cr>
+nnoremap <leader>t :call SelectaCommand("cut -f1 tags \| uniq \| lsort", "", ":tj ")<cr>
