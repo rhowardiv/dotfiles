@@ -116,7 +116,7 @@ let g:ctrlp_working_path_mode = 0
 
 " send the current word to ctrl-p
 " ctrl-p already uses <insert> after <C-P> for this, but meh
-nnoremap <Leader>ff <C-P><insert>
+" nnoremap <Leader>ff <C-P><insert>
 
 " "resolve conflicts"
 nnoremap <Leader>rc /<<<<<<<\\|=======\\|>>>>>>><cr>
@@ -255,3 +255,35 @@ endfunction
 au BufWritePost *.php call PhpLint(expand("%"))
 let g:php_cs_fixer_path = "~/bin/php-cs-fixer"
 let g:php_cs_fixer_fixers_list = "indentation,linefeed,trailing_spaces,unused_use,visibility,short_tag,braces,include,php_closing_tag,extra_empty_lines,psr0,controls_spaces,elseif,eof_ending,default,magento,sf20,sf21"
+
+" selecta
+
+" Run a given vim command on the results of fuzzy selecting from a given shell
+" command. See usage below.
+function! SelectaCommand(choice_command, selecta_args, vim_command)
+  try
+    silent let selection = system(a:choice_command . " | selecta " . a:selecta_args)
+  catch /Vim:Interrupt/
+    " Swallow the ^C so that the redraw below happens; otherwise there will be
+    " leftovers from selecta on the screen
+    redraw!
+    return
+  endtry
+  redraw!
+  exec a:vim_command . " " . selection
+endfunction
+
+" Find all files in all non-dot directories starting in the working directory.
+" Fuzzy select one of those. Open the selected file with :e.
+nnoremap <leader>f :call SelectaCommand("find * -type f", "", ":e")<cr>
+
+function! SelectaIdentifier()
+  " Yank the word under the cursor into the z register
+  normal "zyiw
+  " Fuzzy match files in the current directory, starting with the word under
+  " the cursor
+  call SelectaCommand("find * -type f", "-s " . @z, ":e")
+endfunction
+nnoremap <leader>g :call SelectaIdentifier()<cr>
+
+nnoremap <leader>t :call SelectaCommand("cut -f1 tags \| uniq", "", ":tj ")<cr>
