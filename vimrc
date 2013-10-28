@@ -158,7 +158,7 @@ function Gbdiff(...)
 				" Should look different so I don't miss the fact that it's
 				" deleted!
 				syntax clear
-				normal gT
+				normal gT
 				normal I-- k
 			endif
 		else
@@ -166,12 +166,12 @@ function Gbdiff(...)
 			if v:shell_error
 				" File does not exist in target branch: just show file
 				normal gf
-				normal gT
+				normal gT
 				normal I++ k
 			else
 				normal gf
 				execute "Gdiff " . l:base
-				normal gTk
+				normal gTk
 			endif
 		endif
 	endwhile
