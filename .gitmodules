@@ -34,3 +34,6 @@
 [submodule "vim/bundle/pig.vim"]
 	path = vim/bundle/pig.vim
 	url = git://github.com/motus/pig.vim.git
+[submodule "vim/bundle/wildfire.vim"]
+	path = vim/bundle/wildfire.vim
+	url = git@github.com:gcmt/wildfire.vim.git
