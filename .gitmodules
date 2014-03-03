@@ -37,3 +37,6 @@
 [submodule "vim/bundle/wildfire.vim"]
 	path = vim/bundle/wildfire.vim
 	url = git@github.com:gcmt/wildfire.vim.git
+[submodule "vim/bundle/vim-vinegar"]
+	path = vim/bundle/vim-vinegar
+	url = git@github.com:tpope/vim-vinegar.git
