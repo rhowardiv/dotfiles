@@ -39,6 +39,7 @@ set updatecount=25
 set history=1000
 set diffopt=filler,vertical
 set wildmenu
+set noesckeys
 
 set tabstop=4
 set shiftround
