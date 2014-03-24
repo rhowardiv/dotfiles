@@ -59,7 +59,12 @@ filetype indent on
 
 runtime macros/matchit.vim
 
-" write selection to X clipboard
+" copy some registers to X clipboard: last yank=0, delete=", or search=/
+nnoremap <Leader>0 :call system('xclip', @0)
+nnoremap <Leader>" :call system('xclip', @")
+nnoremap <Leader>/ :call system('xclip', @/)
+
+" write visually selected lines directly to X clipboard
 vnoremap <Leader>cc :w !xclip -selection c<cr><cr>
 
 " show line length guides
