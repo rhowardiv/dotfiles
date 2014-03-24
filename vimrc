@@ -189,7 +189,7 @@ function Gbdiff(...)
 	execute "silent read !git log -p " . l:base . "..HEAD"
 	normal gg
 endfunction
-nnoremap <Leader>bd :call Gbdiff()<cr>
+nnoremap <Leader>gt :call Gbdiff()<cr>
 
 " folding
 if has("folding") " not vi
