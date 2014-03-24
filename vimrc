@@ -82,7 +82,7 @@ cnoremap <C-D> <C-R>=expand("%:p:h") . "/" <CR>
 " I like to use these shortcuts for moving among buffers
 nnoremap gb :bn<cr>
 nnoremap gB :bp<cr>
-nnoremap <Leader>ab :ls<cr>:buffer 
+nnoremap <Leader>b :ls<cr>:buffer 
 
 " moving among windows
 nnoremap <C-h> <C-w>h
