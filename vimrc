@@ -191,6 +191,16 @@ function Gbdiff(...)
 endfunction
 nnoremap <Leader>gt :call Gbdiff()<cr>
 
+nnoremap <Leader>gb :Gblame<cr>
+nnoremap <Leader>gc :Gcommit<cr>
+nnoremap <Leader>gd :Gdiff<cr>
+nnoremap <Leader>ge :Gedit<cr>
+nnoremap <Leader>gl :Glog<cr>
+nnoremap <Leader>grd :Gread<cr>
+nnoremap <Leader>grm :Gremove<cr>
+nnoremap <Leader>gs :Gstat<cr>
+nnoremap <Leader>gw :Gwrite<cr>
+
 " folding
 if has("folding") " not vi
 	set foldlevelstart=2
