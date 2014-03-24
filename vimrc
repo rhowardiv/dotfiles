@@ -1,3 +1,4 @@
+let g:mapleader=" "
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 if has("syntax")
