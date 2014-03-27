@@ -116,6 +116,10 @@ nnoremap gs :call HappyBuffer()<cr>
 
 " grep with ack
 set grepprg=ack
+" grep for the current word
+nnoremap <Leader>* :grep '\b<C-r><C-w>\b'<cr>
+" grep for the current word (no boundary enforcement)
+nnoremap <Leader>g* :grep '<C-r><C-w>'<cr>
 
 " Don't let ctrl-p use a different pwd
 let g:ctrlp_working_path_mode = 0
