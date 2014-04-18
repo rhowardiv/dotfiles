@@ -118,7 +118,9 @@ nnoremap gs :call HappyBuffer()<cr>
 " grep with ack
 set grepprg=ack
 " grep for the current word
-nnoremap <Leader>* :grep '\b<C-r><C-w>\b'<cr>
+" The parens are there because <C-r><C-w> considers the previously typed
+" characters and omits them when they match the beginning of word!
+nnoremap <Leader>* :grep '\b(<C-r><C-w>)\b'<cr>
 " grep for the current word (no boundary enforcement)
 nnoremap <Leader>g* :grep '<C-r><C-w>'<cr>
 
