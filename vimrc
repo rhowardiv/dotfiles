@@ -61,6 +61,9 @@ filetype indent on
 
 runtime macros/matchit.vim
 
+" I'm not that good at typing ':'
+nnoremap <Leader>; :
+
 " X clipboard: put it or save from some common registers (0,",/)
 nnoremap <Leader>p :r! xclip -o -sel c<cr>
 nnoremap <Leader>P :-1r! xclip -o -sel c<cr>
