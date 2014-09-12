@@ -123,7 +123,7 @@ endfunction
 nnoremap gs :call HappyBuffer()<cr>
 
 " grep with ack
-set grepprg=ack
+set grepprg=ack\ --type-add=puppet=.pp
 " grep for the current word
 " The parens are there because <C-r><C-w> considers the previously typed
 " characters and omits them when they match the beginning of word!
