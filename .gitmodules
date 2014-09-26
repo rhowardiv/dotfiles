@@ -46,3 +46,6 @@
 [submodule "vim/bundle/puppet-syntax-vim"]
 	path = vim/bundle/puppet-syntax-vim
 	url = git@github.com:puppetlabs/puppet-syntax-vim.git
+[submodule "vim/bundle/logstash.vim"]
+	path = vim/bundle/logstash.vim
+	url = git@github.com:rhowardiv/logstash.vim
