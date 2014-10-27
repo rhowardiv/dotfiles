@@ -148,9 +148,9 @@ nnoremap <Leader>rl ddkndndd
 " Sometimes it's nice to have random things, for tests and whatnot
 " This could be faster...
 " "random word append"
-nnoremap <Leader>ra :execute "normal a" . system("echo -n $(sort -R /usr/share/dict/words \| head -n 1)")<cr>
+nnoremap <Leader>ra :execute "normal a" . system("echo -n $(grep -v \\' /usr/share/dict/words \| sort -R \| head -n 1)")<cr>
 " "random word insert"
-nnoremap <Leader>ri :execute "normal i" . system("echo -n $(sort -R /usr/share/dict/words \| head -n 1)")<cr>
+nnoremap <Leader>ri :execute "normal i" . system("echo -n $(grep -v \\' /usr/share/dict/words \| sort -R \| head -n 1)")<cr>
 
 " Open diffs in tabs for each file that differs between HEAD and the supplied
 " target (default: current merge base with master)
