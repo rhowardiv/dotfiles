@@ -1,0 +1,5 @@
+[user]
+	name = Richard Howard
+	email = rh@richardhoward.net
+[core]
+	excludesfile = /home/rhoward/.gitignore
