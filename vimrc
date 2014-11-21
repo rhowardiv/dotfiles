@@ -292,3 +292,8 @@ let g:php_cs_fixer_fixers_list = "indentation,linefeed,trailing_spaces,unused_us
 " puppet
 " navigate tags containing "::"
 autocmd FileType puppet setlocal isk+=:
+
+" jedi python stuff
+let g:jedi#use_tabs_not_buffers = 0
+let g:jedi#squelch_py_warning = 1
+let g:jedi#rename_command = "<Leader>re"
