@@ -71,9 +71,6 @@ nnoremap <Leader>0 :call system('xclip -sel c', @0)<cr>
 nnoremap <Leader>" :call system('xclip -sel c', @")<cr>
 nnoremap <Leader>/ :call system('xclip -sel c', @/)<cr>
 
-" write visually selected lines directly to X clipboard
-vnoremap <Leader>cc :w !xclip -selection c<cr><cr>
-
 " show line length guides
 nnoremap <Leader>co :set colorcolumn=72,80<cr>
 
