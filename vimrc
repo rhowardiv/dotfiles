@@ -98,8 +98,6 @@ nnoremap <C-l> <C-w>l
 " easier than <C-w>s
 nnoremap <C-w><C-s> <C-w>s
 
-" Used to use MiniBufExplr but haven't in ages; its stuff was here
-
 " Handy shortcut for a happy scratch buffer
 function HappyBuffer()
 	let l:happy = "^_^"
