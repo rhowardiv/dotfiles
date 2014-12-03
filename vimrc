@@ -148,8 +148,9 @@ nnoremap <Leader>ri :execute "normal i" . system("echo -n $(grep -v \\' /usr/sha
 
 " Open diffs in tabs for each file that differs between HEAD and the supplied
 " target (default: current merge base with master)
-function Gbdiff(...)
-	if a:0 > 0
+command! -nargs=* Gtdiff call s:Gtdiff(<q-args>)
+function! s:Gtdiff(...)
+	if a:1
 		let l:base = a:1
 	else
 		let l:base = substitute(system("git merge-base HEAD master"), '[^0-9a-f]\+$', '', '')
@@ -203,7 +204,7 @@ function Gbdiff(...)
 	execute "silent read !git log -p " . l:base . "..HEAD"
 	normal gg
 endfunction
-nnoremap <Leader>gt :call Gbdiff()<cr>
+nnoremap <Leader>gt :Gtdiff<cr>
 
 nnoremap <Leader>gb :Gblame<cr>
 nnoremap <Leader>gc :Gcommit<cr>
