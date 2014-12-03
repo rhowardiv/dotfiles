@@ -52,3 +52,6 @@
 [submodule "vim/bundle/gitv"]
 	path = vim/bundle/gitv
 	url = git@github.com:gregsexton/gitv.git
+[submodule "vim/bundle/tabline.vim"]
+	path = vim/bundle/tabline.vim
+	url = git@github.com:mkitt/tabline.vim.git
