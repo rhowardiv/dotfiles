@@ -215,6 +215,8 @@ nnoremap <Leader>grd :Gread<cr>
 nnoremap <Leader>grm :Gremove<cr>
 nnoremap <Leader>gs :Gstat<cr>
 nnoremap <Leader>gw :Gwrite<cr>
+nnoremap <Leader>gv :Gitv<cr>
+nnoremap <Leader>gf :Gitv!<cr>
 
 " folding
 if has("folding") " not vi
