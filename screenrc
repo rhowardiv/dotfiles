@@ -11,6 +11,11 @@ hardstatus on
 hardstatus alwayslastline 
 hardstatus string '%{= kG}[ %{c}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{c} %l %{g}]'
 
+# visual bell is like shocking coworkers with lightning
+vbell_msg "BELL: window -%"
+vbellwait 2
+vbell off
+
 # starting windows
 
 chdir $HOME
