@@ -79,6 +79,8 @@ let g:syntastic_mode_map = {'mode': 'passive', 'active_filetypes': [], 'passive_
 let g:syntastic_always_populate_loc_list=1
 nnoremap <Leader>sc :SyntasticCheck<cr>
 nnoremap <Leader>su :sign unplace *<cr>
+" checkers
+let g:syntastic_sh_checkers = ["shellcheck"]
 
 " command mode: ctrl-d for pathname of current buffer
 cnoremap <C-D> <C-R>=expand("%:p:h") . "/" <CR>
