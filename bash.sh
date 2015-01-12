@@ -14,3 +14,9 @@ PATH_HAS_HOME_BIN=$(echo "$PATH" | grep "\(^\|:\)$HOME/bin\($\|:\)")
 if [ -z "$PATH_HAS_HOME_BIN" ]; then
 	export PATH="$HOME/bin:$PATH"
 fi
+
+ipr() {
+	REPO="$(git remote -v | grep origin | head -n 1 | sed 's/^[^:]\+:\([^\/]\+\)\/\([^ \.]*\).*$/\1\/\2/')"
+	ON_BRANCH=$(git branch | grep '^* ' | sed 's/^* //')
+	xdg-open "https://github.com/$REPO/compare/$ON_BRANCH" > /dev/null 2>&1
+}
