@@ -21,3 +21,19 @@ ipr() {
 	ON_BRANCH=$(git branch | grep '^* ' | sed 's/^* //')
 	xdg-open "https://github.com/$REPO/compare/$ON_BRANCH" > /dev/null 2>&1
 }
+
+rr() {
+	# random recent committer
+	git status >/dev/null 2>&1
+	if [[ $? -ne 0 ]]; then
+		echo "Not a git repo"
+		return 128
+	fi
+	if [[ ! -s .consume-committers ]]; then
+		git log --since="-1 month" | sed -n -e "/^Author: /s/Author: //p;" \
+			| grep -v 'Richard Howard' | sort -u | shuf > .consume-committers
+	fi
+	committers="$(< .consume-committers)"
+	echo "$committers" | head --lines=-1 > .consume-committers
+	echo "$committers" | tail -n 1
+}
