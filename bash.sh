@@ -46,7 +46,7 @@ glh() {
 hlh() {
 	# hilighted linear history
 	if [ -t 1 ]; then
-		glh $@ | sed 's/^ \{4\}[^P].*/\x1b[33m&\x1b[39;49m/'
+		glh $@ | sed 's/^ \{4\}[^P].*/\x1b[33m&\x1b[39;49m/' | less -R
 	else
 		glh $@
 	fi
