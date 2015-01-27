@@ -51,3 +51,21 @@ hlh() {
 		glh $@
 	fi
 }
+
+gup() {
+	# git update from upstream, push to origin
+	BRANCH="${1:-master}"
+	REV="$(git rev-parse "$BRANCH")"
+	if [[ -z "$REV" ]]; then
+		return $?;
+	fi
+	if [[ "$(git rev-parse HEAD)" == "$REV" ]]; then
+		# already on $BRANCH
+		git pull --ff-only upstream "$BRANCH"
+	else
+		git fetch upstream "$BRANCH":"$BRANCH"
+	fi
+	if [[ $? ]]; then
+		git push origin "$BRANCH":"$BRANCH"
+	fi
+}
