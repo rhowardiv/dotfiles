@@ -169,13 +169,13 @@ function! s:Gtdiff(...)
 	execute "normal iFiles that differ from base " . l:base_pretty . ":\<esc>"
 	execute "r!git diff --name-only " . l:base
 	while line(".") > 1
-		if !filereadable(getline("."))
-			if isdirectory(getline("."))
+		let l:f = getline(".")
+		if !filereadable(l:f)
+			if isdirectory(l:f)
 				" directory differs (must be a submodule?)
 				normal Idiff k
 			else
 				" File does not exist here: show file from base
-				let l:f = getline(".")
 				" Need to pretend I'm editing something to get fugitive commands.
 				" Hrm. Probably a better way.
 				tabedit foo_098q2h3f98basd908hawef
@@ -188,14 +188,14 @@ function! s:Gtdiff(...)
 				normal I-- k
 			endif
 		else
-			call system("git show " . shellescape(l:base . ":" . getline(".")))
+			call system("git rev-parse " . shellescape(l:base . ":" . l:f))
 			if v:shell_error
 				" File does not exist in target branch: just show file
-				normal gf
+				normal ^v$hgf
 				normal gT
 				normal I++ k
 			else
-				normal gf
+				normal ^v$hgf
 				execute "Gdiff " . l:base
 				normal gTk
 			endif
