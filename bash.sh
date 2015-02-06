@@ -54,18 +54,27 @@ hlh() {
 
 gup() {
 	# git update from upstream, push to origin
+	# or, if no upstream, just pull from origin
 	BRANCH="${1:-master}"
 	REV="$(git rev-parse "$BRANCH")"
 	if [[ -z "$REV" ]]; then
 		return $?;
 	fi
+	git remote | grep '^upstream$' >/dev/null
+	if [[ $? -eq 0 ]]; then
+		FROM=upstream
+		PUSH_ORIGIN=push
+	else
+		FROM=origin
+		PUSH_ORIGIN=
+	fi
 	if [[ "$(git rev-parse HEAD)" == "$REV" ]]; then
 		# already on $BRANCH
-		git pull --ff-only upstream "$BRANCH"
+		git pull --ff-only "$FROM" "$BRANCH"
 	else
-		git fetch upstream "$BRANCH":"$BRANCH"
+		git fetch "$FROM" "$BRANCH":"$BRANCH"
 	fi
-	if [[ $? ]]; then
+	if [[ $? && -n "$PUSH_ORIGIN" ]]; then
 		git push origin "$BRANCH":"$BRANCH"
 	fi
 }
