@@ -236,6 +236,10 @@ if has("folding") " not vi
 	au FileType xml execute "normal zR"
 	au FileType javascript set foldmethod=marker
 	au FileType javascript execute "normal zR"
+	" a simple folding config for python
+	au FileType python set foldmethod=indent
+	au FileType python set foldnestmax=1
+	au FileType python set foldlevel=1
 endif
 
 " Keep track of the namespace for each PHP buffer.
