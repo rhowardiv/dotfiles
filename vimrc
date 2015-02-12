@@ -48,6 +48,7 @@ set scrolloff=3
 set formatoptions=tcroq
 set listchars=eol:¬,tab:▷\ ,trail:♢,extends:▶,precedes:◀,nbsp:♢
 set nolist
+set nojoinspaces
 
 " suppress .netrwhist
 let g:netrw_dirhistmax=0
