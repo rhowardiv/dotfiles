@@ -1,3 +1,4 @@
 --type-set=coffee=.coffee
 --type-set=jade=.jade
 --ignore-dir=dist
+--ignore-dir=bower_components
