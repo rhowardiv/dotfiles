@@ -2,3 +2,4 @@
 --type-set=jade=.jade
 --ignore-dir=dist
 --ignore-dir=bower_components
+--type-set=markdown=.md
