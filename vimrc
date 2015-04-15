@@ -90,6 +90,8 @@ cnoremap <C-D> <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap gb :bn<cr>
 nnoremap gB :bp<cr>
 nnoremap <Leader>b :ls<cr>:buffer 
+" Don't show fugitive buffers in buffer list
+autocmd BufReadPost fugitive://* set nobuflisted
 
 " moving among windows
 nnoremap <C-h> <C-w>h
