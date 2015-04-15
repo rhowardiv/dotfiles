@@ -73,3 +73,9 @@
 [submodule "vim/bundle/splitjoin.vim"]
 	path = vim/bundle/splitjoin.vim
 	url = git@github.com:AndrewRadev/splitjoin.vim.git
+[submodule "vim/bundle/vim-isort"]
+	path = vim/bundle/vim-isort
+	url = git@github.com:fisadev/vim-isort.git
+[submodule "vim/bundle/vim-clojure-static"]
+	path = vim/bundle/vim-clojure-static
+	url = git@github.com:guns/vim-clojure-static.git
