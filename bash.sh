@@ -30,8 +30,15 @@ rr() {
 		return 128
 	fi
 	if [[ ! -s .consume-committers ]]; then
-		git log --since="-1 month" | sed -n -e "/^Author: /s/Author: //p;" \
-			| grep -v 'Richard Howard' | sort -u | shuf > .consume-committers
+		# ignore: self, non-canonical versions of Brett, Mary, Maxwell
+		local BLACKLIST="Richard Howard\|Brett W\|^Mary$\|^Maxwell"
+		git log --since="-1 month" \
+			| sed -n -e "/^Author: /s/^Author: \([^<]\+\).*$/\1/p;" \
+			| sed 's/ *$//' \
+			| grep -v "$BLACKLIST" \
+			| sort -u \
+			| shuf \
+			> .consume-committers
 	fi
 	committers="$(< .consume-committers)"
 	echo "$committers" | head --lines=-1 > .consume-committers
