@@ -79,3 +79,6 @@
 [submodule "vim/bundle/vim-clojure-static"]
 	path = vim/bundle/vim-clojure-static
 	url = git@github.com:guns/vim-clojure-static.git
+[submodule "vim/bundle/vim-literate-coffeescript"]
+	path = vim/bundle/vim-literate-coffeescript
+	url = git@github.com:mintplant/vim-literate-coffeescript.git
