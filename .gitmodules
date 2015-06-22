@@ -85,3 +85,6 @@
 [submodule "vim/bundle/tagbar"]
 	path = vim/bundle/tagbar
 	url = git@github.com:majutsushi/tagbar
+[submodule "vim/bundle/vim-hoogle"]
+	path = vim/bundle/vim-hoogle
+	url = git@github.com:Twinside/vim-hoogle.git
