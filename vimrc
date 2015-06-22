@@ -10,6 +10,8 @@ if has("syntax")
 	endif
 	set background=dark
 	color solarized
+	nnoremap <Leader>sd :set background=dark<cr>
+	nnoremap <Leader>sl :set background=light<cr>
 
 	set incsearch
 	set hls
