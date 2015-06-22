@@ -317,3 +317,8 @@ autocmd BufNewFile,BufRead *.txt set ft=markdown
 
 " tagbar
 nnoremap <Leader>tb :Tagbar<cr>
+
+" hoogle
+nnoremap <Leader>hh :Hoogle<cr>
+nnoremap <Leader>hi :HoogleInfo<cr>
+
