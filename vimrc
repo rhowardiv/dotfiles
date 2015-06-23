@@ -323,4 +323,4 @@ nnoremap <Leader>tb :Tagbar<cr>
 " hoogle
 nnoremap <Leader>hh :Hoogle<cr>
 nnoremap <Leader>hi :HoogleInfo<cr>
-
+nnoremap <Leader>hc :HoogleClose<cr>
