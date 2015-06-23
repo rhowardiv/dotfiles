@@ -81,7 +81,9 @@ gup() {
 	else
 		git fetch "$FROM" "$BRANCH":"$BRANCH"
 	fi
-	if [[ $? && -n "$PUSH_ORIGIN" ]]; then
+	local up_success=$?
+	if [[ $up_success && -n "$PUSH_ORIGIN" ]]; then
 		git push origin "$BRANCH":"$BRANCH"
 	fi
+	return $up_success
 }
