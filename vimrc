@@ -40,6 +40,7 @@ set backspace=start,indent,eol
 set updatecount=25
 set history=1000
 set diffopt=filler,vertical
+nnoremap <Leader>do :diffoff!<cr>
 set wildmenu
 set noesckeys
 
