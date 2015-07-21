@@ -316,9 +316,6 @@ let g:jedi#show_call_signatures = "2"
 " isort
 nnoremap <Leader>is :Isort<cr>
 
-" apply markdown highlighting to .txt files
-autocmd BufNewFile,BufRead *.txt set ft=markdown
-
 " tagbar
 nnoremap <Leader>tb :Tagbar<cr>
 
