@@ -164,7 +164,6 @@ function! s:Gtdiff(...)
 		echom a:1
 	else
 		let l:base = a:1
-		echom "woooooooooooo"
 	endif
 	let l:base_pretty = "(" . substitute(system("git show --oneline " . l:base . " | head -n1"), '[^0-9a-f]\+$', '', '') . ")"
 	e _branch_diff_
