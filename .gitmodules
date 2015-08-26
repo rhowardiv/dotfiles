@@ -91,3 +91,6 @@
 [submodule "vim/bundle/ghcmod-vim"]
 	path = vim/bundle/ghcmod-vim
 	url = git@github.com:eagletmt/ghcmod-vim
+[submodule "vim/bundle/vim-literate-coffeescript"]
+	path = vim/bundle/vim-literate-coffeescript
+	url = git@github.com:rhowardiv/vim-literate-coffeescript.git
