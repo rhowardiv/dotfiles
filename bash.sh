@@ -15,6 +15,10 @@ if [ -z "$PATH_HAS_HOME_BIN" ]; then
 	export PATH="$HOME/bin:$PATH"
 fi
 
+urlencode() {
+    xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g'
+}
+
 ipr() {
 	# issue pull request
 	REPO="$(git remote -v | grep origin | head -n 1 | sed 's/^[^:]\+:\([^\/]\+\)\/\([^ \.]*\).*$/\1\/\2/')"
