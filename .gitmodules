@@ -94,3 +94,6 @@
 [submodule "vim/bundle/vim-literate-coffeescript"]
 	path = vim/bundle/vim-literate-coffeescript
 	url = git@github.com:rhowardiv/vim-literate-coffeescript.git
+[submodule "vim/bundle/vim-cjsx"]
+	path = vim/bundle/vim-cjsx
+	url = git@github.com:mtscout6/vim-cjsx.git
