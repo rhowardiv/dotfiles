@@ -97,3 +97,6 @@
 [submodule "vim/bundle/vim-cjsx"]
 	path = vim/bundle/vim-cjsx
 	url = git@github.com:mtscout6/vim-cjsx.git
+[submodule "vim/bundle/nginx-vim-syntax"]
+	path = vim/bundle/nginx-vim-syntax
+	url = https://github.com/evanmiller/nginx-vim-syntax.git
