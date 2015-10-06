@@ -5,6 +5,9 @@ export EDITOR=vim
 # flush every command to history file immediately
 export PROMPT_COMMAND='history -a'
 
+# PEP 0370 (pip install --user ...)
+export PATH="$HOME/.local/bin:$PATH"
+
 PATH_HAS_HOME_BIN=$(echo "$PATH" | grep "\(^\|:\)$HOME/bin\($\|:\)")
 if [ -z "$PATH_HAS_HOME_BIN" ]; then
 	export PATH="$HOME/bin:$PATH"
