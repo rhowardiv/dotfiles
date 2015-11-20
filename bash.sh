@@ -39,15 +39,11 @@ rr() {
 		return 128
 	fi
 	if [[ ! -s .consume-committers ]]; then
-		# ignore: self, non-canonical versions of Brett, Mary, Maxwell
-		local BLACKLIST="Richard Howard\|Brett W\|^Mary$\|^Maxwell"
-		git log --since="-1 month" \
-			| sed -n -e "/^Author: /s/^Author: \([^<]\+\).*$/\1/p;" \
-			| sed 's/ *$//' \
-			| grep -v "$BLACKLIST" \
-			| sort -u \
-			| shuf \
-			> .consume-committers
+	    git shortlog -se --since="-1 month" \
+		| cut -f 2- | sed 's/ <.*//' \
+		| sort -u \
+		| shuf \
+		> .consume-committers
 	fi
 	committers="$(< .consume-committers)"
 	echo "$committers" | head --lines=-1 > .consume-committers
