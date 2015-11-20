@@ -21,7 +21,7 @@ if [ -n "$(which vcprompt 2>/dev/null)" ]; then
 fi
 
 urlencode() {
-    xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g'
+	xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g'
 }
 
 ipr() {
@@ -39,11 +39,13 @@ rr() {
 		return 128
 	fi
 	if [[ ! -s .consume-committers ]]; then
-	    git shortlog -se --since="-1 month" \
-		| cut -f 2- | sed 's/ <.*//' \
-		| sort -u \
-		| shuf \
-		> .consume-committers
+		local BLACKLIST="Richard Howard\|Colonel Monocle"
+		git shortlog -se --since="-1 month" \
+			| cut -f 2- | sed 's/ <.*//' \
+			| grep -v "$BLACKLIST" \
+			| sort -u \
+			| shuf \
+			> .consume-committers
 	fi
 	committers="$(< .consume-committers)"
 	echo "$committers" | head --lines=-1 > .consume-committers
@@ -117,7 +119,7 @@ sshf() {
 }
 
 gfm() {
-    # git find merge: where was the first argument merged into [second argument|master]
-    local target="${2:-master}"
-    git rev-list $1..$target --ancestry-path | grep -f <(git rev-list $1..$target --first-parent) | tail -1
+	# git find merge: where was the first argument merged into [second argument|master]
+	local target="${2:-master}"
+	git rev-list $1..$target --ancestry-path | grep -f <(git rev-list $1..$target --first-parent) | tail -1
 }
