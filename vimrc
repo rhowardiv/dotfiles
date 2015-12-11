@@ -137,6 +137,8 @@ nnoremap <Leader>g* :grep '<C-r><C-w>'<cr>
 
 " Don't let ctrl-p use a different pwd
 let g:ctrlp_working_path_mode = 0
+" Filter out pyc files
+set wildignore+=*.pyc
 
 " send the current word to ctrl-p
 " ctrl-p already uses <insert> after <C-P> for this, but meh
