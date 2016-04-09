@@ -58,6 +58,7 @@ set nojoinspaces
 let g:netrw_dirhistmax=0
 
 if exists("+relativenumber")
+	set number
 	set relativenumber
 endif
 
