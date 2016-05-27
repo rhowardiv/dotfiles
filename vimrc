@@ -143,7 +143,7 @@ set wildignore+=*.pyc
 
 " send the current word to ctrl-p
 " ctrl-p already uses <insert> after <C-P> for this, but meh
-" nnoremap <Leader>ff <C-P><insert>
+nnoremap <Leader>ff :CtrlP<cr><insert>
 
 " "resolve conflicts"
 nnoremap <Leader>rc /<<<<<<<\\|=======\\|>>>>>>><cr>
