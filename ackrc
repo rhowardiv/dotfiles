@@ -1,5 +1,7 @@
+--type-set=cjsx=.cjsx
 --type-set=coffee=.coffee
 --type-set=jade=.jade
+--type-set=markdown=.md
 --ignore-dir=dist
 --ignore-dir=bower_components
 --type-set=markdown=.md
