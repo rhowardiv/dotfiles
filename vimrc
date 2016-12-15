@@ -44,6 +44,8 @@ nnoremap <Leader>do :diffoff!<cr>
 nnoremap <Leader>du :diffup<cr>
 set wildmenu
 set noesckeys
+" Debian based distros set 'nomodeline' by default
+set modeline
 
 set tabstop=4
 set shiftround
@@ -158,8 +160,8 @@ nnoremap <Leader>ra :execute "normal a" . system("echo -n $(grep -v \\' /usr/sha
 " "random word insert"
 nnoremap <Leader>ri :execute "normal i" . system("echo -n $(grep -v \\' /usr/share/dict/words \| shuf -n 1)")<cr>
 
-" Open diffs in tabs for each file that differs between HEAD and the supplied
-" target (default: current merge base with master)
+" Open diffs in tabs for each file that differs between working copy and the
+" supplied target (default: current merge base with master)
 command! -nargs=? Gtdiff call s:Gtdiff(<q-args>)
 function! s:Gtdiff(...)
 	if empty(a:000) || a:1 == ""
@@ -179,6 +181,7 @@ function! s:Gtdiff(...)
 	execute "r!git diff --name-only " . l:base
 	while line(".") > 1
 		let l:f = getline(".")
+		" Note that this depends on one being in the repo root directory
 		if !filereadable(l:f)
 			if isdirectory(l:f)
 				" directory differs (must be a submodule?)
