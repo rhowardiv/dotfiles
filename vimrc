@@ -172,6 +172,11 @@ function! s:Gtdiff(...)
 	endif
 	let l:base_pretty = "(" . substitute(system("git show --oneline " . l:base . " | head -n1"), '[^0-9a-f]\+$', '', '') . ")"
 	e _branch_diff_
+	" filereadable etc below depend on me being in the root repo dir
+	" this affects only the current window
+	" but I still set it back afterward, below
+	let l:workingdir=getcwd()
+	Glcd .
 	setlocal buftype=nofile
 	setlocal bufhidden=hide
 	setlocal noswapfile
@@ -181,7 +186,6 @@ function! s:Gtdiff(...)
 	execute "r!git diff --name-only " . l:base
 	while line(".") > 1
 		let l:f = getline(".")
-		" Note that this depends on one being in the repo root directory
 		if !filereadable(l:f)
 			if isdirectory(l:f)
 				" directory differs (must be a submodule?)
@@ -219,6 +223,7 @@ function! s:Gtdiff(...)
 	normal Go
 	execute "silent read !git log -p " . l:base . "..HEAD"
 	normal gg
+	execute "lcd " . l:workingdir
 endfunction
 nnoremap <Leader>gt :Gtdiff<cr>
 
