@@ -54,6 +54,7 @@ set wrap
 set hidden
 set nonu
 set showcmd
+set modeline
 
 set laststatus=2
 " default status line with current git branch name added via fugitive
