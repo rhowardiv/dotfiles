@@ -109,3 +109,6 @@
 [submodule "vim/bundle/swift.vim"]
 	path = vim/bundle/swift.vim
 	url = https://github.com/keith/swift.vim.git
+[submodule "vim/bundle/tornadotmpl.vim"]
+	path = vim/bundle/tornadotmpl.vim
+	url = https://github.com/vim-scripts/tornadotmpl.vim.git
