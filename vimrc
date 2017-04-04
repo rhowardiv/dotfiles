@@ -160,6 +160,9 @@ nnoremap <Leader>ra :execute "normal a" . system("echo -n $(grep -v \\' /usr/sha
 " "random word insert"
 nnoremap <Leader>ri :execute "normal i" . system("echo -n $(grep -v \\' /usr/share/dict/words \| shuf -n 1)")<cr>
 
+" Open thesaurus on a word
+nnoremap <Leader>th :call system("xdg-open http://www.thesaurus.com/browse/<C-r><C-w>")<cr>
+
 " Open diffs in tabs for each file that differs between working copy and the
 " supplied target (default: current merge base with master)
 command! -nargs=? Gtdiff call s:Gtdiff(<q-args>)
