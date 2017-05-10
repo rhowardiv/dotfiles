@@ -72,6 +72,9 @@ runtime macros/matchit.vim
 " I'm not that good at typing ':'
 nnoremap <Leader>; :
 
+
+nnoremap <Leader>el :.w !source /dev/stdin &<cr>
+
 " X clipboard: put it or save from some common registers (0,",/)
 nnoremap <Leader>p :r! xclip -o -sel c<cr>
 nnoremap <Leader>P :-1r! xclip -o -sel c<cr>
