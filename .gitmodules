@@ -112,3 +112,6 @@
 [submodule "vim/bundle/tornadotmpl.vim"]
 	path = vim/bundle/tornadotmpl.vim
 	url = https://github.com/vim-scripts/tornadotmpl.vim.git
+[submodule "vim/bundle/elm-vim"]
+	path = vim/bundle/elm-vim
+	url = https://github.com/ElmCast/elm-vim.git
