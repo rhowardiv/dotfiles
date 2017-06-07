@@ -82,8 +82,10 @@ nnoremap <Leader>0 :call system('xclip -sel c', @0)<cr>
 nnoremap <Leader>" :call system('xclip -sel c', @")<cr>
 nnoremap <Leader>/ :call system('xclip -sel c', @/)<cr>
 
-" show line length guides
+" line length guides
 nnoremap <Leader>co :set colorcolumn=72,80<cr>
+nnoremap <Leader>7 :set tw=72<cr>
+nnoremap <Leader>5 :set tw=56<cr>
 
 " syntastic settings -- only check manually (:SyntasticCheck)
 let g:syntastic_mode_map = {'mode': 'passive', 'active_filetypes': [], 'passive_filetypes': []}
