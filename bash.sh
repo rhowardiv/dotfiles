@@ -24,6 +24,12 @@ urlencode() {
 	xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g'
 }
 
+# No Screensaver -- one arg for seconds
+ns() {
+	xscreensaver-command -exit
+	caffeinate sleep "$1" && xscreensaver -nosplash
+}
+
 ipr() {
 	# issue pull request
 	REPO="$(git remote -v | grep origin | head -n 1 | sed 's/^[^:]\+:\([^\/]\+\)\/\([^ \.]*\).*$/\1\/\2/')"
