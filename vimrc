@@ -316,6 +316,10 @@ au BufWritePost *.php call PhpLint(expand("%"))
 let g:php_cs_fixer_path = "~/bin/php-cs-fixer"
 let g:php_cs_fixer_fixers_list = "indentation,linefeed,trailing_spaces,unused_use,visibility,short_tag,braces,include,php_closing_tag,extra_empty_lines,psr0,controls_spaces,elseif,eof_ending,default,magento,sf20,sf21"
 
+" lint inline JS ("Tag Lint", "Tag Prettier")
+nnoremap <Leader>tl vitVoj:w !eslint --stdin<cr>
+nnoremap <Leader>tp vitVoj:!prettier --stdin<cr><C-O>
+
 " puppet
 " navigate tags containing "::"
 autocmd FileType puppet setlocal isk+=:
