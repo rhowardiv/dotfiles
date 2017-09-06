@@ -1,3 +1,14 @@
+set nocompatible
+" Vundle
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'Valloric/YouCompleteMe'
+call vundle#end()
+filetype plugin on
+filetype indent on
+
 let g:mapleader=" "
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
@@ -63,9 +74,6 @@ if exists("+relativenumber")
 	set number
 	set relativenumber
 endif
-
-filetype plugin on
-filetype indent on
 
 runtime macros/matchit.vim
 
