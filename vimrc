@@ -156,10 +156,6 @@ let g:ctrlp_working_path_mode = 0
 " Filter out pyc files
 set wildignore+=*.pyc
 
-" send the current word to ctrl-p
-" ctrl-p already uses <insert> after <C-P> for this, but meh
-nnoremap <Leader>ff :CtrlP<cr><insert>
-
 " "resolve conflicts"
 nnoremap <Leader>rc /<<<<<<<\\|=======\\|>>>>>>><cr>
 " "resolve right"
@@ -342,3 +338,7 @@ nnoremap <Leader>tb :Tagbar<cr>
 nnoremap <Leader>hh :Hoogle<cr>
 nnoremap <Leader>hi :HoogleInfo<cr>
 nnoremap <Leader>hc :HoogleClose<cr>
+
+" YouCompleteMe
+nnoremap <Leader>gg :YcmCompleter GoTo<cr>
+nnoremap <Leader>ff :YcmCompleter GoToReferences<cr>
