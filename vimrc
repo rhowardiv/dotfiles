@@ -5,6 +5,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'leafgarland/typescript-vim'
 call vundle#end()
 filetype plugin on
 filetype indent on
@@ -264,6 +265,7 @@ if has("folding") " not vi
 	au FileType xml execute "normal zR"
 	au FileType javascript set foldmethod=marker
 	au FileType javascript execute "normal zR"
+	au FileType typescript set foldlevel=99
 endif
 
 " Keep track of the namespace for each PHP buffer.
