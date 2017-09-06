@@ -3,3 +3,6 @@
 	email = rh@richardhoward.net
 [core]
 	excludesfile = /home/rhoward/.gitignore
+[alias]
+	remend = commit --amend --reset-author	
+	rbranch = !git for-each-ref --sort=-committerdate "refs/heads/" --format='%(refname:short)|%(committerdate:relative)' | column -ts '|'
