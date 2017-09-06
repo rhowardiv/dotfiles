@@ -30,6 +30,37 @@ ns() {
 	caffeinate sleep "$1" && xscreensaver -nosplash
 }
 
+rw() {
+	# Random Word(s)
+	# Why aren't the args working right?
+	local sep=" "
+	local c=1
+	while getopts "ns:" opt; do
+		case "$opt" in
+			n)
+				# No separator
+				sep=""
+				;;
+			\?)
+				echo "wat -$OPTARG"
+				;;
+		esac
+	done
+	shift $((OPTIND-1))
+	if [[ -n "$1" ]]; then
+		c="$1"
+	fi
+	#echo "count:$c"
+	#echo "sep:'$sep'"
+	for i in $(seq 1 "$c"); do
+		echo -n "$(egrep -v 's$|'\' /usr/share/dict/words | shuf -n 1)"
+		if [[ "$i" -ne "$c" ]]; then
+			echo -n "$sep"
+		fi
+	done
+	echo
+}
+
 ipr() {
 	# issue pull request
 	REPO="$(git remote -v | grep origin | head -n 1 | sed 's/^[^:]\+:\([^\/]\+\)\/\([^ \.]*\).*$/\1\/\2/')"
