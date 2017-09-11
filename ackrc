@@ -6,3 +6,7 @@
 --ignore-dir=bower_components
 --type-set=markdown=.md
 --ignore-dir=node_modules
+--ignore-dir=elm-stuff
+--ignore-dir=public
+--ignore-dir=dist
+--ignore-dir=build
