@@ -4,6 +4,12 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
+
+" This is a dependency for mxw/vim-jsx
+" (I also use it on its own merits)
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'leafgarland/typescript-vim'
 call vundle#end()
@@ -260,9 +266,6 @@ if has("folding") " not vi
 	au FileType php set foldmethod=indent
 	au FileType php set foldnestmax=2
 	au FileType php set foldlevel=2
-	let g:xml_syntax_folding=1
-	au FileType xml set foldmethod=syntax
-	au FileType xml execute "normal zR"
 	au FileType javascript set foldmethod=marker
 	au FileType javascript execute "normal zR"
 	au FileType typescript set foldlevel=99
