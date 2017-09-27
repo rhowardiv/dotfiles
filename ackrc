@@ -10,3 +10,5 @@
 --ignore-dir=public
 --ignore-dir=dist
 --ignore-dir=build
+--ignore-dir=.tox
+--ignore-file=is:tags

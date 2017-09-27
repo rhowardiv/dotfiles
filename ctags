@@ -25,3 +25,4 @@
 --exclude=public/*
 --exclude=dist/*
 --exclude=build/*
+--exclude=.tox/*
