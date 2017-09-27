@@ -10,7 +10,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'leafgarland/typescript-vim'
 call vundle#end()
 filetype plugin on
