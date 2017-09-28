@@ -11,6 +11,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 
 Plugin 'leafgarland/typescript-vim'
+Plugin 'tpope/vim-fugitive'
 call vundle#end()
 filetype plugin on
 filetype indent on
