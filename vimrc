@@ -12,6 +12,10 @@ Plugin 'mxw/vim-jsx'
 
 Plugin 'leafgarland/typescript-vim'
 Plugin 'tpope/vim-fugitive'
+
+Plugin 'vim-python/python-syntax'
+let g:python_highlight_all = 1
+
 call vundle#end()
 filetype plugin on
 filetype indent on
