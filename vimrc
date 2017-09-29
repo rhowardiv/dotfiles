@@ -343,7 +343,3 @@ nnoremap <Leader>tb :Tagbar<cr>
 nnoremap <Leader>hh :Hoogle<cr>
 nnoremap <Leader>hi :HoogleInfo<cr>
 nnoremap <Leader>hc :HoogleClose<cr>
-
-" YouCompleteMe
-nnoremap <Leader>gg :YcmCompleter GoTo<cr>
-nnoremap <Leader>ff :YcmCompleter GoToReferences<cr>
