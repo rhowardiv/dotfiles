@@ -87,7 +87,7 @@
 	url = https://github.com/mtscout6/vim-cjsx.git
 [submodule "vim/bundle/nginx-vim-syntax"]
 	path = vim/bundle/nginx-vim-syntax
-	url = https://github.com/evanmiller/nginx-vim-syntax.git
+	url = git@github.com:rhowardiv/nginx-vim-syntax.git
 [submodule "vim/bundle/vim-go"]
 	path = vim/bundle/vim-go
 	url = https://github.com/fatih/vim-go.git
