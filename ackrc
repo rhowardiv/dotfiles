@@ -12,3 +12,4 @@
 --ignore-dir=build
 --ignore-dir=.tox
 --ignore-file=is:tags
+--ignore-dir=virtualenv
