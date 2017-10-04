@@ -343,3 +343,4 @@ nnoremap <Leader>hc :HoogleClose<cr>
 
 " ALE
 let g:ale_lint_on_enter = 0
+nnoremap <Leader>ll :ALELint<cr><C-O>
