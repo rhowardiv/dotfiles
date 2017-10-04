@@ -14,6 +14,7 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'tpope/vim-fugitive'
 
 Plugin 'vim-python/python-syntax'
+Plugin 'w0rp/ale'
 let g:python_highlight_all = 1
 
 call vundle#end()
