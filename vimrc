@@ -340,3 +340,6 @@ nnoremap <Leader>tb :Tagbar<cr>
 nnoremap <Leader>hh :Hoogle<cr>
 nnoremap <Leader>hi :HoogleInfo<cr>
 nnoremap <Leader>hc :HoogleClose<cr>
+
+" ALE
+let g:ale_lint_on_enter = 0
