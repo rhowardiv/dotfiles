@@ -12,6 +12,7 @@ Plugin 'mxw/vim-jsx'
 
 Plugin 'leafgarland/typescript-vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-markdown'
 
 Plugin 'vim-python/python-syntax'
 Plugin 'w0rp/ale'
