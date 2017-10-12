@@ -39,15 +39,6 @@ if has('syntax')
 	set incsearch
 	set hlsearch
 	set cursorline
-
-	" indent "case" statements
-	let g:PHP_vintage_case_default_indent = 1
-
-	" No longer needed now that I've stopped the performance-hogging PHP
-	" syntax folding!
-	" don't syntax highlight large files
-	" au FileType php if getfsize(expand("%")) > 92000 | syntax clear | endif
-
 endif
 
 set wrap
@@ -62,7 +53,7 @@ set statusline=%<%f\ %{fugitive#statusline()}\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set ruler
 set backspace=start,indent,eol
 set updatecount=25
-set history=1000
+set history=10000
 set diffopt=filler,vertical
 nnoremap <Leader>do :diffoff!<cr>
 nnoremap <Leader>du :diffup<cr>
@@ -93,8 +84,9 @@ runtime macros/matchit.vim
 " I'm not that good at typing ':'
 nnoremap <Leader>; :
 
-
+" Shell eval current line / selection
 nnoremap <Leader>el :.w !source /dev/stdin &<cr>
+vnoremap <Leader>el :'<,'>w !source /dev/stdin &<cr>
 
 " X clipboard: put it or save from some common registers (0,",/)
 nnoremap <Leader>p :r! xclip -o -sel c<cr>
@@ -113,7 +105,6 @@ function MyColorCols()
 		set colorcolumn=72,80
 	endif
 endfunction
-
 nnoremap <Leader>co :call MyColorCols()<cr>
 nnoremap <Leader>7 :set tw=72<cr>
 nnoremap <Leader>5 :set tw=56<cr>
@@ -268,81 +259,6 @@ nnoremap <Leader>gw :Gwrite<cr>
 nnoremap <Leader>gv :Gitv<cr>
 nnoremap <Leader>gf :Gitv!<cr>
 
-" folding
-if has('folding') " not vi
-	set foldlevelstart=2
-	" let php_folding=1 CAUSED PERFORMANCE PROBLEMS
-	" I think I like this simple folding better anyway!
-	augroup vimrc
-		au FileType php set foldmethod=indent
-		au FileType php set foldnestmax=2
-		au FileType php set foldlevel=2
-		au FileType javascript set foldmethod=marker
-		au FileType javascript execute "normal zR"
-		au FileType typescript set foldlevel=99
-	augroup END
-endif
-
-" Keep track of the namespace for each PHP buffer.
-function PhpSetBufferNamespace()
-	if !exists('b:php_namespace')
-		let l:save_cursor = getpos('.')
-		let l:found_namespace = search('\v^namespace .+;', 'cw')
-		if !l:found_namespace
-			let b:php_namespace = ''
-		else
-			execute 'normal 0w'
-			let b:php_namespace = substitute(expand('<cWORD>'), ';', '', '')
-		endif
-		call setpos('.', l:save_cursor)
-	endif
-endfunction
-augroup vimrc
-	autocmd FileType php call PhpSetBufferNamespace()
-augroup END
-
-" Better includes for php.
-" Should be psr-0 and underscore-as-directory-separator compliant.
-" Special cased for Ayi code in /classes/.
-let g:in_ayi = (getcwd() =~# '\v[Aa][Yy][Ii]$')
-function PhpFindInclude(fname)
-	if a:fname =~# '^\'
-		let l:fname = substitute(a:fname, '^\', '', '')
-	else
-		let l:fname = b:php_namespace . '\' . a:fname
-	endif
-	if g:in_ayi == 1
-		let l:fname = 'classes/' . substitute(l:fname, '\\\|_', '/', 'g') . '.php'
-		let l:fname = substitute(l:fname, '/Ayi/', '', '')
-	else
-		let l:fname = substitute(l:fname, '\', '/', 'g') . '.php'
-	endif
-	" echom l:fname
-	return l:fname
-endfunction
-augroup vimrc
-	autocmd FileType php setlocal include=\\v(^use\ \\zs\\\\?[A-Za-z0-9\\\\]\\ze;)\|new\ \\zs\\\\?[A-Z][a-zA-Z0-9\\\\]*\\ze\|\\zs\\\\?[A-Z][a-zA-Z0-9\\\\]*\\ze::
-	autocmd FileType php setlocal includeexpr=PhpFindInclude(v:fname)
-	" Now that I've done all that let's NOT use it for autocomplete!
-	autocmd FileType php set complete-=i
-	" But for fun let's try it with class names and gf
-	autocmd FileType php set isfname+=\\
-augroup END
-
-
-" linting
-function PhpLint(file)
-	let l:lint = system('php -l ' . a:file)
-	if v:shell_error != 0
-		echohl WarningMsg | echo l:lint | echohl None
-	endif
-endfunction
-augroup vimrc
-	autocmd BufWritePost *.php call PhpLint(expand('%'))
-augroup END
-let g:php_cs_fixer_path = '~/bin/php-cs-fixer'
-let g:php_cs_fixer_fixers_list = 'indentation,linefeed,trailing_spaces,unused_use,visibility,short_tag,braces,include,php_closing_tag,extra_empty_lines,psr0,controls_spaces,elseif,eof_ending,default,magento,sf20,sf21'
-
 " lint inline JS ("Tag Lint", "Tag Prettier")
 nnoremap <Leader>tl vitVoj:w !eslint --stdin<cr>
 nnoremap <Leader>tp vitVoj:!prettier --stdin<cr><C-O>
@@ -354,7 +270,10 @@ augroup vimrc
 augroup END
 
 " isort
-nnoremap <Leader>is :Isort<cr>
+" nnoremap <Leader>is :Isort<cr>
+" Lately I can't get past 'No isort python module detected'
+" But this works too
+nnoremap <Leader>is :!isort %<cr>
 
 " tagbar
 nnoremap <Leader>tb :Tagbar<cr>
