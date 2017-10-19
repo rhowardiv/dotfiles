@@ -4,4 +4,4 @@
 tags
 TAGS
 .consume-committers
-.mypy_cache
+.*cache
