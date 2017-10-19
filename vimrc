@@ -221,6 +221,7 @@ function! s:Gtdiff(...)
 				" Should look different so I don't miss the fact that it's
 				" deleted!
 				syntax clear
+				execute 'lcd ' . l:workingdir
 				execute 'normal gT'
 				execute 'normal I-- k'
 			endif
@@ -229,11 +230,13 @@ function! s:Gtdiff(...)
 			if v:shell_error
 				" File does not exist in target branch: just show file
 				execute 'normal ^v$hgf'
+				execute 'lcd ' . l:workingdir
 				execute 'normal gT'
 				execute 'normal I++ k'
 			else
 				execute 'normal ^v$hgf'
 				execute 'Gdiff ' . l:base
+				execute 'lcd ' . l:workingdir
 				execute 'normal gTk'
 			endif
 		endif
