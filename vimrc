@@ -296,3 +296,14 @@ nnoremap <silent> <Leader>ll :ALELint<cr>
 if filereadable('etc/pylintrc')
 	let g:ale_python_flake8_options='--config=etc/pep8.cfg'
 endif
+
+" column view
+nnoremap <Leader>c3 <C-w>o:set noscrollbind
+			\ nocursorbind<cr>:vs<cr>:vs<cr>gg:set
+			\ scrollbind<cr>2<C-w>wgg<C-f>:set
+			\ scrollbind<cr>3<C-w>wgg<C-f><C-f>:set
+			\ scrollbind<cr>2<C-w>w<C-o>
+nnoremap <Leader>c2 <C-w>o:set noscrollbind
+			\ nocursorbind<cr>:vs<cr>gg:set
+			\ scrollbind<cr>2<C-w>wgg<C-f>:set
+			\ scrollbind<cr><C-o>
