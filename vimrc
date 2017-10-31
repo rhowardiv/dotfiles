@@ -293,7 +293,7 @@ nnoremap <Leader>hc :HoogleClose<cr>
 let g:ale_lint_on_enter = 0
 " mypy --ignore-missing imports
 " stifles errors for libraries (eg boto3) not yet in typeshed
-let g:ale_python_mypy_options = '--ignore-missing-imports'
+let g:ale_python_mypy_options = '--ignore-missing-imports --incremental --follow-imports=silent'
 nnoremap <silent> <Leader>ll :ALELint<cr>
 if filereadable('etc/pylintrc')
 	let g:ale_python_flake8_options='--config=etc/pep8.cfg'
