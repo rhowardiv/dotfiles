@@ -297,6 +297,7 @@ let g:ale_python_mypy_options = '--ignore-missing-imports --incremental --follow
 nnoremap <silent> <Leader>ll :ALELint<cr>
 if filereadable('etc/pylintrc')
 	let g:ale_python_flake8_options='--config=etc/pep8.cfg'
+	let g:ale_python_pylint_options='--load-plugins pylint_ext --rcfile etc/pylintrc'
 endif
 
 " column view
