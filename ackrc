@@ -13,3 +13,4 @@
 --ignore-dir=.tox
 --ignore-file=is:tags
 --ignore-dir=virtualenv
+--ignore-dir=.mypy_cache
