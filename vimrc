@@ -14,6 +14,7 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'rhowardiv/nginx-vim-syntax'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-markdown'
+Plugin 'tpope/vim-vinegar'
 
 Plugin 'vim-python/python-syntax'
 Plugin 'w0rp/ale'
