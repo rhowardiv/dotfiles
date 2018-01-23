@@ -169,7 +169,7 @@ let g:ctrlp_working_path_mode = 0
 set wildignore+=*.pyc
 
 " "resolve conflicts"
-nnoremap <Leader>rc /<<<<<<<\\|=======\\|>>>>>>><cr>
+nnoremap <Leader>rc /^<<<<<<<\\|^=======\\|^>>>>>>><cr>
 " "resolve right"
 nnoremap <Leader>rr dnddkndd
 " "resolve left"
