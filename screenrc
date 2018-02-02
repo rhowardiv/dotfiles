@@ -9,7 +9,7 @@ defscrollback 10000
 # a nice status line
 hardstatus on
 hardstatus alwayslastline 
-hardstatus string '%{= kG}[ %{c}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{c} %l %{g}]'
+hardstatus string '%{= kG}[ %{c}%H %{g}][%= %{= kw}%?%-Lw%?%{+b yk} %n*%f%t%?(%u)%? %{-}%?%+Lw%?%?%= %{g}][%{c} %l %{g}]'
 
 # visual bell is like shocking coworkers with lightning
 vbell off
