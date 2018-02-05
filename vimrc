@@ -266,6 +266,11 @@ nnoremap <Leader>gw :Gwrite<cr>
 nnoremap <Leader>gv :Gitv<cr>
 nnoremap <Leader>gf :Gitv!<cr>
 
+augroup gitcommit
+	autocmd FileType gitcommit set spell spelllang=en_us
+	autocmd FileType gitcommit setlocal colorcolumn=50,72
+augroup END
+
 " lint inline JS ("Tag Lint", "Tag Prettier")
 nnoremap <Leader>tl vitVoj:w !eslint --stdin<cr>
 nnoremap <Leader>tp vitVoj:!prettier --stdin<cr><C-O>
