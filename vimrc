@@ -52,7 +52,7 @@ set modeline
 
 set laststatus=2
 " default status line with current git branch name added via fugitive
-set statusline=%<%f\ %{fugitive#statusline()}\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+set statusline=%<%f\ %{fugitive#statusline()}\ %h%m%r%=%y\ %-19.(%l,%c%V\\x%B%)\ %P
 set ruler
 set backspace=start,indent,eol
 set updatecount=25
