@@ -91,6 +91,10 @@ nnoremap <Leader>; :
 nnoremap <Leader>el :.w !source /dev/stdin &<cr>
 vnoremap <Leader>el :'<,'>w !source /dev/stdin &<cr>
 
+" Try to 'open' (xdg-open) current line / selection
+nnoremap <silent> <Leader>gf :execute '!nohup xdg-open ' getline('.')<cr><cr>
+vnoremap <silent> <Leader>gf :<C-W>execute '!nohup xdg-open ' GetVisualSelection()<cr><cr>gv
+
 " X clipboard: put it or save from some common registers (0,",/)
 nnoremap <Leader>p :r! xclip -o -sel c<cr>
 nnoremap <Leader>P :-1r! xclip -o -sel c<cr>
@@ -266,8 +270,6 @@ nnoremap <Leader>grd :Gread<cr>
 nnoremap <Leader>grm :Gremove<cr>
 nnoremap <Leader>gs :Gstat<cr>
 nnoremap <Leader>gw :Gwrite<cr>
-nnoremap <Leader>gv :Gitv<cr>
-nnoremap <Leader>gf :Gitv!<cr>
 
 augroup gitcommit
 	autocmd FileType gitcommit set spell spelllang=en_us
@@ -319,3 +321,17 @@ nnoremap <Leader>c2 <C-w>o:set noscrollbind
 			\ nocursorbind<cr>:vs<cr>gg:set
 			\ scrollbind<cr>2<C-w>wgg<C-f>:set
 			\ scrollbind<cr><C-o>
+
+" nice, stolen from https://stackoverflow.com/a/6271254
+" and linted
+function! GetVisualSelection()
+    let [l:line_start, l:column_start] = getpos("'<")[1:2]
+    let [l:line_end, l:column_end] = getpos("'>")[1:2]
+    let l:lines = getline(l:line_start, l:line_end)
+    if len(l:lines) == 0
+        return ''
+    endif
+    let l:lines[-1] = l:lines[-1][: l:column_end - (&selection ==? 'inclusive' ? 1 : 2)]
+    let l:lines[0] = l:lines[0][l:column_start - 1:]
+    return join(l:lines, "\n")
+endfunction
