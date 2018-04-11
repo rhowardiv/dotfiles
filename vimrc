@@ -310,6 +310,11 @@ if filereadable('etc/pylintrc')
 	let g:ale_python_flake8_options='--config=etc/pep8.cfg'
 	let g:ale_python_pylint_options='--load-plugins pylint_ext --rcfile etc/pylintrc'
 endif
+let g:ale_fixers = {}
+let g:ale_fixers['javascript'] = ['prettier']
+" goimports does gofmt + import cleanup
+let g:ale_fixers['go'] = ['goimports']
+nnoremap <silent> <Leader>lf :ALEFix<cr>
 
 " column view
 nnoremap <Leader>c3 <C-w>o:set noscrollbind
