@@ -136,6 +136,11 @@ nnoremap <C-k> <C-w>k
 " (this overwrites <C-l> for redraw, but I use :redraw[!] anyhow)
 nnoremap <C-l> <C-w>l
 
+" equalize on resize
+augroup windowage
+    autocmd VimResized * wincmd =
+augroup END
+
 " easier than <C-w>s
 nnoremap <C-w><C-s> <C-w>s
 
