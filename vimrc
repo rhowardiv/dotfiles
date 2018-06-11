@@ -163,8 +163,8 @@ function HappyBuffer()
 endfunction
 nnoremap gs :call HappyBuffer()<cr>
 
-" grep with ack
-set grepprg=ack
+" grep with ag (apt install silversearcher-ag)
+set grepprg=ag
 " grep for the current word
 " The parens are there because <C-r><C-w> considers the previously typed
 " characters and omits them when they match the beginning of word!
