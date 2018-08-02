@@ -118,9 +118,6 @@ nnoremap <Leader>7 :set tw=72<cr>
 nnoremap <Leader>5 :set tw=56<cr>
 nnoremap <Leader>4 :set tw=44<cr>
 
-" command mode: ctrl-d for pathname of current buffer
-cnoremap <C-D> <C-R>=expand("%:p:h") . "/" <CR>
-
 " I like to use these shortcuts for moving among buffers
 nnoremap gb :bn<cr>
 nnoremap gB :bp<cr>
