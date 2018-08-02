@@ -24,6 +24,11 @@ urlencode() {
 	xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g'
 }
 
+urldecode() {
+    local url_encoded="${1//+/ }"
+    printf '%b' "${url_encoded//%/\\x}"
+}
+
 # No Screensaver -- one arg for seconds
 ns() {
 	xscreensaver-command -exit
