@@ -113,6 +113,7 @@ function MyColorCols()
 	endif
 endfunction
 nnoremap <Leader>co :call MyColorCols()<cr>
+nnoremap <Leader>8 :set tw=88<cr>
 nnoremap <Leader>7 :set tw=72<cr>
 nnoremap <Leader>5 :set tw=56<cr>
 nnoremap <Leader>4 :set tw=44<cr>
