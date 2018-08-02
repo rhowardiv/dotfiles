@@ -316,6 +316,8 @@ if filereadable('etc/pylintrc')
 	let g:ale_python_flake8_change_directory=0
 	let g:ale_python_flake8_options='--config=etc/pep8.cfg'
 	let g:ale_python_pylint_options='--load-plugins pylint_ext --rcfile etc/pylintrc'
+    else
+	let g:ale_python_flake8_options='--ignore=W503,E203 --max-line-length=88'
 endif
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier']
