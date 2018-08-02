@@ -104,12 +104,12 @@ nnoremap <Leader>/ :call system('xclip -sel c', @/)<cr>
 
 " line length guides
 function MyColorCols()
-	if &colorcolumn ==? '72,80'
-		set colorcolumn=44,52
-	elseif &colorcolumn ==? '44,52'
+	if &colorcolumn ==? '72,80,88'
+		set colorcolumn=44,52,56
+	elseif &colorcolumn ==? '44,52,56'
 		set colorcolumn=
 	else
-		set colorcolumn=72,80
+		set colorcolumn=72,80,88
 	endif
 endfunction
 nnoremap <Leader>co :call MyColorCols()<cr>
