@@ -10,6 +10,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 
+Plugin 'rhowardiv/pgsql.vim'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'rhowardiv/nginx-vim-syntax'
 Plugin 'tpope/vim-fugitive'
@@ -42,6 +43,7 @@ if has('syntax')
 	set incsearch
 	set hlsearch
 	set cursorline
+	let g:sql_type_default = 'pgsql'
 endif
 
 set wrap
