@@ -163,6 +163,27 @@ function HappyBuffer()
 endfunction
 nnoremap gs :call HappyBuffer()<cr>
 
+" Toggle distraction-free mode
+function DistractionFreeToggle()
+    let g:distraction_free_mode = get(g:, 'distraction_free_mode', 0)
+    if g:distraction_free_mode == 0
+		let g:distraction_free_mode = 1
+		set laststatus=1
+		set nonumber
+		set norelativenumber
+		set cmdheight=1
+		set noruler
+    else
+		let g:distraction_free_mode = 0
+		set laststatus=2
+		set number
+		set relativenumber
+		set cmdheight=2
+		set ruler
+    endif
+endfunction
+nnoremap <silent> <Leader>df :call DistractionFreeToggle()<cr>
+
 " grep with ag (apt install silversearcher-ag)
 set grepprg=ag
 " grep for the current word
