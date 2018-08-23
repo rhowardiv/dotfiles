@@ -343,6 +343,7 @@ let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier']
 " goimports does gofmt + import cleanup
 let g:ale_fixers['go'] = ['goimports']
+let g:ale_fixers['sh'] = ['shfmt']
 nnoremap <silent> <Leader>lf :ALEFix<cr>
 
 " column view
