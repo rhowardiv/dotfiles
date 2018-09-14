@@ -7,9 +7,10 @@ startup_message off
 defscrollback 10000
 
 # a nice status line
+backtick 1 60 60 $HOME/bin/get_freemem
 hardstatus on
 hardstatus alwayslastline 
-hardstatus string '%{= kG}[ %{c}%H %{g}][%= %{= kw}%?%-Lw%?%{+b yk} %n*%f%t%?(%u)%? %{-}%?%+Lw%?%?%= %{g}][%{c} %l %{g}]'
+hardstatus string '%{= kG}[ %{c}%H %{g}][%= %{= kw}%?%-Lw%?%{+b yk} %n*%f%t%?(%u)%? %{-}%?%+Lw%?%?%= %{g}][%{c} %l %1` %{g}]'
 
 # visual bell is like shocking coworkers with lightning
 vbell off
