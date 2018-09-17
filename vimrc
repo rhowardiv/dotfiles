@@ -8,15 +8,18 @@ Plugin 'VundleVim/Vundle.vim'
 " This is a dependency for mxw/vim-jsx
 " (I also use it on its own merits)
 Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
 
-Plugin 'rhowardiv/pgsql.vim'
+" This is a dependency for inkarkat/vim-SpellCheck
+Plugin 'inkarkat/vim-ingo-library'
+
+Plugin 'inkarkat/vim-SpellCheck'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'mxw/vim-jsx'
 Plugin 'rhowardiv/nginx-vim-syntax'
+Plugin 'rhowardiv/pgsql.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-vinegar'
-
 Plugin 'vim-python/python-syntax'
 Plugin 'w0rp/ale'
 let g:python_highlight_all = 1
