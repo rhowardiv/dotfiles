@@ -42,6 +42,7 @@ if has('syntax')
 	color solarized
 	nnoremap <Leader>sd :set background=dark<cr>
 	nnoremap <Leader>sl :set background=light<cr>
+	nnoremap <Leader>sh :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<cr>
 
 	set incsearch
 	set hlsearch
