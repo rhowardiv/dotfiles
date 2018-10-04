@@ -2,7 +2,7 @@
 
 DOTFILES="$HOME/dotfiles"
 
-ls "$DOTFILES" | grep -v '\.sh' | while read DOTFILE; do
+ls "$DOTFILES" | egrep -v '\.sh|bin' | while read DOTFILE; do
 	echo -n "Symlink to $DOTFILE..."
 	if [ -a "$HOME/.$DOTFILE" ]; then
 		if [ -h "$HOME/.$DOTFILE" ]; then
@@ -34,5 +34,11 @@ if [ -z "$HAS_SO_BASH" ]; then
 else
 	echo "Not needed."
 fi
+
+mkdir "$HOME/bin" 2>/dev/null
+
+for b in bin/*; do
+	cp "$b" "$HOME/bin/"
+done
 
 echo "Done."
