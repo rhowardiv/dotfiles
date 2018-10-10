@@ -350,6 +350,13 @@ let g:ale_fixers['go'] = ['goimports']
 let g:ale_fixers['sh'] = ['shfmt']
 nnoremap <silent> <Leader>lf :ALEFix<cr>
 
+" SQL formatter: https://github.com/darold/pgFormatter
+if filereadable('/usr/local/bin/pg_format')
+    augroup sqlformat
+	au FileType sql setl formatprg=/usr/local/bin/pg_format\ \-B\ -s\ 2\ -
+    augroup END
+endif
+
 " column view
 nnoremap <Leader>c3 <C-w>o:set noscrollbind
 			\ nocursorbind<cr>:vs<cr>:vs<cr>gg:set
