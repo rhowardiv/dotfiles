@@ -381,3 +381,7 @@ function! GetVisualSelection()
     let l:lines[0] = l:lines[0][l:column_start - 1:]
     return join(l:lines, "\n")
 endfunction
+
+" quick fix a spelling error
+" my left pinkie is not really up to the 1-z maneuver
+nnoremap <Leader>z= 1z=
