@@ -386,3 +386,7 @@ endfunction
 " quick fix a spelling error
 " my left pinkie is not really up to the 1-z maneuver
 nnoremap <Leader>z= 1z=
+
+" used a lot in code archaelogy
+nnoremap <Leader>cj :colder<cr>
+nnoremap <Leader>ck :cnewer<cr>
