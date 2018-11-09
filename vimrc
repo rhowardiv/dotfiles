@@ -390,3 +390,11 @@ nnoremap <Leader>z= 1z=
 " used a lot in code archaelogy
 nnoremap <Leader>cj :colder<cr>
 nnoremap <Leader>ck :cnewer<cr>
+
+" set up persistent undo
+if has('persistent_undo')
+    let s:myUndoDir = expand('$HOME/.vimundo')
+    call mkdir(s:myUndoDir, 'p')
+    execute 'set undodir=' . s:myUndoDir
+    set undofile
+endif
