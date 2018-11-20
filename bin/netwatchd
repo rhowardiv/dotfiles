@@ -1,0 +1,6 @@
+#!/bin/bash
+F='(.rx.packetspersecond|tostring)+"r"+'
+F="${F}(.tx.packetspersecond|tostring)+\"t\""
+stdbuf -oL -eL vnstat --live 0 --style 4 --json \
+| stdbuf -oL -eL jq -r "$F" \
+> /tmp/netwatchd
