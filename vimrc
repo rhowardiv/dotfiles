@@ -276,6 +276,7 @@ function! s:Gtdiff(...)
 				execute 'normal I++ k'
 			else
 				execute 'normal ^v$hgf'
+				set diffopt+=iwhite
 				execute 'Gdiff ' . l:base
 				execute 'lcd ' . l:workingdir
 				execute 'normal gTk'
