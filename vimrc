@@ -21,6 +21,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-rhubarb'
 Plugin 'tpope/vim-vinegar'
+Plugin 'fatih/vim-go'
 Plugin 'vim-python/python-syntax'
 Plugin 'w0rp/ale'
 let g:python_highlight_all = 1
