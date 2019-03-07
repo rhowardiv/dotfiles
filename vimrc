@@ -353,6 +353,10 @@ let g:ale_fixers['go'] = ['goimports']
 let g:ale_fixers['sh'] = ['shfmt']
 nnoremap <silent> <Leader>lf :ALEFix<cr>
 
+if executable('sqlfmt')
+    augroup sqlformat
+	au FileType sql setl formatprg=sqlfmt
+    augroup END
 " SQL formatter: https://github.com/darold/pgFormatter
 if filereadable('/usr/local/bin/pg_format')
     augroup sqlformat

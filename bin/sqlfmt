@@ -1,0 +1,2 @@
+#!/bin/bash
+cockroach sqlfmt --tab-width 2 --use-spaces --print-width 72 | sed 's/::STRING/::TEXT/g'
