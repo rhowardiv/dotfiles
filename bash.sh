@@ -72,6 +72,7 @@ ipr() {
 	ON_BRANCH=$(git branch | grep '^* ' | sed 's/^* //')
 	xdg-open "https://github.com/$REPO/compare/$ON_BRANCH" > /dev/null 2>&1
 }
+export -f ipr
 
 rr() {
 	# random recent committer
@@ -93,6 +94,7 @@ rr() {
 	echo "$committers" | head --lines=-1 > .consume-committers
 	echo "$committers" | tail -n 1
 }
+export -f rr
 
 glh() {
 	# git linear history
