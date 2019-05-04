@@ -34,22 +34,22 @@ let g:mapleader=' '
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 if has('syntax')
-	syntax on
-	nnoremap <Leader>ss :syntax sync fromstart<cr>
-	if &t_Co == 8
-		" sorry, I don't believe you
-		set t_Co=16
-	endif
-	set background=dark
-	color solarized
-	nnoremap <Leader>sd :set background=dark<cr>
-	nnoremap <Leader>sl :set background=light<cr>
-	nnoremap <Leader>sh :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<cr>
+    syntax on
+    nnoremap <Leader>ss :syntax sync fromstart<cr>
+    if &t_Co == 8
+        " sorry, I don't believe you
+        set t_Co=16
+    endif
+    set background=dark
+    color solarized
+    nnoremap <Leader>sd :set background=dark<cr>
+    nnoremap <Leader>sl :set background=light<cr>
+    nnoremap <Leader>sh :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<cr>
 
-	set incsearch
-	set hlsearch
-	set cursorline
-	let g:sql_type_default = 'pgsql'
+    set incsearch
+    set hlsearch
+    set cursorline
+    let g:sql_type_default = 'pgsql'
 endif
 
 set wrap
@@ -86,8 +86,8 @@ set nojoinspaces
 let g:netrw_dirhistmax=0
 
 if exists('+relativenumber')
-	set number
-	set relativenumber
+    set number
+    set relativenumber
 endif
 
 runtime macros/matchit.vim
@@ -112,13 +112,13 @@ nnoremap <Leader>/ :call system('xclip -sel c', @/)<cr>
 
 " line length guides
 function MyColorCols()
-	if &colorcolumn ==? '72,80,88'
-		set colorcolumn=44,52,56
-	elseif &colorcolumn ==? '44,52,56'
-		set colorcolumn=
-	else
-		set colorcolumn=72,80,88
-	endif
+    if &colorcolumn ==? '72,80,88'
+        set colorcolumn=44,52,56
+    elseif &colorcolumn ==? '44,52,56'
+        set colorcolumn=
+    else
+        set colorcolumn=72,80,88
+    endif
 endfunction
 nnoremap <Leader>co :call MyColorCols()<cr>
 nnoremap <Leader>8 :set tw=88<cr>
@@ -132,7 +132,7 @@ nnoremap gB :bp<cr>
 nnoremap <Leader>b :ls<cr>:buffer 
 " Don't show fugitive buffers in buffer list
 augroup vimrc
-	autocmd BufReadPost fugitive://* set nobuflisted
+    autocmd BufReadPost fugitive://* set nobuflisted
 augroup END
 
 " moving among windows
@@ -152,20 +152,20 @@ nnoremap <C-w><C-s> <C-w>s
 
 " Handy shortcut for a happy scratch buffer
 function HappyBuffer()
-	let l:happy = '^_^'
+    let l:happy = '^_^'
 
-	if bufexists(l:happy)
-		let l:n = bufnr(l:happy)
-		execute ':buffer ' . l:n
-		return
-	endif
+    if bufexists(l:happy)
+        let l:n = bufnr(l:happy)
+        execute ':buffer ' . l:n
+        return
+    endif
 
-	execute ':e ' . l:happy
-	setlocal buftype=nofile
-	setlocal bufhidden=hide
-	setlocal noswapfile
-	setlocal nobuflisted
-	set filetype=diff
+    execute ':e ' . l:happy
+    setlocal buftype=nofile
+    setlocal bufhidden=hide
+    setlocal noswapfile
+    setlocal nobuflisted
+    set filetype=diff
 endfunction
 nnoremap gs :call HappyBuffer()<cr>
 
@@ -173,19 +173,19 @@ nnoremap gs :call HappyBuffer()<cr>
 function DistractionFreeToggle()
     let g:distraction_free_mode = get(g:, 'distraction_free_mode', 0)
     if g:distraction_free_mode == 0
-		let g:distraction_free_mode = 1
-		set laststatus=1
-		set nonumber
-		set norelativenumber
-		set cmdheight=1
-		set noruler
+        let g:distraction_free_mode = 1
+        set laststatus=1
+        set nonumber
+        set norelativenumber
+        set cmdheight=1
+        set noruler
     else
-		let g:distraction_free_mode = 0
-		set laststatus=2
-		set number
-		set relativenumber
-		set cmdheight=2
-		set ruler
+        let g:distraction_free_mode = 0
+        set laststatus=2
+        set number
+        set relativenumber
+        set cmdheight=2
+        set ruler
     endif
 endfunction
 nnoremap <silent> <Leader>df :call DistractionFreeToggle()<cr>
@@ -227,70 +227,70 @@ nnoremap <Leader>th :call system("xdg-open http://www.thesaurus.com/browse/<C-r>
 " supplied target (default: current merge base with master)
 command! -nargs=? Gtdiff call s:Gtdiff(<q-args>)
 function! s:Gtdiff(...)
-	if empty(a:000) || a:1 ==? ''
-		let l:base = substitute(system('git merge-base HEAD master'), '[^0-9a-f]\+$', '', '')
-		echom a:1
-	else
-		let l:base = a:1
-	endif
-	let l:base_pretty = '(' . substitute(system('git show --oneline ' . l:base . ' | head -n1'), '[^0-9a-f]\+$', '', '') . ')'
-	e _branch_diff_
-	" filereadable etc below depend on me being in the root repo dir
-	" this affects only the current window
-	" but I still set it back afterward, below
-	let l:workingdir=getcwd()
-	Glcd .
-	setlocal buftype=nofile
-	setlocal bufhidden=hide
-	setlocal noswapfile
-	setlocal textwidth=0
-	set filetype=diff
-	execute 'normal iFiles that differ from base ' . l:base_pretty . ":\<esc>"
-	execute 'r!git diff --name-only ' . l:base
-	while line('.') > 1
-		let l:f = getline('.')
-		if !filereadable(l:f)
-			if isdirectory(l:f)
-				" directory differs (must be a submodule?)
-				execute 'normal Idiff k'
-			else
-				" File does not exist here: show file from base
-				" Need to pretend I'm editing something to get fugitive commands.
-				" Hrm. Probably a better way.
-				tabedit foo_098q2h3f98basd908hawef
-				execute 'Gedit ' . l:base . ':' . l:f
-				bdelete foo_098q2h3f98basd908hawef
-				" Should look different so I don't miss the fact that it's
-				" deleted!
-				syntax clear
-				execute 'lcd ' . l:workingdir
-				execute 'normal gT'
-				execute 'normal I-- k'
-			endif
-		else
-			call system('git rev-parse ' . shellescape(l:base . ':' . l:f))
-			if v:shell_error
-				" File does not exist in target branch: just show file
-				execute 'normal ^v$hgf'
-				execute 'lcd ' . l:workingdir
-				execute 'normal gT'
-				execute 'normal I++ k'
-			else
-				execute 'normal ^v$hgf'
-				set diffopt+=iwhite
-				execute 'Gdiff ' . l:base
-				execute 'lcd ' . l:workingdir
-				execute 'normal gTk'
-			endif
-		endif
-	endwhile
-	execute 'normal ICommits since base ' . l:base_pretty . ":\<cr>" . system('git log --oneline ' . l:base . '..HEAD | tac') . "\<cr>\<esc>0j"
-	execute 'normal Go'
-	execute 'read !git diff --shortstat ' . l:base . '..HEAD'
-	execute 'normal Go'
-	execute 'silent read !git log -p ' . l:base . '..HEAD'
-	execute 'normal gg'
-	execute 'lcd ' . l:workingdir
+    if empty(a:000) || a:1 ==? ''
+        let l:base = substitute(system('git merge-base HEAD master'), '[^0-9a-f]\+$', '', '')
+        echom a:1
+    else
+        let l:base = a:1
+    endif
+    let l:base_pretty = '(' . substitute(system('git show --oneline ' . l:base . ' | head -n1'), '[^0-9a-f]\+$', '', '') . ')'
+    e _branch_diff_
+    " filereadable etc below depend on me being in the root repo dir
+    " this affects only the current window
+    " but I still set it back afterward, below
+    let l:workingdir=getcwd()
+    Glcd .
+    setlocal buftype=nofile
+    setlocal bufhidden=hide
+    setlocal noswapfile
+    setlocal textwidth=0
+    set filetype=diff
+    execute 'normal iFiles that differ from base ' . l:base_pretty . ":\<esc>"
+    execute 'r!git diff --name-only ' . l:base
+    while line('.') > 1
+        let l:f = getline('.')
+        if !filereadable(l:f)
+            if isdirectory(l:f)
+                " directory differs (must be a submodule?)
+                execute 'normal Idiff k'
+            else
+                " File does not exist here: show file from base
+                " Need to pretend I'm editing something to get fugitive commands.
+                " Hrm. Probably a better way.
+                tabedit foo_098q2h3f98basd908hawef
+                execute 'Gedit ' . l:base . ':' . l:f
+                bdelete foo_098q2h3f98basd908hawef
+                " Should look different so I don't miss the fact that it's
+                " deleted!
+                syntax clear
+                execute 'lcd ' . l:workingdir
+                execute 'normal gT'
+                execute 'normal I-- k'
+            endif
+        else
+            call system('git rev-parse ' . shellescape(l:base . ':' . l:f))
+            if v:shell_error
+                " File does not exist in target branch: just show file
+                execute 'normal ^v$hgf'
+                execute 'lcd ' . l:workingdir
+                execute 'normal gT'
+                execute 'normal I++ k'
+            else
+                execute 'normal ^v$hgf'
+                set diffopt+=iwhite
+                execute 'Gdiff ' . l:base
+                execute 'lcd ' . l:workingdir
+                execute 'normal gTk'
+            endif
+        endif
+    endwhile
+    execute 'normal ICommits since base ' . l:base_pretty . ":\<cr>" . system('git log --oneline ' . l:base . '..HEAD | tac') . "\<cr>\<esc>0j"
+    execute 'normal Go'
+    execute 'read !git diff --shortstat ' . l:base . '..HEAD'
+    execute 'normal Go'
+    execute 'silent read !git log -p ' . l:base . '..HEAD'
+    execute 'normal gg'
+    execute 'lcd ' . l:workingdir
 endfunction
 nnoremap <Leader>gt :Gtdiff<cr>
 
@@ -305,8 +305,8 @@ nnoremap <Leader>gs :Gstat<cr>
 nnoremap <Leader>gw :Gwrite<cr>
 
 augroup gitcommit
-	autocmd FileType gitcommit set spell spelllang=en_us
-	autocmd FileType gitcommit setlocal colorcolumn=50,72
+    autocmd FileType gitcommit set spell spelllang=en_us
+    autocmd FileType gitcommit setlocal colorcolumn=50,72
 augroup END
 
 " lint inline JS ("Tag Lint", "Tag Prettier")
@@ -316,7 +316,7 @@ nnoremap <Leader>tp vitVoj:!prettier --stdin<cr><C-O>
 " puppet
 " navigate tags containing "::"
 augroup vimrc
-	autocmd FileType puppet setlocal isk+=:
+    autocmd FileType puppet setlocal isk+=:
 augroup END
 
 " isort
@@ -340,11 +340,11 @@ let g:ale_lint_on_enter = 0
 let g:ale_python_mypy_options = '--ignore-missing-imports --incremental --follow-imports=silent'
 nnoremap <silent> <Leader>ll :ALELint<cr>
 if filereadable('etc/pylintrc')
-	let g:ale_python_flake8_change_directory=0
-	let g:ale_python_flake8_options='--config=etc/pep8.cfg'
-	let g:ale_python_pylint_options='--load-plugins pylint_ext --rcfile etc/pylintrc'
+    let g:ale_python_flake8_change_directory=0
+    let g:ale_python_flake8_options='--config=etc/pep8.cfg'
+    let g:ale_python_pylint_options='--load-plugins pylint_ext --rcfile etc/pylintrc'
     else
-	let g:ale_python_flake8_options='--ignore=W503,E203 --max-line-length=88'
+    let g:ale_python_flake8_options='--ignore=W503,E203 --max-line-length=88'
 endif
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier']
@@ -355,26 +355,26 @@ nnoremap <silent> <Leader>lf :ALEFix<cr>
 
 if executable('sqlfmt')
     augroup sqlformat
-	au FileType sql setl formatprg=sqlfmt
+    au FileType sql setl formatprg=sqlfmt
     augroup END
 endif
 " SQL formatter: https://github.com/darold/pgFormatter
 if filereadable('/usr/local/bin/pg_format')
     augroup sqlformat
-	au FileType sql setl formatprg=/usr/local/bin/pg_format\ \-B\ -s\ 2\ -
+    au FileType sql setl formatprg=/usr/local/bin/pg_format\ \-B\ -s\ 2\ -
     augroup END
 endif
 
 " column view
 nnoremap <Leader>c3 <C-w>o:set noscrollbind
-			\ nocursorbind<cr>:vs<cr>:vs<cr>gg:set
-			\ scrollbind<cr>2<C-w>wgg<C-f>:set
-			\ scrollbind<cr>3<C-w>wgg<C-f><C-f>:set
-			\ scrollbind<cr>2<C-w>w<C-o>
+            \ nocursorbind<cr>:vs<cr>:vs<cr>gg:set
+            \ scrollbind<cr>2<C-w>wgg<C-f>:set
+            \ scrollbind<cr>3<C-w>wgg<C-f><C-f>:set
+            \ scrollbind<cr>2<C-w>w<C-o>
 nnoremap <Leader>c2 <C-w>o:set noscrollbind
-			\ nocursorbind<cr>:vs<cr>gg:set
-			\ scrollbind<cr>2<C-w>wgg<C-f>:set
-			\ scrollbind<cr><C-o>
+            \ nocursorbind<cr>:vs<cr>gg:set
+            \ scrollbind<cr>2<C-w>wgg<C-f>:set
+            \ scrollbind<cr><C-o>
 
 " nice, stolen from https://stackoverflow.com/a/6271254
 " and linted
@@ -401,7 +401,9 @@ nnoremap <Leader>ck :cnewer<cr>
 " set up persistent undo
 if has('persistent_undo')
     let s:myUndoDir = expand('$HOME/.vimundo')
+    if !isdirectory(s:myUndoDir)
     call mkdir(s:myUndoDir, 'p')
+    endif
     execute 'set undodir=' . s:myUndoDir
     set undofile
 endif
