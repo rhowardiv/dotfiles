@@ -357,6 +357,7 @@ if executable('sqlfmt')
     augroup sqlformat
 	au FileType sql setl formatprg=sqlfmt
     augroup END
+endif
 " SQL formatter: https://github.com/darold/pgFormatter
 if filereadable('/usr/local/bin/pg_format')
     augroup sqlformat
