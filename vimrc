@@ -358,6 +358,10 @@ let g:ale_fixers['go'] = ['goimports']
 let g:ale_fixers['sh'] = ['shfmt']
 nnoremap <silent> <Leader>lf :ALEFix<cr>
 
+" go
+let g:gofmt_command = 'goimports'
+nnoremap <Leader>go :GoDef<cr>
+
 if executable('sqlfmt')
     augroup sqlformat
     au FileType sql setl formatprg=sqlfmt
