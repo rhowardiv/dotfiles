@@ -40,7 +40,11 @@ if has('syntax')
         " sorry, I don't believe you
         set t_Co=16
     endif
-    set background=dark
+    if strftime('%H') >? '05' && strftime('%H') <? '18'
+        set background=light
+    else
+        set background=dark
+    endif
     color solarized
     nnoremap <Leader>sd :set background=dark<cr>
     nnoremap <Leader>sl :set background=light<cr>
