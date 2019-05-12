@@ -351,6 +351,7 @@ if filereadable('etc/pylintrc')
     let g:ale_python_flake8_options='--ignore=W503,E203 --max-line-length=88'
 endif
 let g:ale_fixers = {}
+let g:ale_fixers['python'] = ['black', 'isort']
 let g:ale_fixers['javascript'] = ['prettier']
 " goimports does gofmt + import cleanup
 let g:ale_fixers['go'] = ['goimports']
