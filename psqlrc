@@ -2,3 +2,4 @@
 \x auto
 \pset format wrapped
 \pset linestyle unicode
+\set HISTSIZE 10000
