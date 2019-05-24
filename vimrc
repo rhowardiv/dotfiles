@@ -309,7 +309,7 @@ nnoremap <Leader>gs :Gstat<cr>
 nnoremap <Leader>gw :Gwrite<cr>
 
 augroup gitcommit
-    autocmd FileType gitcommit set spell spelllang=en_us
+    autocmd FileType gitcommit set spell spelllang=en_us spellcapcheck=
     autocmd FileType gitcommit setlocal colorcolumn=50,72
 augroup END
 
