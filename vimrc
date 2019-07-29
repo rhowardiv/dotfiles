@@ -12,6 +12,9 @@ Plugin 'pangloss/vim-javascript'
 " This is a dependency for inkarkat/vim-SpellCheck
 Plugin 'inkarkat/vim-ingo-library'
 
+Plugin 'andreshazard/vim-freemarker'  " template lang in OFBiz
+Plugin 'chrisbra/Colorizer'
+Plugin 'elzr/vim-json'
 Plugin 'inkarkat/vim-SpellCheck'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'mxw/vim-jsx'
@@ -24,6 +27,7 @@ Plugin 'tpope/vim-vinegar'
 Plugin 'fatih/vim-go'
 Plugin 'vim-python/python-syntax'
 Plugin 'w0rp/ale'
+Plugin 'Yggdroot/indentLine'
 let g:python_highlight_all = 1
 
 call vundle#end()
@@ -40,7 +44,8 @@ if has('syntax')
         " sorry, I don't believe you
         set t_Co=16
     endif
-    if strftime('%H') >? '05' && strftime('%H') <? '18'
+    let s:allow_light = 0
+    if s:allow_light && strftime('%H') >? '05' && strftime('%H') <? '18'
         set background=light
     else
         set background=dark
@@ -54,6 +59,7 @@ if has('syntax')
     set hlsearch
     set cursorline
     let g:sql_type_default = 'pgsql'
+    let g:indentLine_enabled=0
 endif
 
 set wrap
@@ -63,6 +69,7 @@ set showcmd
 set modeline
 
 set laststatus=2
+set cmdheight=2
 " default status line with current git branch name added via fugitive
 set statusline=%<%f\ %{fugitive#statusline()}\ %h%m%r%=%y\ %-19.(%l,%c%V\\x%B%)\ %P
 set ruler
@@ -104,8 +111,8 @@ nnoremap <Leader>el :.w !source /dev/stdin &<cr>
 vnoremap <Leader>el :'<,'>w !source /dev/stdin &<cr>
 
 " Try to 'open' (xdg-open) current line / selection
-nnoremap <silent> <Leader>gf :execute '!nohup xdg-open ' getline('.')<cr><cr>
-vnoremap <silent> <Leader>gf :<C-W>execute '!nohup xdg-open ' GetVisualSelection()<cr><cr>gv
+nnoremap <silent> <Leader>gf :execute '!nohup xdg-open ' fnameescape(getline('.'))<cr><cr>
+vnoremap <silent> <Leader>gf :<C-W>execute '!nohup xdg-open ' fnameescape(GetVisualSelection())<cr><cr>gv
 
 " X clipboard: put it or save from some common registers (0,",/)
 nnoremap <Leader>p :r! xclip -o -sel c<cr>
@@ -262,7 +269,7 @@ function! s:Gtdiff(...)
                 " Need to pretend I'm editing something to get fugitive commands.
                 " Hrm. Probably a better way.
                 tabedit foo_098q2h3f98basd908hawef
-                execute 'Gedit ' . l:base . ':' . l:f
+                execute 'Gedit ' . l:base . ':' . fnameescape(l:f)
                 bdelete foo_098q2h3f98basd908hawef
                 " Should look different so I don't miss the fact that it's
                 " deleted!
@@ -350,6 +357,12 @@ if filereadable('etc/pylintrc')
     else
     let g:ale_python_flake8_options='--ignore=W503,E203 --max-line-length=88'
 endif
+" disable jshint -- conflicts with prettier...
+let g:ale_linters = {
+\   'javascript': ['eslint', 'flow', 'jscs', 'standard', 'xo'],
+\   'text': ['alex', 'proselint', 'write-good'],
+\}
+" 
 let g:ale_fixers = {}
 let g:ale_fixers['python'] = ['black', 'isort']
 let g:ale_fixers['javascript'] = ['prettier']
