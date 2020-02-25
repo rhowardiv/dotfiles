@@ -176,3 +176,8 @@ gfm() {
 d() {
 	echo "$((RANDOM % $1 + 1))"
 }
+
+mem() {
+	# Show top N processes by memory usage
+	ps auxk -rss  | head -n "$1" | cut -c -$COLUMNS
+}
