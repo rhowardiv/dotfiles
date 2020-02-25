@@ -19,6 +19,11 @@ if [ -n "$(which vcprompt 2>/dev/null)" ]; then
 	export VCPROMPT_FORMAT=" %b%m%u"
 	export PS1=$'\[\e[32m\][\[\e[31m\]\u@\H\[\e[34m\] \[\e[35m\]\A \[\e[33m\]\w\[\e[36m\]$(vcprompt)\[\e[32m\]]\$ \[\e[0m\]'
 fi
+# "If set to a number greater than zero, the value is used as the number
+# of trailing directory components to retain when expanding the \w and
+# \W prompt string escapes (see PROMPTING below).  Characters removed
+# are replaced with an ellipsis." - `man bash`
+export PROMPT_DIRTRIM=3
 
 urlencode() {
 	xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g'
