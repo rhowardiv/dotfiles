@@ -1,6 +1,6 @@
 #!/bin/bash
 export HISTSIZE=10000
-export HISTFILESIZE=10000
+export HISTFILESIZE=20000
 export HISTTIMEFORMAT="%Y-%m-%d %H:%M:%S "
 export EDITOR=vim
 # flush every command to history file immediately
