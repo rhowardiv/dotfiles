@@ -388,13 +388,13 @@ endif
 
 " column view
 nnoremap <Leader>c3 <C-w>o:set noscrollbind
-            \ nocursorbind<cr>:vs<cr>:vs<cr>gg:set
-            \ scrollbind<cr>2<C-w>wgg<C-f>:set
-            \ scrollbind<cr>3<C-w>wgg<C-f><C-f>:set
+            \ nocursorbind<cr>:vs<cr>:vs<cr>gg:set linebreak
+            \ scrollbind<cr>2<C-w>wgg<C-f>:set linebreak
+            \ scrollbind<cr>3<C-w>wgg<C-f><C-f>:set linebreak
             \ scrollbind<cr>2<C-w>w<C-o>
 nnoremap <Leader>c2 <C-w>o:set noscrollbind
-            \ nocursorbind<cr>:vs<cr>gg:set
-            \ scrollbind<cr>2<C-w>wgg<C-f>:set
+            \ nocursorbind<cr>:vs<cr>gg:set linebreak
+            \ scrollbind<cr>2<C-w>wgg<C-f>:set linebreak
             \ scrollbind<cr><C-o>
 
 " nice, stolen from https://stackoverflow.com/a/6271254
