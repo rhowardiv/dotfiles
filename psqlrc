@@ -1,5 +1,7 @@
 \pset null ∅
 \x auto
-\pset format wrapped
+\pset format aligned
 \pset linestyle unicode
 \set HISTSIZE 10000
+\pset pager always
+\pset columns 800
