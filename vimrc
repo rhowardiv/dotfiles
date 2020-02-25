@@ -428,3 +428,6 @@ if has('persistent_undo')
     execute 'set undodir=' . s:myUndoDir
     set undofile
 endif
+
+" always nowrap in quickfix list
+autocmd! QuickfixCmdPost * set nowrap
