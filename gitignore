@@ -1,7 +1,11 @@
-*.swp
-*.swo
+bower_components
+.*cache
+.consume-committers
+.envrc
+node_modules
 *.pyc
+Session.vim
+*.swo
+*.swp
 tags
 TAGS
-.consume-committers
-.*cache
