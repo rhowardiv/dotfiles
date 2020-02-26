@@ -123,17 +123,17 @@ nnoremap <Leader>/ :call system('xclip -sel c', @/)<cr>
 
 " line length guides
 function MyColorCols()
-    if &colorcolumn ==? '72,80,88'
+    if &colorcolumn ==? '68,78,88'
         set colorcolumn=44,52,56
     elseif &colorcolumn ==? '44,52,56'
         set colorcolumn=
     else
-        set colorcolumn=72,80,88
+        set colorcolumn=68,78,88
     endif
 endfunction
 nnoremap <Leader>co :call MyColorCols()<cr>
 nnoremap <Leader>8 :set tw=88<cr>
-nnoremap <Leader>7 :set tw=72<cr>
+nnoremap <Leader>7 :set tw=68<cr>
 nnoremap <Leader>5 :set tw=56<cr>
 nnoremap <Leader>4 :set tw=44<cr>
 
@@ -367,6 +367,7 @@ let g:ale_fixers = {}
 " goimports does gofmt + import cleanup
 let g:ale_fixers['go'] = ['goimports']
 let g:ale_fixers['javascript'] = ['prettier']
+let g:ale_fixers['markdown'] = ['prettier']
 let g:ale_fixers['python'] = ['black', 'isort']
 let g:ale_fixers['sh'] = ['shfmt']
 nnoremap <silent> <Leader>lf :ALEFix<cr>
