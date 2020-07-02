@@ -235,11 +235,18 @@ nnoremap <silent> <Leader>dt :r! date<cr>
 nnoremap <Leader>th :call system("xdg-open http://www.thesaurus.com/browse/<C-r><C-w>")<cr>
 
 " Open diffs in tabs for each file that differs between working copy and the
-" supplied target (default: current merge base with master)
+" supplied target (default: current merge base with main branch)
 command! -nargs=? Gtdiff call s:Gtdiff(<q-args>)
 function! s:Gtdiff(...)
     if empty(a:000) || a:1 ==? ''
-        let l:base = substitute(system('git merge-base HEAD master'), '[^0-9a-f]\+$', '', '')
+        let l:merge_base = system('git merge-base HEAD develop')
+        if v:shell_error
+            let l:merge_base = system('git merge-base HEAD trunk')
+            if v:shell_error
+                let l:merge_base = system('git merge-base HEAD master')
+            endif
+        endif
+        let l:base = substitute(l:merge_base, '[^0-9a-f]\+$', '', '')
         echom a:1
     else
         let l:base = a:1
