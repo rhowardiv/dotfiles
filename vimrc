@@ -298,6 +298,7 @@ function! s:Gtdiff(...)
                 set diffopt+=iwhite
                 execute 'Gdiff ' . l:base
                 execute 'lcd ' . l:workingdir
+                execute 'normal '
                 execute 'normal gTk'
             endif
         endif
