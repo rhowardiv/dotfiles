@@ -416,7 +416,7 @@ nnoremap <Leader>c3 <C-w>o:set noscrollbind
             \ nocursorbind<cr>:vs<cr>:vs<cr>gg:set linebreak
             \ scrollbind<cr>2<C-w>wgg<C-f>:set linebreak
             \ scrollbind<cr>3<C-w>wgg<C-f><C-f>:set linebreak
-            \ scrollbind<cr>2<C-w>w<C-o>
+            \ scrollbind<cr><C-w>w<C-o>
 nnoremap <Leader>c2 <C-w>o:set noscrollbind
             \ nocursorbind<cr>:vs<cr>gg:set linebreak
             \ scrollbind<cr>2<C-w>wgg<C-f>:set linebreak
