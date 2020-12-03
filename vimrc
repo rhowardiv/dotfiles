@@ -46,7 +46,7 @@ if has('syntax')
         " sorry, I don't believe you
         set t_Co=16
     endif
-    let s:allow_light = 0
+    let s:allow_light = 1
     if s:allow_light && strftime('%H') >? '05' && strftime('%H') <? '18'
         set background=light
     else
