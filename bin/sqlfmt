@@ -1,2 +1,6 @@
 #!/bin/bash
-cockroach sqlfmt --tab-width 2 --use-spaces --print-width 72 | sed 's/::STRING/::TEXT/g'
+"$HOME/bin/_sqlfmt" --tab-width 2 --use-spaces --print-width 68 |
+	sed -e 's/::STRING/::TEXT/g' \
+		-e 's/:::INTERVAL/::INTERVAL/' \
+		-e '$s/;//' \
+		-e 's/current_timestamp()/current_timestamp/g'
