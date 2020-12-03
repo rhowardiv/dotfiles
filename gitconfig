@@ -4,7 +4,7 @@
 [core]
 	excludesfile = /home/rhoward/.gitignore
 [alias]
-	remend = commit --amend --reset-author	
+	remend = commit --amend --reset-author --no-edit
 	rbranch = !git for-each-ref --sort=-committerdate "refs/heads/" --format='%(refname:short)|%(committerdate:relative)' | column -ts '|'
 	blog = log master..HEAD
 	ctags = !.git/hooks/ctags
