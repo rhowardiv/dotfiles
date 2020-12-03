@@ -171,12 +171,6 @@ sshf() {
 	ssh "$@"
 }
 
-gfm() {
-	# git find merge: where was the first argument merged into [second argument|master]
-	local target="${2:-master}"
-	git rev-list $1..$target --ancestry-path | grep -f <(git rev-list $1..$target --first-parent) | tail -1
-}
-
 d() {
 	echo "$((RANDOM % $1 + 1))"
 }
