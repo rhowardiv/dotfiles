@@ -126,6 +126,7 @@ nnoremap <Leader>P :-1r! xclip -o -sel c<cr>
 nnoremap <Leader>0 :call system('xclip -sel c', @0)<cr>
 nnoremap <Leader>" :call system('xclip -sel c', @")<cr>
 nnoremap <Leader>/ :call system('xclip -sel c', @/)<cr>
+nnoremap <Leader>% :call system('xclip -sel c', @%)<cr>
 
 " line length guides
 function MyColorCols()
