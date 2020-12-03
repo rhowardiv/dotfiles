@@ -62,6 +62,10 @@ if has('syntax')
     set cursorline
     let g:sql_type_default = 'pgsql'
     let g:indentLine_enabled=0
+
+    " add more...
+    let g:markdown_fenced_languages = ['json', 'python', 'sql']
+    let g:markdown_syntax_conceal = 0
 endif
 
 set wrap
