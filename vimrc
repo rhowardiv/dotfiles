@@ -395,7 +395,6 @@ let g:ale_fixers['javascript'] = ['prettier']
 let g:ale_fixers['markdown'] = ['prettier']
 let g:ale_fixers['python'] = ['black', 'isort']
 let g:ale_fixers['sh'] = ['shfmt']
-nnoremap <silent> <Leader>lf :ALEFix<cr>
 
 " go
 let g:gofmt_command = 'goimports'
