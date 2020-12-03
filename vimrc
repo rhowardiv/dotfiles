@@ -363,11 +363,17 @@ nnoremap <Leader>hi :HoogleInfo<cr>
 nnoremap <Leader>hc :HoogleClose<cr>
 
 " ALE
+nmap <Leader>ac <Plug>(ale_find_references)
+nmap <Leader>ag <Plug>(ale_go_to_definition)
+nmap <Leader>af <Plug>(ale_fix)
+nmap <Leader>al <Plug>(ale_lint)
+nmap <Leader>at <Plug>(ale_go_to_type_definition)
+" note that rather than map ale_go_to_definition_in_split, etc. I expect you
+" do the desired split/tab yourself first then call ale_go_to_definition.
 let g:ale_lint_on_enter = 0
 " mypy --ignore-missing imports
 " stifles errors for libraries (eg boto3) not yet in typeshed
 let g:ale_python_mypy_options = '--ignore-missing-imports --incremental --follow-imports=silent'
-nnoremap <silent> <Leader>ll :ALELint<cr>
 if filereadable('etc/pylintrc')
     let g:ale_python_flake8_change_directory=0
     let g:ale_python_flake8_options='--config=etc/pep8.cfg'
