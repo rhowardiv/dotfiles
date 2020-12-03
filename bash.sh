@@ -73,7 +73,11 @@ rw() {
 
 ipr() {
 	# issue pull request
-	REPO="$(git remote -v | grep origin | head -n 1 | sed 's/^[^:]\+:\([^\/]\+\)\/\([^ \.]*\).*$/\1\/\2/')"
+	REPO="$(
+		git remote -v | grep origin | head -n 1 |
+			sed 's/^[^:]\+:\([^\/]\+\)\/\([^ ]*\).*$/\1\/\2/' |
+			sed 's/\.git$//'
+	)"
 	ON_BRANCH=$(git branch | grep '^* ' | sed 's/^* //')
 	xdg-open "https://github.com/$REPO/compare/$ON_BRANCH" > /dev/null 2>&1
 }
