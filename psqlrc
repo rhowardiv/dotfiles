@@ -5,3 +5,5 @@
 \set HISTSIZE 10000
 \pset pager always
 \pset columns 800
+\set PROMPT1 '(%n@%M:%>) %`date +%H:%M:%S` [%/] \n%x%# '
+\set PROMPT2 '%x%# '
