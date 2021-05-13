@@ -257,11 +257,14 @@ nnoremap <Leader>th :call system("xdg-open http://www.thesaurus.com/browse/<C-r>
 command! -nargs=? Gtdiff call s:Gtdiff(<q-args>)
 function! s:Gtdiff(...)
     if empty(a:000) || a:1 ==? ''
-        let l:merge_base = system('git merge-base HEAD develop')
+        let l:merge_base = system('git merge-base HEAD main')
         if v:shell_error
-            let l:merge_base = system('git merge-base HEAD trunk')
+            let l:merge_base = system('git merge-base HEAD develop')
             if v:shell_error
-                let l:merge_base = system('git merge-base HEAD master')
+                let l:merge_base = system('git merge-base HEAD trunk')
+                if v:shell_error
+                    let l:merge_base = system('git merge-base HEAD master')
+                endif
             endif
         endif
         let l:base = substitute(l:merge_base, '[^0-9a-f]\+$', '', '')
