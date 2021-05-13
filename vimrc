@@ -18,6 +18,7 @@ Plugin 'elzr/vim-json'
 Plugin 'ianks/vim-tsx'
 Plugin 'inkarkat/vim-SpellCheck'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'morhetz/gruvbox'
 Plugin 'mxw/vim-jsx'
 Plugin 'rhowardiv/nginx-vim-syntax'
 Plugin 'rhowardiv/pgsql.vim'
@@ -55,6 +56,13 @@ if has('syntax')
     color solarized
     nnoremap <Leader>sd :set background=dark<cr>
     nnoremap <Leader>sl :set background=light<cr>
+    " for solarized to really work requires terminal colorscheme settings;
+    " use these if those aren't present (mnemonic 'Nope' and 'White')
+    let g:gruvbox_italic=1
+    let g:gruvbox_contrast_light='hard' " fixes the horrible yellow gruvbox light mode bg
+    nnoremap <Leader>sn :color gruvbox<cr>:set background=dark<cr>
+    nnoremap <Leader>sw :color gruvbox<cr>:set background=light<cr>
+
     nnoremap <Leader>sh :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<cr>
 
     set incsearch
