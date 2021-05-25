@@ -20,6 +20,7 @@ Plugin 'inkarkat/vim-SpellCheck'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'mxw/vim-jsx'
+Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'rhowardiv/nginx-vim-syntax'
 Plugin 'rhowardiv/pgsql.vim'
 Plugin 'rhysd/vim-gfm-syntax'
@@ -47,22 +48,25 @@ if has('syntax')
         " sorry, I don't believe you
         set t_Co=16
     endif
-    let s:allow_light = 1
-    if s:allow_light && strftime('%H') >? '05' && strftime('%H') <? '18'
+    if strftime('%H') >? '05' && strftime('%H') <? '18'
+        " from 6am to 6pm use a light colorscheme
         set background=light
+        color PaperColor
     else
         set background=dark
+        color gruvbox
     endif
-    color solarized
-    nnoremap <Leader>sd :set background=dark<cr>
-    nnoremap <Leader>sl :set background=light<cr>
+    nnoremap <Leader>sd :color solarized<cr>:set background=dark<cr>
+    nnoremap <Leader>sl :color solarized<cr>:set background=light<cr>
     " for solarized to really work requires terminal colorscheme settings;
     " use these if those aren't present (mnemonic 'Nope' and 'White')
     let g:gruvbox_italic=1
     let g:gruvbox_contrast_light='hard' " fixes the horrible yellow gruvbox light mode bg
+    let g:gruvbox_guisp_fallback = "bg" " make gruvbox work with :set spell
     nnoremap <Leader>sn :color gruvbox<cr>:set background=dark<cr>
-    nnoremap <Leader>sw :color gruvbox<cr>:set background=light<cr>
+    nnoremap <Leader>sw :color PaperColor<cr>:set background=light<cr>
 
+    " show syntax stack for current position
     nnoremap <Leader>sh :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<cr>
 
     set incsearch
