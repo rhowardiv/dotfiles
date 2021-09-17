@@ -8,6 +8,11 @@
 \set PROMPT1 '(%n@%M:%>) %`date +%H:%M:%S` [%/] \n%x%# '
 \set PROMPT2 '%x%# '
 
+-- overrides for handling output with visidata
+-- (your env PSQL_PAGER should be "vd -f csv")
+\pset format csv
+\x off
+
 -- other things learned from https://tapoueh.org/blog/2017/12/setting-up-psql-the-postgresql-cli/
 \set ON_ERROR_STOP on
 \set ON_ERROR_ROLLBACK interactive
