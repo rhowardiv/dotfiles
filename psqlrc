@@ -7,3 +7,9 @@
 \pset columns 800
 \set PROMPT1 '(%n@%M:%>) %`date +%H:%M:%S` [%/] \n%x%# '
 \set PROMPT2 '%x%# '
+
+-- other things learned from https://tapoueh.org/blog/2017/12/setting-up-psql-the-postgresql-cli/
+\set ON_ERROR_STOP on
+\set ON_ERROR_ROLLBACK interactive
+set intervalstyle to 'postgres_verbose';
+\set HISTFILE ~/psql_history_by_db/:DBNAME
