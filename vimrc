@@ -339,8 +339,8 @@ function! s:Gtdiff(...)
 endfunction
 nnoremap <Leader>gt :Gtdiff<cr>
 
-nnoremap <Leader>gb :Gblame<cr>
-nnoremap <Leader>gc :Gcommit<cr>
+nnoremap <Leader>gb :Git blame<cr>
+nnoremap <Leader>gc :Git commit<cr>
 nnoremap <Leader>gd :Gdiff<cr>
 nnoremap <Leader>ge :Gedit<cr>
 nnoremap <Leader>gl :Glog<cr>
