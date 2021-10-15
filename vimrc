@@ -390,6 +390,7 @@ let g:ale_lint_on_enter = 0
 " mypy --ignore-missing imports
 " stifles errors for libraries (eg boto3) not yet in typeshed
 let g:ale_python_mypy_options = '--ignore-missing-imports --incremental --follow-imports=silent'
+let g:ale_sh_shellcheck_options = '--external-sources'
 if filereadable('etc/pylintrc')
     let g:ale_python_flake8_change_directory=0
     let g:ale_python_flake8_options='--config=etc/pep8.cfg'
