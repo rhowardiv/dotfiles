@@ -419,6 +419,16 @@ let g:ale_fixers['yaml'] = ['prettier']
 let g:gofmt_command = 'goimports'
 nnoremap <Leader>go :GoDef<cr>
 
+" dot net
+augroup dotnet
+    au FileType cs nnoremap <buffer> K :OmniSharpDocumentation<cr>
+augroup END
+let g:OmniSharp_popup_options = {
+\ 'highlight': 'Normal',
+\ 'padding': [1],
+\ 'border': [1]
+\}
+
 if executable('sqlfmt')
     augroup sqlformat
     au FileType sql setl formatprg=sqlfmt
