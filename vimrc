@@ -429,14 +429,20 @@ let g:OmniSharp_popup_options = {
 \ 'border': [1]
 \}
 
+" formatters
 if executable('sqlfmt')
     augroup sqlformat
-    au FileType sql setl formatprg=sqlfmt
+        autocmd FileType sql setlocal formatprg=sqlfmt
     augroup END
 " SQL formatter: https://github.com/darold/pgFormatter
 elseif filereadable('/usr/local/bin/pg_format')
     augroup sqlformat
     au FileType sql setl formatprg=/usr/local/bin/pg_format\ \-B\ -s\ 2\ -
+    augroup END
+endif
+if executable('jq')
+    augroup jq
+        autocmd FileType json setlocal formatprg=jq
     augroup END
 endif
 
