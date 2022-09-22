@@ -79,7 +79,7 @@ if has('syntax')
     let g:indentLine_enabled=0
 
     " add more...
-    let g:markdown_fenced_languages = ['json', 'python', 'sql']
+    let g:markdown_fenced_languages = ['json', 'python', 'sql', 'sh']
     let g:markdown_syntax_conceal = 0
 endif
 
