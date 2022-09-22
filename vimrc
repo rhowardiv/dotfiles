@@ -408,7 +408,7 @@ let g:ale_linters = {
 " 
 let g:ale_fixers = {}
 " goimports does gofmt + import cleanup
-let g:ale_fixers['go'] = ['goimports']
+let g:ale_fixers['go'] = ['gofumpt']
 let g:ale_fixers['java'] = ['google_java_format']
 let g:ale_fixers['javascript'] = ['prettier']
 let g:ale_fixers['typescript'] = ['prettier']
@@ -418,8 +418,8 @@ let g:ale_fixers['sh'] = ['shfmt']
 let g:ale_fixers['yaml'] = ['prettier']
 
 " go
-let g:gofmt_command = 'goimports'
 nnoremap <Leader>go :GoDef<cr>
+let g:go_gopls_gofumpt=1
 
 " dot net
 augroup dotnet
