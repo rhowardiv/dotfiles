@@ -14,6 +14,7 @@ Plugin 'inkarkat/vim-ingo-library'
 
 Plugin 'andreshazard/vim-freemarker'  " template lang in OFBiz
 Plugin 'chrisbra/Colorizer'
+Plugin 'diepm/vim-rest-console'
 Plugin 'elzr/vim-json'
 Plugin 'fatih/vim-go'
 Plugin 'hashivim/vim-terraform'
@@ -493,3 +494,10 @@ endif
 
 " always nowrap in quickfix list
 autocmd! QuickfixCmdPost * set nowrap
+
+" rest console
+let g:vrc_allow_get_request_body = 1
+let g:vrc_auto_format_response_enabled = 1
+let g:vrc_auto_format_response_patterns = { 'json': 'jq', 'yaml': 'prettier --stdin-filepath /home/rhoward/Dropbox/nothing.yml' }
+let g:vrc_response_default_content_type = 'json'
+"let g:vrc_debug = 1
