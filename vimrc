@@ -16,6 +16,7 @@ Plugin 'andreshazard/vim-freemarker'  " template lang in OFBiz
 Plugin 'chrisbra/Colorizer'
 Plugin 'elzr/vim-json'
 Plugin 'fatih/vim-go'
+Plugin 'hashivim/vim-terraform'
 Plugin 'ianks/vim-tsx'
 Plugin 'inkarkat/vim-SpellCheck'
 Plugin 'junegunn/fzf'
