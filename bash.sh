@@ -34,10 +34,18 @@ urldecode() {
     printf '%b' "${url_encoded//%/\\x}"
 }
 
-# No Screensaver -- one arg for seconds
+# No Screensaver -- one arg for seconds, or no args to run until killed
 ns() {
-	xscreensaver-command -exit
-	caffeinate sleep "$1" && xscreensaver -nosplash
+	stop_after_seconds="$1"
+	start_time=$(date +%s)
+	while true; do
+		current_time="$(date +%s)"
+		if [[ -n "$stop_after_seconds" && $((current_time - start_time)) -ge $stop_after_seconds ]]; then
+			break
+		fi
+		xscreensaver-command -deactivate >/dev/null
+		sleep 29
+	done
 }
 
 rw() {
