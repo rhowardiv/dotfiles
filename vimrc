@@ -17,6 +17,7 @@ Plugin 'chrisbra/Colorizer'
 Plugin 'diepm/vim-rest-console'
 Plugin 'elzr/vim-json'
 Plugin 'fatih/vim-go'
+Plugin 'github/copilot.vim'
 Plugin 'hashivim/vim-terraform'
 Plugin 'ianks/vim-tsx'
 Plugin 'inkarkat/vim-SpellCheck'
@@ -280,6 +281,9 @@ function! s:Gtdiff(...)
         let l:base = a:1
     endif
     let l:base_pretty = '(' . substitute(system('git show --oneline ' . l:base . ' | head -n1'), '[^0-9a-f]\+$', '', '') . ')'
+    " before we open all these buffers, try to speed things up by 
+    " disabling copilot... (see reenable below)
+    let g:copilot#enabled = 0
     e _branch_diff_
     " filereadable etc below depend on me being in the root repo dir
     " this affects only the current window
@@ -331,6 +335,8 @@ function! s:Gtdiff(...)
             endif
         endif
     endwhile
+    " reenable copilot
+    let g:copilot#enabled = 1
     execute 'normal ICommits since base ' . l:base_pretty . ":\<cr>" . system('git log --oneline ' . l:base . '..HEAD | tac') . "\<cr>\<esc>0j"
     execute 'normal Go'
     execute 'read !git diff --shortstat ' . l:base . '..HEAD'
@@ -501,3 +507,18 @@ let g:vrc_auto_format_response_enabled = 1
 let g:vrc_auto_format_response_patterns = { 'json': 'jq', 'yaml': 'prettier --stdin-filepath /home/rhoward/Dropbox/nothing.yml' }
 let g:vrc_response_default_content_type = 'json'
 "let g:vrc_debug = 1
+
+" here we go!
+" enable copilot
+let g:copilot#enabled = 1
+let g:copilot_node_command = '/home/rhoward/.nvm/versions/node/v18.18.2/bin/node'
+autocmd BufReadPre *
+    \ let f=getfsize(expand("<afile>"))
+    \ | if f > 150000 || f == -2
+    \ | let b:copilot_enabled = v:false
+    \ | endif
+let g:copilot_filetypes = {
+    \ 'gitcommit': v:true,
+    \ 'markdown': v:true,
+    \ 'yaml': v:true
+    \ }
