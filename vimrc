@@ -429,6 +429,15 @@ augroup go
     au FileType go nnoremap <Leader>go :GoDef<cr>
 augroup END
 let g:go_gopls_gofumpt=1
+let g:go_doc_balloon = 1
+let g:go_doc_popup_window = 1
+let g:go_highlight_types = 1
+let g:go_highlight_functions = 1
+let g:go_auto_type_info = 1
+let g:go_metalinter_enabled = ['vet', 'revive', 'errcheck']
+augroup golang
+    au FileType go nnoremap <Leader>lg :GoMetaLinter!<cr>
+augroup END
 
 " dot net
 augroup dotnet
