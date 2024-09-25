@@ -448,6 +448,8 @@ let g:OmniSharp_popup_options = {
 \ 'padding': [1],
 \ 'border': [1]
 \}
+" this works even thought `dotnet` is up to v7
+let g:OmniSharp_server_use_net6 = 1
 
 " formatters
 if executable('sqlfmt')
