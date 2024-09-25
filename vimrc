@@ -425,7 +425,9 @@ let g:ale_fixers['typescript'] = ['prettier']
 let g:ale_fixers['yaml'] = ['prettier']
 
 " go
-nnoremap <Leader>go :GoDef<cr>
+augroup go
+    au FileType go nnoremap <Leader>go :GoDef<cr>
+augroup END
 let g:go_gopls_gofumpt=1
 
 " dot net
