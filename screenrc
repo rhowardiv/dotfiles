@@ -9,9 +9,10 @@ defscrollback 10000
 # a nice status line
 backtick 1 60 60 $HOME/bin/get_freemem
 backtick 3 3 3 tail -n 1 /tmp/netwatchd
+backtick 5 3 3 /home/rhoward/bin/topproc
 hardstatus on
 hardstatus alwayslastline 
-hardstatus string '%{= kG}[ %{c}%H %{g}][%= %{= kw}%?%-Lw%?%{+b yk} %n*%f%t%?(%u)%? %{-}%?%+Lw%?%?%= %{g}][%{c} %3` %1` %l %{g}]'
+hardstatus string '%{= kG}[ %{c}%H %{g}][%= %{= kw}%?%-Lw%?%{+b yk} %n*%f%t%?(%u)%? %{-}%?%+Lw%?%?%= %{g}][%{c} %5` %3` %1` %l %{g}]'
 
 # visual bell is like shocking coworkers with lightning
 vbell off
