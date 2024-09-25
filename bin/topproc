@@ -1,2 +1,2 @@
 #!/bin/bash
-top -b -n 1 -o %CPU | grep -v '\<top\>' | awk 'NR>7 {print $9, $12}' | head -n 1
+top -b -n 1 -o %CPU | awk 'NR>7 && $9+0 > 10.0 && $12 != "top" {print $9, $12}' | head -n 1
