@@ -478,6 +478,8 @@ nnoremap <Leader>c2 <C-w>o:set noscrollbind
             \ nocursorbind<cr>:vs<cr>gg:set linebreak
             \ scrollbind<cr>2<C-w>wgg<C-f>:set linebreak
             \ scrollbind<cr><C-o>
+nnoremap <Leader>c1 <C-w>o:set noscrollbind
+            \ nocursorbind<cr>
 
 " nice, stolen from https://stackoverflow.com/a/6271254
 " and linted
