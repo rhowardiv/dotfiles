@@ -1,0 +1,64 @@
+#!/bin/bash
+
+set -e
+
+# Implement "espeak" using google cloud text-to-speech API
+
+# TODO: support espeak options (except the "each line separately" part, since we prefer separate lines to be spoken smoothly)
+# TODO: make safe for concurrent use (uses static tempfiles)
+# TODO: fallback to espeak if google cloud is unavailable or there's an error
+
+# requires:
+# - google app credentials
+# - gcloud cli
+# - mpg123
+# - curl
+
+# Note that price is free for first million characters per month, then $16 per million characters (prorated per character, I think)
+
+export GOOGLE_APPLICATION_CREDENTIALS="/home/rhoward/Dropbox/g-app-creds.json"
+
+# actual espeak interface:
+# -f <text file>
+#       Text file to speak
+# --stdin
+#       Read text input from stdin instead of a file
+# If neither -f nor --stdin, <words> are spoken, or if none then text is spoken from stdin, each line separately.
+
+# I'll start by only supporting this approach:
+# If there is content on stdin, use that as the text to speak
+if [ -t 0 ]; then
+    text="$*"
+else
+    text="$(cat)"
+fi
+
+# Limit to 3000 characters or ten lines, whichever is less
+text="$(echo "$text" | head -n 10 | cut -c -3000)"
+
+# convert text to json string
+text="$(echo "$text" | jq -Rs .)"
+
+token="$(gcloud auth application-default print-access-token)"
+echo '{
+  "input":{
+    "text":' "$text" '
+  },
+  "voice":{
+    "languageCode":"en-US",
+    "name":"en-US-Standard-C",
+    "ssmlGender":"FEMALE"
+  },
+  "audioConfig":{
+    "audioEncoding":"MP3"
+  }
+}' >  /tmp/tts.json
+chmod 600 /tmp/tts.json
+curl -s -X POST \
+    -H "Authorization: Bearer $token" \
+    -H "Content-Type: application/json; charset=utf-8" \
+    -d @/tmp/tts.json \
+    "https://texttospeech.googleapis.com/v1/text:synthesize" |
+	jq -r '.audioContent' | base64 -d > /tmp/tts.mp3
+chmod 600 /tmp/tts.mp3
+mpg123 -q /tmp/tts.mp3
