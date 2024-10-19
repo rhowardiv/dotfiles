@@ -1,0 +1,14 @@
+options.clipboard_copy_cmd = "xclip -sel c"
+options.disp_menu = False
+options.mouse_interval = 0 # disables the mouse-click
+options.scroll_incr = 0    # disables the scroll wheel
+#options.color_default = "black on white"
+#options.color_default = "bold black on 110 cyan"
+options.color_default = "white on black"
+
+vd.aggregator('set', set)
+
+# how to do this?
+# vd.execCommand('mouse-disable')
+
+# " vim: set ft=python: "
