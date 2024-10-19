@@ -12,28 +12,18 @@ backtick 3 3 3 tail -n 1 /tmp/netwatchd
 backtick 5 3 3 /home/rhoward/bin/topproc
 hardstatus on
 hardstatus alwayslastline 
-hardstatus string '%{= kG}[ %{c}%H %{g}][%= %{= kw}%?%-Lw%?%{+b yk} %n*%f%t%?(%u)%? %{-}%?%+Lw%?%?%= %{g}][%{c} %5` %3` %1` %l %{g}]'
+hardstatus string '%{#32CD32;#000000}[%{#87CEEB;#000000}%H%{#32CD32;#000000}][ %{#AAAAAA;#000000}%?%-Lw%?%{#000000;#EEEEEE} %n*%f%t%?(%u)%? %{#AAAAAA;#000000}%?%+Lw%?%= %{#32CD32;#000000}][%{#87CEEB;#000000}%?%5` %?%?%3` %?%1`%{#32CD32;#000}]'
 
 # visual bell is like shocking coworkers with lightning
 vbell off
 
 # starting windows
-
 chdir $HOME
 screen -t home
 
-# pick the window you want to start in; if you do this twice the first one
-# will be your "last" window (for quick switching)
-select 0
-
-# stuff to make colors work nicely
-# terminfo and termcap for nice 256 color terminal
-# allow bold colors - necessary for some reason
-attrcolor b ".I"
-# tell screen how to set colors. AB = background, AF=foreground
-termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+truecolor on
 # erase background with current bg color
-defbce "on" 
+defbce on 
 
 # use 's' for 'split' instead of XOFF (XOFF!? yikes!)
 bind s split

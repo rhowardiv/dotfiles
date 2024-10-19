@@ -1,0 +1,73 @@
+[general]
+  live_config_reload = true
+
+[env]
+  TERM = 'xterm-256color'
+
+[font]
+size = 13
+
+[font.normal]
+  family = 'Inconsolata'
+  style = 'Medium'
+
+[window]
+  decorations = 'None'
+
+# Colors (PaperColor - Light)
+
+# Default colors
+[colors.primary]
+background = '#eeeeee'
+foreground = '#444444'
+
+# Normal colors
+[colors.normal]
+black   = '#eeeeee'
+red     = '#af0000'
+green   = '#008700'
+yellow  = '#5f8700'
+blue    = '#0087af'
+magenta = '#878787'
+cyan    = '#005f87'
+white   = '#444444'
+
+# Bright colors
+[colors.bright]
+black   = '#bcbcbc'
+red     = '#d70000'
+green   = '#d70087'
+yellow  = '#8700af'
+blue    = '#d75f00'
+magenta = '#d75f00'
+cyan    = '#005faf'
+white   = '#005f87'
+
+## Colors (Solarized Light)
+#
+## Default colors
+#[colors.primary]
+#background = '#fdf6e3'
+#foreground = '#586e75'
+#
+## Normal colors
+#[colors.normal]
+#black   = '#073642'
+#red     = '#dc322f'
+#green   = '#859900'
+#yellow  = '#b58900'
+#blue    = '#268bd2'
+#magenta = '#d33682'
+#cyan    = '#2aa198'
+#white   = '#eee8d5'
+#
+## Bright colors
+#[colors.bright]
+#black   = '#002b36'
+#red     = '#cb4b16'
+#green   = '#586e75'
+#yellow  = '#657b83'
+#blue    = '#839496'
+#magenta = '#6c71c4'
+#cyan    = '#93a1a1'
+#white   = '#fdf6e3'

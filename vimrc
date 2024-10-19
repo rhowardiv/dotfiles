@@ -48,10 +48,11 @@ call pathogen#infect()
 if has('syntax')
     syntax on
     nnoremap <Leader>ss :syntax sync fromstart<cr>
-    if &t_Co == 8
-        " sorry, I don't believe you
-        set t_Co=16
+    if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
+        let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+        let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     endif
+    set termguicolors
     if strftime('%H') >? '05' && strftime('%H') <? '18'
         " from 6am to 6pm use a light colorscheme
         set background=light
