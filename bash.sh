@@ -48,6 +48,20 @@ ns() {
 	done
 }
 
+touchpad() {
+	xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Device Enabled' "$1"
+}
+export -f touchpad
+
+# No touchpad
+nt() {
+	(
+		touchpad 0
+		trap 'touchpad 1' EXIT
+		sleep 1000000d
+	)
+}
+
 rw() {
 	# Random Word(s)
 	# Why aren't the args working right?
