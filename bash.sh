@@ -30,8 +30,8 @@ urlencode() {
 }
 
 urldecode() {
-    local url_encoded="${1//+/ }"
-    printf '%b' "${url_encoded//%/\\x}"
+	local url_encoded="${1//+/ }"
+	printf '%b' "${url_encoded//%/\\x}"
 }
 
 # No Screensaver -- one arg for seconds, or no args to run until killed
@@ -53,25 +53,26 @@ rw() {
 	# Why aren't the args working right?
 	local sep=" "
 	local c=1
-	while getopts "ns:" opt; do
+	#while getopts "ns:" opt; do
+	while getopts "n:" opt; do
 		case "$opt" in
-			n)
-				# No separator
-				sep=""
-				;;
-			\?)
-				echo "wat -$OPTARG"
-				;;
+		n)
+			# No separator
+			sep=""
+			;;
+		\?)
+			echo "wat -$OPTARG"
+			;;
 		esac
 	done
-	shift $((OPTIND-1))
+	shift $((OPTIND - 1))
 	if [[ -n "$1" ]]; then
 		c="$1"
 	fi
 	#echo "count:$c"
 	#echo "sep:'$sep'"
 	for i in $(seq 1 "$c"); do
-		echo -n "$(egrep -v 's$|'\' /usr/share/dict/words | shuf -n 1)"
+		echo -n "$(grep -E -v 's$|'\' /usr/share/dict/words | shuf -n 1)"
 		if [[ "$i" -ne "$c" ]]; then
 			echo -n "$sep"
 		fi
@@ -87,7 +88,7 @@ ipr() {
 			sed 's/\.git$//'
 	)"
 	ON_BRANCH=$(git branch | grep '^* ' | sed 's/^* //')
-	xdg-open "https://github.com/$REPO/compare/$ON_BRANCH" > /dev/null 2>&1
+	xdg-open "https://github.com/$REPO/compare/$ON_BRANCH" >/dev/null 2>&1
 }
 export -f ipr
 
@@ -100,15 +101,15 @@ rr() {
 	fi
 	if [[ ! -s .consume-committers ]]; then
 		local BLACKLIST="Richard Howard\|Colonel Monocle"
-		git shortlog -se --since="-1 month" \
-			| cut -f 2- | sed 's/ <.*//' \
-			| grep -v "$BLACKLIST" \
-			| sort -u \
-			| shuf \
-			> .consume-committers
+		git shortlog -se --since="-1 month" |
+			cut -f 2- | sed 's/ <.*//' |
+			grep -v "$BLACKLIST" |
+			sort -u |
+			shuf \
+				>.consume-committers
 	fi
-	committers="$(< .consume-committers)"
-	echo "$committers" | head --lines=-1 > .consume-committers
+	committers="$(<.consume-committers)"
+	echo "$committers" | head --lines=-1 >.consume-committers
 	echo "$committers" | tail -n 1
 }
 export -f rr
@@ -133,7 +134,7 @@ gup() {
 	BRANCH="${1:-master}"
 	REV="$(git rev-parse "$BRANCH")"
 	if [[ -z "$REV" ]]; then
-		return $?;
+		return $?
 	fi
 	git remote | grep '^upstream$' >/dev/null
 	if [[ $? -eq 0 ]]; then
@@ -159,7 +160,7 @@ gup() {
 grabssh() {
 	# stick SSH env vars in a sourceable file
 	for x in SSH_CLIENT SSH_TTY SSH_AUTH_SOCK SSH_CONNECTION DISPLAY; do
-		(eval echo $x=\$$x) | sed  's/=/="/
+		(eval echo $x=\$$x) | sed 's/=/="/
 									s/$/"/
 									s/^/export /'
 	done 1>$HOME/.fixssh
@@ -185,5 +186,5 @@ d() {
 
 mem() {
 	# Show top N processes by memory usage
-	ps auxk -rss  | head -n "$1" | cut -c -$COLUMNS
+	ps auxk -rss | head -n "$1" | cut -c -$COLUMNS
 }
