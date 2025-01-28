@@ -1,0 +1,4 @@
+#!/bin/bash
+# shellcheck disable=SC2016
+stdbuf -oL -eL iostat -dxy 3 |
+	stdbuf -oL -eL awk '/nvm/ {print $NF}' >/tmp/iowatchd
