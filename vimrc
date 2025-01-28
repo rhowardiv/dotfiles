@@ -23,6 +23,7 @@ Plugin 'ianks/vim-tsx'
 Plugin 'inkarkat/vim-SpellCheck'
 Plugin 'junegunn/fzf'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'lervag/vimtex'
 Plugin 'morhetz/gruvbox'
 Plugin 'mxw/vim-jsx'
 Plugin 'NLKNguyen/papercolor-theme'
@@ -538,3 +539,8 @@ let g:copilot_filetypes = {
     \ 'markdown': v:true,
     \ 'yaml': v:true
     \ }
+
+" vimtex
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_tex_flavor = 'latex'
+let g:vimtex_mappings_prefix = '<leader>l'
