@@ -31,9 +31,6 @@
 [submodule "vim/bundle/vim-clojure-static"]
 	path = vim/bundle/vim-clojure-static
 	url = https://github.com/guns/vim-clojure-static.git
-[submodule "vim/bundle/vim-hoogle"]
-	path = vim/bundle/vim-hoogle
-	url = https://github.com/Twinside/vim-hoogle.git
 [submodule "vim/bundle/vimproc.vim"]
 	path = vim/bundle/vimproc.vim
 	url = https://github.com/Shougo/vimproc.vim.git
