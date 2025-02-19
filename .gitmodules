@@ -1,9 +1,6 @@
 [submodule "vim/bundle/vim-instant-markdown"]
 	path = vim/bundle/vim-instant-markdown
 	url = https://github.com/suan/vim-instant-markdown.git
-[submodule "vim/bundle/wildfire.vim"]
-	path = vim/bundle/wildfire.vim
-	url = https://github.com/gcmt/wildfire.vim.git
 [submodule "vim/bundle/Vundle.vim"]
 	path = vim/bundle/Vundle.vim
 	url = https://github.com/VundleVim/Vundle.vim.git
