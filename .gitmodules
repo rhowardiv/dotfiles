@@ -37,9 +37,6 @@
 [submodule "vim/bundle/vim-clojure-static"]
 	path = vim/bundle/vim-clojure-static
 	url = https://github.com/guns/vim-clojure-static.git
-[submodule "vim/bundle/tagbar"]
-	path = vim/bundle/tagbar
-	url = https://github.com/majutsushi/tagbar
 [submodule "vim/bundle/vim-hoogle"]
 	path = vim/bundle/vim-hoogle
 	url = https://github.com/Twinside/vim-hoogle.git
