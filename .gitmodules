@@ -31,9 +31,6 @@
 [submodule "vim/bundle/vimproc.vim"]
 	path = vim/bundle/vimproc.vim
 	url = https://github.com/Shougo/vimproc.vim.git
-[submodule "vim/bundle/vim-literate-coffeescript"]
-	path = vim/bundle/vim-literate-coffeescript
-	url = https://github.com/rhowardiv/vim-literate-coffeescript.git
 [submodule "vim/bundle/Vundle.vim"]
 	path = vim/bundle/Vundle.vim
 	url = https://github.com/VundleVim/Vundle.vim.git
