@@ -4,9 +4,6 @@
 [submodule "vim/bundle/wildfire.vim"]
 	path = vim/bundle/wildfire.vim
 	url = https://github.com/gcmt/wildfire.vim.git
-[submodule "vim/bundle/vimproc.vim"]
-	path = vim/bundle/vimproc.vim
-	url = https://github.com/Shougo/vimproc.vim.git
 [submodule "vim/bundle/Vundle.vim"]
 	path = vim/bundle/Vundle.vim
 	url = https://github.com/VundleVim/Vundle.vim.git
