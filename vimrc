@@ -12,6 +12,7 @@ Plugin 'pangloss/vim-javascript'
 " This is a dependency for inkarkat/vim-SpellCheck
 Plugin 'inkarkat/vim-ingo-library'
 
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'andreshazard/vim-freemarker'  " template lang in OFBiz
 Plugin 'chrisbra/Colorizer'
 Plugin 'diepm/vim-rest-console'
@@ -24,12 +25,14 @@ Plugin 'inkarkat/vim-SpellCheck'
 Plugin 'junegunn/fzf'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'lervag/vimtex'
+Plugin 'mkitt/tabline.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'mxw/vim-jsx'
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'OmniSharp/omnisharp-vim'
 Plugin 'rhowardiv/nginx-vim-syntax'
 Plugin 'rhowardiv/pgsql.vim'
+Plugin 'rhowardiv/vim-markdown', {'pinned': 1} " note fix for markdown fencing recursion in fence-recursion-fix branch
 Plugin 'rhysd/vim-gfm-syntax'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
