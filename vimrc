@@ -5,6 +5,18 @@ set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
+
+" temporary fix:
+let g:gfm_syntax_enable_always = get(g:, 'gfm_syntax_enable_always', 1)
+let g:gfm_syntax_highlight_inline_code = get(g:, 'gfm_syntax_highlight_inline_code', 1)
+let g:gfm_syntax_highlight_mention = get(g:, 'gfm_syntax_highlight_mention', 1)
+let g:gfm_syntax_highlight_strikethrough = get(g:, 'gfm_syntax_highlight_strikethrough', 1)
+let g:gfm_syntax_highlight_emoji = get(g:, 'gfm_syntax_highlight_emoji', 1)
+let g:gfm_syntax_highlight_table = get(g:, 'gfm_syntax_highlight_table', 1)
+let g:gfm_syntax_highlight_issue_number = get(g:, 'gfm_syntax_highlight_issue_number', 1)
+let g:gfm_syntax_highlight_checkbox = get(g:, 'gfm_syntax_highlight_checkbox', 1)
+let g:gfm_syntax_emoji_conceal = get(g:, 'gfm_syntax_emoji_conceal', 0)
+
 " This is a dependency for mxw/vim-jsx
 " (I also use it on its own merits)
 Plugin 'pangloss/vim-javascript'
@@ -19,7 +31,7 @@ Plugin 'diepm/vim-rest-console'
 Plugin 'elzr/vim-json'
 Plugin 'fatih/vim-go'
 Plugin 'gcmt/wildfire.vim'
-Plugin 'github/copilot.vim'
+" Plugin 'github/copilot.vim'
 Plugin 'hashivim/vim-terraform'
 Plugin 'ianks/vim-tsx'
 Plugin 'inkarkat/vim-SpellCheck'
@@ -29,9 +41,9 @@ Plugin 'lervag/vimtex'
 Plugin 'mkitt/tabline.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'mxw/vim-jsx'
-Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'OmniSharp/omnisharp-vim'
 Plugin 'rhowardiv/nginx-vim-syntax'
+Plugin 'rhowardiv/papercolor-theme'
 Plugin 'rhowardiv/pgsql.vim'
 Plugin 'rhowardiv/vim-markdown', {'pinned': 1} " note fix for markdown fencing recursion in fence-recursion-fix branch
 Plugin 'rhysd/vim-gfm-syntax'
@@ -88,8 +100,12 @@ if has('syntax')
     let g:indentLine_enabled=0
 
     " add more...
-    let g:markdown_fenced_languages = ['json', 'python', 'sql', 'sh']
+    let g:markdown_fenced_languages = ['go', 'json', 'python', 'sql', 'sh']
     let g:markdown_syntax_conceal = 0
+    let g:markdown_folding = 1
+    augroup markdown
+        autocmd FileType markdown setlocal foldlevel=99
+    augroup END
 endif
 
 set wrap
@@ -416,13 +432,15 @@ if filereadable('etc/pylintrc')
 endif
 " disable jshint -- conflicts with prettier...
 let g:ale_linters = {
+\   'cs': [],
+\   'go': ['govet'],
 \   'javascript': ['eslint', 'flow', 'jscs', 'standard', 'xo'],
 \   'text': ['alex', 'proselint', 'write-good'],
+\   'terraform': ['terraform_ls'],
 \}
 " 
 let g:ale_fixers = {}
-" goimports does gofmt + import cleanup
-let g:ale_fixers['go'] = ['gofumpt']
+" let g:ale_fixers['go'] = ['gofumpt']
 let g:ale_fixers['java'] = ['google_java_format']
 let g:ale_fixers['javascript'] = ['prettier']
 let g:ale_fixers['markdown'] = ['prettier']
@@ -436,13 +454,30 @@ let g:ale_fixers['yaml'] = ['prettier']
 augroup go
     au FileType go nnoremap <Leader>go :GoDef<cr>
 augroup END
+"let g:go_debug = ['shell-commands', 'debugger-state', 'debugger-commands', 'lsp']
 let g:go_gopls_gofumpt=1
+"let g:ale_go_gofumpt_executable='gofumpt -s'
 let g:go_doc_balloon = 1
 let g:go_doc_popup_window = 1
 let g:go_highlight_types = 1
 let g:go_highlight_functions = 1
 let g:go_auto_type_info = 1
+"let g:go_auto_sameids = 1 " was buggy
+"using these as "metalinters" raised a lot of false issues;
+"not catching references to sibling files in the same package.
+"let g:go_metalinter_command = "golangci-lint"
+"let g:go_metalinter_command = "gopls"
+"let g:go_gopls_staticcheck = 1
 let g:go_metalinter_enabled = ['vet', 'revive', 'errcheck']
+"let g:go_metalinter_autosave = 1
+" why wasn't this working? (would jump to error even w this setting)
+"let g:go_jump_to_error = 0
+" For golangci-lint; let the local config determine this;
+" otherwise, if there is a local config that uses enable-all
+" (as is our practice), we will get the error output every time:
+" "--enable-all and --disable-all options must not be combined"
+"let g:go_metalinter_autosave_enabled = []
+"let g:go_metalinter_enabled = []
 augroup golang
     au FileType go nnoremap <Leader>lg :GoMetaLinter!<cr>
 augroup END
@@ -450,6 +485,7 @@ augroup END
 " dot net
 augroup dotnet
     au FileType cs nnoremap <buffer> K :OmniSharpDocumentation<cr>
+    nnoremap <Leader>go :OmniSharpGotoDefinition<cr>
 augroup END
 let g:OmniSharp_popup_options = {
 \ 'highlight': 'Normal',
@@ -531,9 +567,18 @@ let g:vrc_auto_format_response_patterns = { 'json': 'jq', 'yaml': 'prettier --st
 let g:vrc_response_default_content_type = 'json'
 "let g:vrc_debug = 1
 
+augroup sqlcpt
+    au FileType sql
+        \ if filereadable('/home/rhoward/wp/ofbiz-dict.txt') | 
+            \ set complete+=k/home/rhoward/wp/ofbiz-dict.txt | 
+        \ endif
+augroup END
+
+
 " here we go!
 " enable copilot
 let g:copilot#enabled = 1
+" let g:copilot#enabled = 0
 let g:copilot_node_command = '/home/rhoward/.nvm/versions/node/v18.18.2/bin/node'
 autocmd BufReadPre *
     \ let f=getfsize(expand("<afile>"))
@@ -545,6 +590,7 @@ let g:copilot_filetypes = {
     \ 'markdown': v:true,
     \ 'yaml': v:true
     \ }
+" nnoremap <Leader>cp :let g:copilot#enabled = 1<cr>
 
 " vimtex
 let g:vimtex_view_method = 'zathura'

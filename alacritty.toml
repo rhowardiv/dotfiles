@@ -36,7 +36,9 @@ white   = '#444444'
 [colors.bright]
 black   = '#bcbcbc'
 red     = '#d70000'
-green   = '#d70087'
+#green   = '#d70087'
+#fix green -- no more pink
+green   = '#0c5913'
 yellow  = '#8700af'
 blue    = '#d75f00'
 magenta = '#d75f00'
