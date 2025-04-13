@@ -132,7 +132,9 @@ set statusline=%<%f\ %{fugitive#statusline()}\ %h%m%r%=%y\ %-19.(%l,%c%V\\x%B%)\
 set ruler
 set backspace=start,indent,eol
 set updatecount=25
-set history=10000
+" I tried 10000 but the viminfo file that holds it needs to be
+" written out when vim exits, and it was blocking for like 3s...
+set history=4000
 set diffopt=filler,vertical
 nnoremap <Leader>do :diffoff!<cr>
 nnoremap <Leader>du :diffup<cr>
