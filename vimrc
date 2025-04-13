@@ -42,6 +42,7 @@ Plugin 'mkitt/tabline.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'mxw/vim-jsx'
 Plugin 'OmniSharp/omnisharp-vim'
+Plugin 'RRethy/vim-hexokinase'
 Plugin 'rhowardiv/nginx-vim-syntax'
 Plugin 'rhowardiv/papercolor-theme'
 Plugin 'rhowardiv/pgsql.vim'
@@ -72,23 +73,33 @@ if has('syntax')
         let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     endif
     set termguicolors
-    if strftime('%H') >? '05' && strftime('%H') <? '18'
-        " from 6am to 6pm use a light colorscheme
+    function LightColors(...)
         set background=light
         color PaperColor
-    else
+    endfunction
+    function DarkColors(...)
         set background=dark
         color gruvbox
+    endfunction
+
+    let currenttime = strftime('%s')
+    let sunrise = readfile('/home/rhoward/sunrise')[0]
+    let sunset = readfile('/home/rhoward/sunset')[0]
+    if currenttime > sunrise && currenttime < sunset
+        call LightColors()
+        call timer_start((sunset-currenttime)*1000, 'DarkColors')
+    else
+        call DarkColors()
+        if currenttime < sunrise
+            call timer_start((sunrise-currenttime)*1000, 'LightColors')
+        endif
     endif
-    nnoremap <Leader>sd :color solarized<cr>:set background=dark<cr>
-    nnoremap <Leader>sl :color solarized<cr>:set background=light<cr>
-    " for solarized to really work requires terminal colorscheme settings;
-    " use these if those aren't present (mnemonic 'Nope' and 'White')
     let g:gruvbox_italic=1
     let g:gruvbox_contrast_light='hard' " fixes the horrible yellow gruvbox light mode bg
     let g:gruvbox_guisp_fallback = "bg" " make gruvbox work with :set spell
-    nnoremap <Leader>sn :color gruvbox<cr>:set background=dark<cr>
-    nnoremap <Leader>sw :color PaperColor<cr>:set background=light<cr>
+
+    let g:Hexokinase_highlighters = [ 'sign_column' ]
+    let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla'
 
     " show syntax stack for current position
     nnoremap <Leader>sh :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<cr>
