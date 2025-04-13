@@ -213,6 +213,9 @@ nnoremap <C-k> <C-w>k
 " (this overwrites <C-l> for redraw, but I use :redraw[!] anyhow)
 nnoremap <C-l> <C-w>l
 
+" close all 'junk' windows
+nnoremap <Leader>cc :pclose<cr>:cclose<cr>:lclose<cr><C-w><C-w>:pclose<cr>:cclose<cr>:lclose<cr><C-w><C-w>
+
 " equalize on resize
 augroup windowage
     autocmd VimResized * wincmd =
