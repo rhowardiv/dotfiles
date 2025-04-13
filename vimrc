@@ -82,18 +82,23 @@ if has('syntax')
         color gruvbox
     endfunction
 
-    let currenttime = strftime('%s')
-    let sunrise = readfile('/home/rhoward/sunrise')[0]
-    let sunset = readfile('/home/rhoward/sunset')[0]
-    if currenttime > sunrise && currenttime < sunset
-        call LightColors()
-        call timer_start((sunset-currenttime)*1000, 'DarkColors')
-    else
-        call DarkColors()
-        if currenttime < sunrise
-            call timer_start((sunrise-currenttime)*1000, 'LightColors')
+    if filereadable(expand('~/sunset'))
+        let currenttime = strftime('%s')
+        let sunrise = readfile(expand('~/sunrise'))[0]
+        let sunset = readfile(expand('~/sunset'))[0]
+        if currenttime > sunrise && currenttime < sunset
+            call LightColors()
+            call timer_start((sunset-currenttime)*1000, 'DarkColors')
+        else
+            call DarkColors()
+            if currenttime < sunrise
+                call timer_start((sunrise-currenttime)*1000, 'LightColors')
+            endif
         endif
+    else
+        call LightColors()
     endif
+
     let g:gruvbox_italic=1
     let g:gruvbox_contrast_light='hard' " fixes the horrible yellow gruvbox light mode bg
     let g:gruvbox_guisp_fallback = "bg" " make gruvbox work with :set spell
